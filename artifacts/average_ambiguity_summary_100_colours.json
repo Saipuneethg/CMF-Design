@@ -1,0 +1,261 @@
+{
+  "dataset_metadata": {
+    "source_image": "Dataset/image.png",
+    "total_colours_requested": 100,
+    "total_colours_evaluated": 100,
+    "samples_per_colour": 500,
+    "burn_in": 50,
+    "thinning": 2,
+    "seed_base": 42
+  },
+  "model_summary": {
+    "original_model": {
+      "name": "Original Calibrated Camera Model",
+      "matrix_file": "artifacts/M_camera.npy",
+      "affine_fiber_dimension": 5,
+      "valid_fibre_count": 100,
+      "infeasible_count": 0,
+      "failed_count": 0,
+      "average_ambiguity": 0.11187184687504642,
+      "median_ambiguity": 0.10166644348936295,
+      "std_ambiguity": 0.06316472217154767,
+      "min_ambiguity": 0.0072855496984656,
+      "max_ambiguity": 0.2518638397424801
+    },
+    "optimized_model": {
+      "name": "Optimized Sensitivity Model (Run_2_seed101)",
+      "matrix_file": "artifacts/M_camera_optimized.npy",
+      "affine_fiber_dimension": 5,
+      "valid_fibre_count": 100,
+      "infeasible_count": 0,
+      "failed_count": 0,
+      "average_ambiguity": 0.0997481788583382,
+      "median_ambiguity": 0.0907104927331104,
+      "std_ambiguity": 0.05643953477991921,
+      "min_ambiguity": 0.0051373905251778,
+      "max_ambiguity": 0.2227469633577534
+    }
+  },
+  "comparison_metrics": {
+    "average_ambiguity_original": 0.11187184687504642,
+    "average_ambiguity_optimized": 0.0997481788583382,
+    "absolute_difference": -0.012123668016708222,
+    "percentage_reduction": 10.837103664025115,
+    "mean_paired_difference": -0.012123668016708087,
+    "median_paired_difference": -0.012809210705804649,
+    "colours_with_reduced_ambiguity": 86,
+    "colours_with_increased_ambiguity": 14,
+    "colours_with_equal_ambiguity": 0,
+    "percentage_colours_improved": 86.0
+  },
+  "colour_extremes": {
+    "largest_reduction": [
+      {
+        "colour_id": "colour_002",
+        "rgb_uint8": [
+          101,
+          207,
+          215
+        ],
+        "original_ambiguity": 0.0125239343542307,
+        "optimized_ambiguity": 0.0051373905251778,
+        "percentage_reduction": 58.97941988619251
+      },
+      {
+        "colour_id": "colour_060",
+        "rgb_uint8": [
+          51,
+          62,
+          19
+        ],
+        "original_ambiguity": 0.0371740866347822,
+        "optimized_ambiguity": 0.0261168254098043,
+        "percentage_reduction": 29.74454042034759
+      },
+      {
+        "colour_id": "colour_065",
+        "rgb_uint8": [
+          68,
+          69,
+          51
+        ],
+        "original_ambiguity": 0.0949757452001387,
+        "optimized_ambiguity": 0.0673528039187911,
+        "percentage_reduction": 29.084205891871434
+      },
+      {
+        "colour_id": "colour_079",
+        "rgb_uint8": [
+          79,
+          111,
+          46
+        ],
+        "original_ambiguity": 0.1010648114161759,
+        "optimized_ambiguity": 0.0726593967441835,
+        "percentage_reduction": 28.10613731323494
+      },
+      {
+        "colour_id": "colour_032",
+        "rgb_uint8": [
+          48,
+          41,
+          49
+        ],
+        "original_ambiguity": 0.0835361773649588,
+        "optimized_ambiguity": 0.061748766354216,
+        "percentage_reduction": 26.081407718187023
+      }
+    ],
+    "largest_increase": [
+      {
+        "colour_id": "colour_025",
+        "rgb_uint8": [
+          43,
+          94,
+          64
+        ],
+        "original_ambiguity": 0.0093258123436318,
+        "optimized_ambiguity": 0.01857658396622,
+        "percentage_reduction": -99.19534386626576
+      },
+      {
+        "colour_id": "colour_037",
+        "rgb_uint8": [
+          87,
+          176,
+          182
+        ],
+        "original_ambiguity": 0.0214039349107253,
+        "optimized_ambiguity": 0.0359862003928943,
+        "percentage_reduction": -68.12890033066765
+      },
+      {
+        "colour_id": "colour_012",
+        "rgb_uint8": [
+          81,
+          174,
+          119
+        ],
+        "original_ambiguity": 0.0374628320222313,
+        "optimized_ambiguity": 0.0528118358687365,
+        "percentage_reduction": -40.9712854527303
+      },
+      {
+        "colour_id": "colour_069",
+        "rgb_uint8": [
+          84,
+          173,
+          155
+        ],
+        "original_ambiguity": 0.0296164689937382,
+        "optimized_ambiguity": 0.03829942921277,
+        "percentage_reduction": -29.31801296389419
+      },
+      {
+        "colour_id": "colour_029",
+        "rgb_uint8": [
+          41,
+          63,
+          16
+        ],
+        "original_ambiguity": 0.0072855496984656,
+        "optimized_ambiguity": 0.008736008489408,
+        "percentage_reduction": -19.90870766069848
+      }
+    ],
+    "lowest_ambiguity_original": [
+      {
+        "colour_id": "colour_029",
+        "rgb_uint8": [
+          41,
+          63,
+          16
+        ],
+        "original_ambiguity": 0.0072855496984656
+      },
+      {
+        "colour_id": "colour_025",
+        "rgb_uint8": [
+          43,
+          94,
+          64
+        ],
+        "original_ambiguity": 0.0093258123436318
+      },
+      {
+        "colour_id": "colour_027",
+        "rgb_uint8": [
+          23,
+          36,
+          16
+        ],
+        "original_ambiguity": 0.0114606825694765
+      },
+      {
+        "colour_id": "colour_002",
+        "rgb_uint8": [
+          101,
+          207,
+          215
+        ],
+        "original_ambiguity": 0.0125239343542307
+      },
+      {
+        "colour_id": "colour_037",
+        "rgb_uint8": [
+          87,
+          176,
+          182
+        ],
+        "original_ambiguity": 0.0214039349107253
+      }
+    ],
+    "lowest_ambiguity_optimized": [
+      {
+        "colour_id": "colour_002",
+        "rgb_uint8": [
+          101,
+          207,
+          215
+        ],
+        "optimized_ambiguity": 0.0051373905251778
+      },
+      {
+        "colour_id": "colour_029",
+        "rgb_uint8": [
+          41,
+          63,
+          16
+        ],
+        "optimized_ambiguity": 0.008736008489408
+      },
+      {
+        "colour_id": "colour_027",
+        "rgb_uint8": [
+          23,
+          36,
+          16
+        ],
+        "optimized_ambiguity": 0.0112855641051958
+      },
+      {
+        "colour_id": "colour_025",
+        "rgb_uint8": [
+          43,
+          94,
+          64
+        ],
+        "optimized_ambiguity": 0.01857658396622
+      },
+      {
+        "colour_id": "colour_056",
+        "rgb_uint8": [
+          51,
+          60,
+          15
+        ],
+        "optimized_ambiguity": 0.0187810325542577
+      }
+    ]
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "mean_error": 3.3143631587661828e-15,
+  "max_error": 3.8319786361599204e-15,
+  "rms_error": 3.3189812792968113e-15,
+  "mean_residual": 2.8331866504071256e-15,
+  "max_residual": 3.360144595992222e-15,
+  "rms_residual": 2.8404877628652715e-15,
+  "constraint_residual": 2.673771110915334e-15,
+  "max_violation": -1.5251067522870088e-05,
+  "mean_positive_violation": 0.0,
+  "valid_points": 500,
+  "total_points": 500,
+  "percent_valid": 100.0,
+  "all_valid_within_tolerance": true,
+  "overall_status": "PASS",
+  "checks": {
+    "measurement_reconstruction": {
+      "status": "PASS",
+      "measured": 3.8319786361599204e-15,
+      "threshold": 0.0001,
+      "unit": "measurement-space (RGB units)",
+      "label": "Camera Measurement Reconstruction Error"
+    },
+    "equality_residual": {
+      "status": "PASS",
+      "measured": 3.360144595992222e-15,
+      "threshold": 1e-05,
+      "unit": "measurement-space (RGB units)",
+      "label": "Camera Equality Constraint Residual"
+    },
+    "polytope_membership": {
+      "status": "PASS",
+      "measured": -1.5251067522870088e-05,
+      "threshold": 1e-05,
+      "unit": "constraint units",
+      "label": "Spectral Polytope Feasibility"
+    }
+  },
+  "units": {
+    "errors": "RGB units (dimensionless [0-1])",
+    "residuals": "RGB units (dimensionless [0-1])",
+    "violations": "constraint units (reflectance prior space)",
+    "valid_points": "samples",
+    "percent_valid": "%"
+  }
+}

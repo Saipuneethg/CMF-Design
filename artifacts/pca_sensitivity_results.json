@@ -1,0 +1,112 @@
+[
+  {
+    "K": 5,
+    "explained_variance_pct": 98.97582784731081,
+    "reconstruction_rmse": 0.021616371022057736,
+    "camera_rank": 3,
+    "fiber_dimension": 2,
+    "half_dimension_exponent": 2,
+    "facet_complexity_scaling": "~O(V^2) (Tractable)",
+    "polytope_status": "Requires Offline Rebuild",
+    "singular_values": [
+      85.31553560882978,
+      31.223394910640966,
+      17.652411747647914,
+      8.981532558999744,
+      6.662666391751669
+    ]
+  },
+  {
+    "K": 8,
+    "explained_variance_pct": 99.71038190369124,
+    "reconstruction_rmse": 0.011495004659268991,
+    "camera_rank": 3,
+    "fiber_dimension": 5,
+    "half_dimension_exponent": 4,
+    "facet_complexity_scaling": "714,340 (Computed)",
+    "polytope_status": "Available (K=8 Artifact)",
+    "singular_values": [
+      85.31553560882978,
+      31.223394910640966,
+      17.652411747647914,
+      8.981532558999744,
+      6.662666391751669,
+      6.0378677143519495,
+      4.379054922018999,
+      2.977177295690583
+    ]
+  },
+  {
+    "K": 10,
+    "explained_variance_pct": 99.84054355922774,
+    "reconstruction_rmse": 0.0085293775228888,
+    "camera_rank": 3,
+    "fiber_dimension": 7,
+    "half_dimension_exponent": 5,
+    "facet_complexity_scaling": "~O(V^5) (Explosive)",
+    "polytope_status": "Combinatorially Heavy",
+    "singular_values": [
+      85.31553560882978,
+      31.223394910640966,
+      17.652411747647914,
+      8.981532558999744,
+      6.662666391751669,
+      6.0378677143519495,
+      4.379054922018999,
+      2.977177295690583,
+      2.4877120323069954,
+      2.2890575977614223
+    ]
+  },
+  {
+    "K": 12,
+    "explained_variance_pct": 99.89906322433934,
+    "reconstruction_rmse": 0.006786111921831374,
+    "camera_rank": 3,
+    "fiber_dimension": 9,
+    "half_dimension_exponent": 6,
+    "facet_complexity_scaling": "~O(V^6) (Explosive)",
+    "polytope_status": "Combinatorially Heavy",
+    "singular_values": [
+      85.31553560882978,
+      31.223394910640966,
+      17.652411747647914,
+      8.981532558999744,
+      6.662666391751669,
+      6.0378677143519495,
+      4.379054922018999,
+      2.977177295690583,
+      2.4877120323069954,
+      2.2890575977614223,
+      1.7131990616438395,
+      1.4842882358492342
+    ]
+  },
+  {
+    "K": 15,
+    "explained_variance_pct": 99.95195058665125,
+    "reconstruction_rmse": 0.004682096378316351,
+    "camera_rank": 3,
+    "fiber_dimension": 12,
+    "half_dimension_exponent": 7,
+    "facet_complexity_scaling": "~O(V^7) (Explosive)",
+    "polytope_status": "Combinatorially Heavy",
+    "singular_values": [
+      85.31553560882978,
+      31.223394910640966,
+      17.652411747647914,
+      8.981532558999744,
+      6.662666391751669,
+      6.0378677143519495,
+      4.379054922018999,
+      2.977177295690583,
+      2.4877120323069954,
+      2.2890575977614223,
+      1.7131990616438395,
+      1.4842882358492342,
+      1.3570645852491316,
+      1.2622765786401662,
+      1.0993938636964804
+    ]
+  }
+]

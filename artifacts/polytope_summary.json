@@ -1,0 +1,18 @@
+{
+    "num_scenes": 1200,
+    "num_input_spectra": 11008,
+    "num_final_spectra": 6208,
+    "num_pca_vertices": 711,
+    "num_facets": 714340,
+    "num_pca_components": 8,
+    "explained_variance_8d": 0.9971039295196533,
+    "camera_rank": 3,
+    "fiber_dimension": 5,
+    "num_gamut_vertices": 79,
+    "num_gamut_facets": 154,
+    "gamut_volume": 227.8064449978705,
+    "wavelength_start_nm": 400.0,
+    "wavelength_end_nm": 700.0,
+    "num_bands": 31,
+    "seed": 42
+}

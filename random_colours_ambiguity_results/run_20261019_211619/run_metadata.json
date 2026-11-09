@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "source_image": "Dataset/image.png",
+    "run_id": "run_20261019_211619",
+    "timestamp": "2026-10-19 22:16:41",
+    "seed": 42,
+    "total_unique_colors": 186123,
+    "candidates_tested": 152,
+    "total_in_gamut_found": 100,
+    "requested_samples_per_color": 500,
+    "burn_in": 50,
+    "thinning": 2,
+    "elapsed_seconds": 2145.8
+  },
+  "total_records": 100,
+  "status": "completed"
+}

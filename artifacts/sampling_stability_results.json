@@ -1,0 +1,122 @@
+{
+  "target_rgb": [
+    0.5,
+    0.5,
+    0.5
+  ],
+  "ground_truth_lp_550nm": {
+    "wavelength_idx": 15,
+    "wavelength_nm": 550.0,
+    "exact_min": 0.02633389955446614,
+    "exact_max": 0.06640537068336111,
+    "exact_range": 0.04007147112889497,
+    "min_solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "max_solver_status": "Optimization terminated successfully. (HiGHS Status 7: Optimal)",
+    "success": true,
+    "unit": "reflectance (0-1)",
+    "wavelength_unit": "nm",
+    "method": "exact optimization (HiGHS LP)"
+  },
+  "stability_study": [
+    {
+      "sample_count": 100,
+      "centroid_norm": 0.12316277580207,
+      "centroid_drift_vs_ref": 0.0355813711093617,
+      "covariance_rel_diff_vs_ref": 0.36027959297485546,
+      "eigenvalue_rel_diff_vs_ref": 0.2396817342976192,
+      "leading_eigenvalues": [
+        0.01307292725768657,
+        0.004418920043352444,
+        0.0013638699284381568
+      ],
+      "spread_score": 0.06407775631725728,
+      "volume_scale_estimate": 0.0472139744923271,
+      "sample_550nm_min": 0.029137359732560347,
+      "sample_550nm_max": 0.05783886936389142,
+      "exact_550nm_min": 0.02633389955446614,
+      "exact_550nm_max": 0.06640537068336111,
+      "undercoverage_550nm_min": 0.0028034601780942067,
+      "undercoverage_550nm_max": 0.008566501319469691
+    },
+    {
+      "sample_count": 250,
+      "centroid_norm": 0.18673693326347626,
+      "centroid_drift_vs_ref": 0.03319112547660982,
+      "covariance_rel_diff_vs_ref": 0.3998411934627744,
+      "eigenvalue_rel_diff_vs_ref": 0.3930420102344249,
+      "leading_eigenvalues": [
+        0.015329517937383911,
+        0.006704708876216401,
+        0.0010924957489417263
+      ],
+      "spread_score": 0.07029230427420487,
+      "volume_scale_estimate": 0.04817383629362013,
+      "sample_550nm_min": 0.028740582914367513,
+      "sample_550nm_max": 0.058690246749681124,
+      "exact_550nm_min": 0.02633389955446614,
+      "exact_550nm_max": 0.06640537068336111,
+      "undercoverage_550nm_min": 0.0024066833599013723,
+      "undercoverage_550nm_max": 0.007715123933679985
+    },
+    {
+      "sample_count": 500,
+      "centroid_norm": 0.13735281873585062,
+      "centroid_drift_vs_ref": 0.022042368245557886,
+      "covariance_rel_diff_vs_ref": 0.2234547295777753,
+      "eigenvalue_rel_diff_vs_ref": 0.21137707379697596,
+      "leading_eigenvalues": [
+        0.01316047619151617,
+        0.006113318072173703,
+        0.0013363830655911538
+      ],
+      "spread_score": 0.06662236903365278,
+      "volume_scale_estimate": 0.04797730282573178,
+      "sample_550nm_min": 0.028576811220121817,
+      "sample_550nm_max": 0.059946400304415906,
+      "exact_550nm_min": 0.02633389955446614,
+      "exact_550nm_max": 0.06640537068336111,
+      "undercoverage_550nm_min": 0.0022429116656556766,
+      "undercoverage_550nm_max": 0.006458970378945203
+    },
+    {
+      "sample_count": 1000,
+      "centroid_norm": 0.15925660228160426,
+      "centroid_drift_vs_ref": 0.006302646256811148,
+      "covariance_rel_diff_vs_ref": 0.18855593949916083,
+      "eigenvalue_rel_diff_vs_ref": 0.16293808634923934,
+      "leading_eigenvalues": [
+        0.012459341678692601,
+        0.006617818456570904,
+        0.0012885480286827418
+      ],
+      "spread_score": 0.06613129186951693,
+      "volume_scale_estimate": 0.047459500306186654,
+      "sample_550nm_min": 0.028576811220121817,
+      "sample_550nm_max": 0.06098164889827497,
+      "exact_550nm_min": 0.02633389955446614,
+      "exact_550nm_max": 0.06640537068336111,
+      "undercoverage_550nm_min": 0.0022429116656556766,
+      "undercoverage_550nm_max": 0.005423721785086141
+    },
+    {
+      "sample_count": 2000,
+      "centroid_norm": 0.15781946884564857,
+      "centroid_drift_vs_ref": 0.0,
+      "covariance_rel_diff_vs_ref": 0.0,
+      "eigenvalue_rel_diff_vs_ref": 0.0,
+      "leading_eigenvalues": [
+        0.010573390946473981,
+        0.005963669277381033,
+        0.0013549055287285954
+      ],
+      "spread_score": 0.0624080316712162,
+      "volume_scale_estimate": 0.04700172043230388,
+      "sample_550nm_min": 0.028576811220121817,
+      "sample_550nm_max": 0.06387226712108049,
+      "exact_550nm_min": 0.02633389955446614,
+      "exact_550nm_max": 0.06640537068336111,
+      "undercoverage_550nm_min": 0.0022429116656556766,
+      "undercoverage_550nm_max": 0.0025331035622806197
+    }
+  ]
+}
