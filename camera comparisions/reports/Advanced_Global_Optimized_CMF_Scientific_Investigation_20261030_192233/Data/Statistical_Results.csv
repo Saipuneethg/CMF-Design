@@ -1,0 +1,2 @@
+Total_Materials_Evaluated,Paired_T_Statistic,Paired_T_P_Value,Wilcoxon_W_Statistic,Wilcoxon_P_Value,Mean_Paired_Improvement,Median_Paired_Improvement,Std_Paired_Improvement,SE_Paired_Improvement,CI95_Lower,CI95_Upper,Cohen_d_Effect_Size,Optimized_Win_Count,Optimized_Win_Rate_Pct,Mean_Percentage_Reduction,Median_Percentage_Reduction
+350,23.1225169826,2.16559603462e-72,2809.0,4.10610013631e-49,0.0295458104845,0.0322479437885,0.0239053343826,0.00127779387109,0.0270413344971,0.0320502864718,1.23595052098,320,91.4285714286,8.6340274679,8.87395622269

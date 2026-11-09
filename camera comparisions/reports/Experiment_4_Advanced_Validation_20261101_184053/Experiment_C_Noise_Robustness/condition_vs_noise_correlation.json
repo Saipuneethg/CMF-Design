@@ -1,0 +1,5 @@
+{
+  "Pearson_Correlation_Cond_vs_DeltaAmb": 0.995294449082041,
+  "Pearson_Correlation_Cond_vs_DegradationPct": 0.9942450837259926,
+  "Interpretation": "Strong positive correlation: higher condition number leads to greater noise sensitivity."
+}

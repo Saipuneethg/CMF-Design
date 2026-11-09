@@ -1,0 +1,4 @@
+Test_Type,Illuminant,Noise_Regime,Sample_Size_N,Mean_Baseline_Ambiguity,Mean_Optimized_Ambiguity,Mean_Difference,Ambiguity_Reduction_Pct,CI95_Lower,CI95_Upper,Paired_t_Statistic,P_Value,Bonferroni_Alpha,Statistically_Significant,Cohen_d_Effect_Size,Effect_Size_Magnitude,Win_Rate_Pct
+Paired Repeated-Measures t-test,D50,Noise_Free,100,0.277179,0.250881,0.026298,9.4879,0.021971,0.030627,11.9097,8.00501658714e-21,0.0167,True,1.191,Huge (d > 1.0),92.0
+Paired Repeated-Measures t-test,D65,Noise_Free,100,0.273236,0.252316,0.02092,7.6561,0.017077,0.024762,10.6703,3.79257585699e-18,0.0167,True,1.067,Huge (d > 1.0),87.0
+Paired Repeated-Measures t-test,A,Noise_Free,100,0.281225,0.242258,0.038967,13.8559,0.034089,0.043844,15.6577,1.54509229367e-28,0.0167,True,1.5658,Huge (d > 1.0),97.0

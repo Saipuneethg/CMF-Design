@@ -1,0 +1,64 @@
+{
+  "optimizer": "Multi-Start Differential Evolution with L-BFGS-B Polish",
+  "selected_run_id": "Run_2_seed101",
+  "target_throughput": 10.672252177502214,
+  "parameter_bounds": [
+    [
+      0.2,
+      5.0
+    ],
+    [
+      420.0,
+      475.0
+    ],
+    [
+      15.0,
+      60.0
+    ],
+    [
+      0.2,
+      5.0
+    ],
+    [
+      515.0,
+      575.0
+    ],
+    [
+      20.0,
+      65.0
+    ],
+    [
+      0.2,
+      5.0
+    ],
+    [
+      590.0,
+      660.0
+    ],
+    [
+      20.0,
+      75.0
+    ],
+    [
+      0.0,
+      1.5
+    ],
+    [
+      420.0,
+      470.0
+    ],
+    [
+      10.0,
+      45.0
+    ]
+  ],
+  "loss_weights": {
+    "w_mean": 0.4,
+    "w_median": 0.3,
+    "w_tail_p95": 0.2,
+    "w_regression": 0.1,
+    "lambda_smoothness": 5.0,
+    "lambda_conditioning": 0.01,
+    "lambda_colorimetric": 0.05
+  }
+}

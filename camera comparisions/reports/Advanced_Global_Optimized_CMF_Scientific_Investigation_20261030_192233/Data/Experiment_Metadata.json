@@ -1,0 +1,44 @@
+{
+  "experiment_id": "Advanced_Global_Optimized_CMF_Scientific_Investigation_20261030_192233",
+  "timestamp": "20261030_192233",
+  "random_seed": 42,
+  "wavelength_sampling": {
+    "start_nm": 400,
+    "end_nm": 700,
+    "step_nm": 10,
+    "bands": 31
+  },
+  "latent_representation": {
+    "basis_dimension": 8,
+    "measurement_rank": 3,
+    "affine_fiber_dimension": 5,
+    "polytope_facets": 714340
+  },
+  "datasets": {
+    "train_materials": 150,
+    "val_materials": 100,
+    "test_materials": 100,
+    "unseen_cave_real_world_materials": 50,
+    "held_out_prior_materials": 50,
+    "total_unique_evaluations": 350
+  },
+  "total_cmfs_compared": 32,
+  "key_statistical_findings": {
+    "Total_Materials_Evaluated": 350,
+    "Paired_T_Statistic": 23.122516982610755,
+    "Paired_T_P_Value": 2.165596034621198e-72,
+    "Wilcoxon_W_Statistic": 2809.0,
+    "Wilcoxon_P_Value": 4.106100136311314e-49,
+    "Mean_Paired_Improvement": 0.02954581048447413,
+    "Median_Paired_Improvement": 0.03224794378846907,
+    "Std_Paired_Improvement": 0.023905334382626844,
+    "SE_Paired_Improvement": 0.0012777938710865258,
+    "CI95_Lower": 0.02704133449714454,
+    "CI95_Upper": 0.03205028647180372,
+    "Cohen_d_Effect_Size": 1.2359505209827348,
+    "Optimized_Win_Count": 320,
+    "Optimized_Win_Rate_Pct": 91.42857142857143,
+    "Mean_Percentage_Reduction": 8.634027467903106,
+    "Median_Percentage_Reduction": 8.873956222690653
+  }
+}

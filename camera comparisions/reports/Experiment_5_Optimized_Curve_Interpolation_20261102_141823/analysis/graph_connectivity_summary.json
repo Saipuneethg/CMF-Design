@@ -1,0 +1,109 @@
+{
+  "0.5%": {
+    "Tolerance": "0.5%",
+    "Relative_Threshold": 0.005,
+    "Total_Possible_Edges": 78,
+    "Near_Optimal_Edges": 3,
+    "Edge_Density_Pct": 3.8461538461538463,
+    "Number_of_Components": 10,
+    "Largest_Component_Size": 4,
+    "Largest_Component_Members": [
+      "Nikon_D200",
+      "Random_Smooth_2_seed202",
+      "Random_Smooth_5_seed505",
+      "Random_Smooth_7_seed707"
+    ],
+    "Isolated_Solutions_Count": 9,
+    "Isolated_Solutions": [
+      "Canon_1DMarkIII",
+      "Point_Grey_Grasshopper",
+      "CIE_1931_Derived",
+      "Original_Baseline_Camera",
+      "Random_Smooth_1_seed101",
+      "Random_Smooth_3_seed303",
+      "Random_Smooth_4_seed404",
+      "Random_Smooth_6_seed606",
+      "Random_Smooth_8_seed808"
+    ]
+  },
+  "1.0%": {
+    "Tolerance": "1.0%",
+    "Relative_Threshold": 0.01,
+    "Total_Possible_Edges": 78,
+    "Near_Optimal_Edges": 27,
+    "Edge_Density_Pct": 34.61538461538461,
+    "Number_of_Components": 5,
+    "Largest_Component_Size": 9,
+    "Largest_Component_Members": [
+      "Canon_1DMarkIII",
+      "Nikon_D200",
+      "Point_Grey_Grasshopper",
+      "Random_Smooth_2_seed202",
+      "Random_Smooth_5_seed505",
+      "Random_Smooth_6_seed606",
+      "Random_Smooth_7_seed707",
+      "Random_Smooth_8_seed808",
+      "Random_Smooth_1_seed101"
+    ],
+    "Isolated_Solutions_Count": 4,
+    "Isolated_Solutions": [
+      "CIE_1931_Derived",
+      "Original_Baseline_Camera",
+      "Random_Smooth_3_seed303",
+      "Random_Smooth_4_seed404"
+    ]
+  },
+  "2.0%": {
+    "Tolerance": "2.0%",
+    "Relative_Threshold": 0.02,
+    "Total_Possible_Edges": 78,
+    "Near_Optimal_Edges": 55,
+    "Edge_Density_Pct": 70.51282051282051,
+    "Number_of_Components": 3,
+    "Largest_Component_Size": 11,
+    "Largest_Component_Members": [
+      "Canon_1DMarkIII",
+      "Nikon_D200",
+      "Point_Grey_Grasshopper",
+      "Random_Smooth_1_seed101",
+      "Random_Smooth_2_seed202",
+      "Random_Smooth_3_seed303",
+      "Random_Smooth_4_seed404",
+      "Random_Smooth_5_seed505",
+      "Random_Smooth_6_seed606",
+      "Random_Smooth_7_seed707",
+      "Random_Smooth_8_seed808"
+    ],
+    "Isolated_Solutions_Count": 2,
+    "Isolated_Solutions": [
+      "CIE_1931_Derived",
+      "Original_Baseline_Camera"
+    ]
+  },
+  "5.0%": {
+    "Tolerance": "5.0%",
+    "Relative_Threshold": 0.05,
+    "Total_Possible_Edges": 78,
+    "Near_Optimal_Edges": 78,
+    "Edge_Density_Pct": 100.0,
+    "Number_of_Components": 1,
+    "Largest_Component_Size": 13,
+    "Largest_Component_Members": [
+      "Canon_1DMarkIII",
+      "Nikon_D200",
+      "Point_Grey_Grasshopper",
+      "CIE_1931_Derived",
+      "Original_Baseline_Camera",
+      "Random_Smooth_1_seed101",
+      "Random_Smooth_2_seed202",
+      "Random_Smooth_3_seed303",
+      "Random_Smooth_4_seed404",
+      "Random_Smooth_5_seed505",
+      "Random_Smooth_6_seed606",
+      "Random_Smooth_7_seed707",
+      "Random_Smooth_8_seed808"
+    ],
+    "Isolated_Solutions_Count": 0,
+    "Isolated_Solutions": []
+  }
+}

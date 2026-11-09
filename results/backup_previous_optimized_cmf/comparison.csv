@@ -1,0 +1,11 @@
+metric,baseline,optimized,change_percent,unit
+train_spread_mean,0.251251,0.226415,-9.88%,reflectance
+train_spread_median,0.186999,0.176783,-5.46%,reflectance
+val_spread_mean,0.273820,0.250364,-8.57%,reflectance
+val_spread_median,0.276574,0.245754,-11.14%,reflectance
+held_out_test_spread_mean,0.233135,0.223721,-4.04%,reflectance
+held_out_test_spread_median,0.139047,0.160122,15.16%,reflectance
+held_out_test_spread_p95,0.541295,0.511074,-5.58%,reflectance
+condition_number,3.1254,2.7226,-12.89%,ratio
+colorimetric_de00_mean,0.0395,1.5168,3741.69%,DeltaE00
+smoothness_penalty,0.001206,0.000164,-86.37%,derivative_norm

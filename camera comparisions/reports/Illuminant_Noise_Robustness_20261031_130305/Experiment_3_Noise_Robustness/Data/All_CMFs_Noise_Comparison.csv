@@ -1,0 +1,17 @@
+Condition,Condition_Label,CMF,Mean_Ambiguity,Std_Ambiguity_Across_Realizations,Mean_RGB_Error,Mean_Spectral_RMSE,Feasibility_Rate_Pct,Constraint_Tolerance_Eps
+Noise_Free,Noise-Free Reference,Advanced Global Optimized CMF,0.252316465251,0.0,0.0,0.0,100.0,0.0
+Noise_Free,Noise-Free Reference,Original Baseline CMF,0.273235745978,0.0,0.0,0.0,100.0,0.0
+Noise_Free,Noise-Free Reference,CIE 1931 2° Standard Observer,0.273242580339,0.0,0.0,0.0,100.0,0.0
+Noise_Free,Noise-Free Reference,CIE 1964 10° Standard Observer,0.265379630232,0.0,0.0,0.0,100.0,0.0
+Low_Noise,Low Noise (Bright / ISO 100),Advanced Global Optimized CMF,0.252585980195,0.0,0.00615489808594,0.000693307915088,100.0,0.00791686238409
+Low_Noise,Low Noise (Bright / ISO 100),Original Baseline CMF,0.273371483754,0.0,0.00650939340998,0.000536205651467,100.0,0.00791686238409
+Low_Noise,Low Noise (Bright / ISO 100),CIE 1931 2° Standard Observer,0.273377809582,0.0,0.00622734628417,0.000514613339711,100.0,0.00791686238409
+Low_Noise,Low Noise (Bright / ISO 100),CIE 1964 10° Standard Observer,0.265521467564,0.0,0.00642428646523,0.000533405696047,100.0,0.00791686238409
+Moderate_Noise,Moderate Noise (Standard / ISO 800),Advanced Global Optimized CMF,0.253266437351,0.0,0.012625367356,0.0013845357888,100.0,0.0161368195279
+Moderate_Noise,Moderate Noise (Standard / ISO 800),Original Baseline CMF,0.27375508374,0.0,0.013713197671,0.00112791674242,100.0,0.0161368195279
+Moderate_Noise,Moderate Noise (Standard / ISO 800),CIE 1931 2° Standard Observer,0.273759899831,0.0,0.0131997814098,0.00107868238325,100.0,0.0161368195279
+Moderate_Noise,Moderate Noise (Standard / ISO 800),CIE 1964 10° Standard Observer,0.26592003187,0.0,0.0132347020441,0.00101472645347,100.0,0.0161368195279
+High_Noise,High Noise (Low-Light / ISO 3200),Advanced Global Optimized CMF,0.255799672145,0.0,0.0290562745026,0.00320133400613,100.0,0.0368361341151
+High_Noise,High Noise (Low-Light / ISO 3200),Original Baseline CMF,0.275244557393,0.0,0.0309339364675,0.00272062200837,100.0,0.0368361341151
+High_Noise,High Noise (Low-Light / ISO 3200),CIE 1931 2° Standard Observer,0.275242850122,0.0,0.0286046872592,0.00229172778437,100.0,0.0368361341151
+High_Noise,High Noise (Low-Light / ISO 3200),CIE 1964 10° Standard Observer,0.267442226942,0.0,0.0299194398049,0.00242242558008,100.0,0.0368361341151

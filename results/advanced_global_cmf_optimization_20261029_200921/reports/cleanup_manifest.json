@@ -1,0 +1,20 @@
+{
+  "cleanup_timestamp": "2026-10-29T20:16:31.888454",
+  "status": "VERIFIED_SAFE_AUDIT",
+  "backup_location": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\advanced_global_cmf_optimization_20261029_200921\\backup_current_cmf",
+  "removed_files_count": 0,
+  "removed_files": [],
+  "strictly_retained_dependencies": [
+    "artifacts/M_camera_optimized.npy (active master CMF)",
+    "artifacts/A_red.npy (714,340-facet polytope)",
+    "camera comparisions/sensitivity_functions/ (28 reference cameras)",
+    "Dataset/ and Spectral/ (source spectral datasets)",
+    "advanced_global_cmf_optimization_20261029_200921/ (complete new investigation results)"
+  ],
+  "post_cleanup_verification": {
+    "active_optimized_cmf_exists": true,
+    "source_datasets_intact": true,
+    "polytope_intact": true,
+    "reference_cameras_intact": true
+  }
+}

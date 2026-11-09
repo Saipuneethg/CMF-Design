@@ -1,0 +1,8 @@
+Parameter,Count,Description
+Total Initializations Investigated,13,"Commercial DSLR, Reference, CIE, Hardware Baseline, and 8 Smooth Random"
+Continued MAXITER Optimization Solves,4,"Point Grey, Baseline, Random 6, Random 7 continued to stationary convergence"
+Valley Path Interpolation Evaluations,33,3 Camera pairs x 11 parameter steps across objective landscape
+Noise Robustness Cross-Test Solves,2600,13 Cameras x 4 SNR levels x 100 benchmark materials x 5 noise repeats
+Cubic B-Spline Model Optimizations,5,18-parameter B-spline representations across 31 spectral bands
+Pairwise Symmetric Distance Comparisons,78,Unique camera pairs with Hungarian optimal permutation matching
+Overall Solver Feasibility Rate,100.0%,Zero infeasible or failed evaluations across all experiments

@@ -1,0 +1,26 @@
+================================================================================
+PROJECT AUDIT & DEDUPLICATION CLEANUP REPORT
+Generated: 2026-11-02 15:52:00
+================================================================================
+
+Pre-Cleanup Backup Location: c:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\results\backup_pre_cleanup_audit_20261102_154426
+Number of Duplicate / Obsolete Folders Safely Removed: 7
+Number of Duplicate / Obsolete Files Removed: 24
+Number of Items Retained for Safety / Source Dependencies: 6
+
+--- DETAILED ACTIONS AND DECISION MATRIX ---
+Folder / File                                                | Proposed Action                     | Reason
+--------------------------------------------------------------------------------------------------------------------------------------------
+camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_130028 | Backed up & safely removed (3 files). | Aborted Experiment 5 run due to Windows IPC buffer exhaustion; superseded by authoritative run 20261102_141823.
+camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_130522 | Backed up & safely removed (3 files). | Aborted Experiment 5 run due to Windows IPC buffer exhaustion; superseded by authoritative run 20261102_141823.
+camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_131400 | Backed up & safely removed (3 files). | Aborted Experiment 5 run due to Windows IPC buffer exhaustion; superseded by authoritative run 20261102_141823.
+camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_135353 | Backed up & safely removed (3 files). | Aborted Experiment 5 run due to Windows IPC buffer exhaustion; superseded by authoritative run 20261102_141823.
+camera comparisions\reports\Scientific_Validation_and_Project_Improvements_20261031_162253 | Safely removed empty directory.    | Completely empty directory (0 files, 0 bytes) left from aborted execution initialization.
+scratch\pdf_pages_design5                                    | Backed up & safely removed (6 files). | Temporary intermediate rasterized test page PNGs from past visual validation.
+scratch\pdf_validation_pages                                 | Backed up & safely removed (6 files). | Temporary intermediate rasterized test page PNGs from past visual validation.
+Advanced_Global_Optimized_CMF                                | Retained (Active Source Dependency) | Contains 54 files (62.23 MB) of CMF curves and chromaticity analyses. Actively referenced by scripts/run_scientific_cmf_investigation.py. Retained to preserve execution integrity.
+cmf_post_optimization_analysis                               | Retained (Active Source Dependency) | Contains 463 files (94.11 MB). Contains full image difference maps and generated rendering sets. Actively referenced by 5 scripts including run_post_optimization_cmf_evaluation.py. Retained to preserve execution integrity.
+results\backup_experiment_4_pre_corrections                  | Retained (Historical Provenance Backup) | Contains pre-correction baseline state of Experiment 4 (77 files, 7.60 MB). Retained as an authoritative provenance record.
+results\backup_experiment_5_pre_interpolation                | Retained (Pre-Experiment 5 Baseline Backup) | Contains pre-interpolation state prior to Experiment 5 execution (77 files, 7.60 MB). Retained as an authoritative provenance record.
+results\backup_previous_optimized_cmf                        | Retained (Historical Baseline Model) | Contains previous baseline optimized CMF outputs (29 files, 3.50 MB). Retained for historical model comparison.
+camera comparisions\reports\Scientific_Validation_and_Project_Improvements_20261031_162858 | Retained (Audit Trail)              | Contains 11 files (1.01 MB) from partial intermediate validation run. Retained for auditability alongside 164342.

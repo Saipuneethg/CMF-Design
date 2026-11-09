@@ -1,0 +1,37 @@
+camera_name,model_type,budget_N,seed,average_ambiguity,std_ambiguity
+Optimized Model,optimized_model,25,42,0.0504804267849,0.0338154111283
+Optimized Model,optimized_model,50,42,0.0621685056008,0.0375142073963
+Optimized Model,optimized_model,100,42,0.0709949465202,0.043170602561
+Optimized Model,optimized_model,200,42,0.0822613646541,0.0463623091977
+Optimized Model,optimized_model,100,101,0.0719384714488,0.0387945618603
+Optimized Model,optimized_model,100,777,0.0702572354646,0.0408076057548
+Point Grey Grasshopper2 14S5C,measured_database,25,42,0.0514572406198,0.0334360849091
+Point Grey Grasshopper2 14S5C,measured_database,50,42,0.0634505784422,0.0382769959103
+Point Grey Grasshopper2 14S5C,measured_database,100,42,0.0741530012727,0.0450574866581
+Point Grey Grasshopper2 14S5C,measured_database,200,42,0.0844323559804,0.0481834581191
+Point Grey Grasshopper2 14S5C,measured_database,100,101,0.0739604885208,0.0397621815195
+Point Grey Grasshopper2 14S5C,measured_database,100,777,0.0744504267431,0.0414956196061
+Nikon D50,measured_database,25,42,0.0515015037524,0.0337167494885
+Nikon D50,measured_database,50,42,0.0621826607586,0.0389478215797
+Nikon D50,measured_database,100,42,0.0736781622438,0.0459705510662
+Nikon D50,measured_database,200,42,0.0830123747422,0.0498381643629
+Nikon D50,measured_database,100,101,0.0720234552723,0.0374375138855
+Nikon D50,measured_database,100,777,0.0719877444168,0.0403627654682
+Canon 500D,measured_database,25,42,0.0478431595543,0.0327995864031
+Canon 500D,measured_database,50,42,0.0604644486444,0.0377682685455
+Canon 500D,measured_database,100,42,0.0719806744784,0.0447134672734
+Canon 500D,measured_database,200,42,0.085086515827,0.0509974169941
+Canon 500D,measured_database,100,101,0.071217638039,0.037977746288
+Canon 500D,measured_database,100,777,0.0709608091795,0.0402030483431
+Original Model,original_model,25,42,0.0484714590535,0.0331795676712
+Original Model,original_model,50,42,0.061313859477,0.0385859338818
+Original Model,original_model,100,42,0.0737698629143,0.046858422308
+Original Model,original_model,200,42,0.0866312401348,0.0530564730039
+Original Model,original_model,100,101,0.073862841067,0.0400603130117
+Original Model,original_model,100,777,0.0701046382749,0.0393323167974
+Point Grey Grasshopper 50S5C,measured_database,25,42,0.0589252733683,0.0327050792936
+Point Grey Grasshopper 50S5C,measured_database,50,42,0.07539573192,0.0397902584481
+Point Grey Grasshopper 50S5C,measured_database,100,42,0.0879767007901,0.0416946846138
+Point Grey Grasshopper 50S5C,measured_database,200,42,0.0977419949236,0.0460245779537
+Point Grey Grasshopper 50S5C,measured_database,100,101,0.0834275866643,0.041304354747
+Point Grey Grasshopper 50S5C,measured_database,100,777,0.084315092283,0.043032401463

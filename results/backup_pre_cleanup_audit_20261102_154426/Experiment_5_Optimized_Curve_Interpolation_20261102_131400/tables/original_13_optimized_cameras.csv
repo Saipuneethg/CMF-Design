@@ -1,0 +1,14 @@
+Camera,Label,Category,Ambiguity,Condition_Number_Operator,Parameter_Fit_Error_L_inf
+Canon_1DMarkIII,Canon 1DMarkIII (Commercial),Commercial,0.326194256544,2.3061013449,3.65327545992e-10
+Nikon_D200,Nikon D200 (Commercial),Commercial,0.326231777668,2.34554946201,1.47406409301e-09
+Point_Grey_Grasshopper,Point Grey Grasshopper (Reference),Commercial/Reference,0.32619959116,2.28704423057,6.60301369138e-10
+CIE_1931_Derived,CIE 1931 CMF Derived,Standard Observer,0.34031894803,4.3909494968,1.10322356806e-09
+Original_Baseline_Camera,Original Baseline Camera,Hardware Baseline,0.341506361961,4.44937120486,1.84782186774e-09
+Random_Smooth_1_seed101,Random Smooth 1 (Seed 101),Random Init,0.323885917664,2.38776665371,2.50356929632e-09
+Random_Smooth_2_seed202,Random Smooth 2 (Seed 202),Random Init,0.330211013556,6.33585944633,3.90179391574e-09
+Random_Smooth_3_seed303,Random Smooth 3 (Seed 303),Random Init,0.321914404631,11.8635118006,1.68193439731e-09
+Random_Smooth_4_seed404,Random Smooth 4 (Seed 404),Random Init,0.323138654232,4.17931113078,7.73874797577e-09
+Random_Smooth_5_seed505,Random Smooth 5 (Seed 505),Random Init,0.326292991638,2.15451248054,3.20139914578e-10
+Random_Smooth_6_seed606,Random Smooth 6 (Seed 606),Random Init,0.327501565218,5.44758817933,1.41931238984e-09
+Random_Smooth_7_seed707,Random Smooth 7 (Seed 707),Random Init,0.327527672052,2.0650549634,4.11196632299e-10
+Random_Smooth_8_seed808,Random Smooth 8 (Seed 808),Random Init,0.326117604971,2.05801347633,2.55709675656e-10

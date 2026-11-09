@@ -1,0 +1,82 @@
+[2026-11-01 18:40:53] Initializing Experiment 4 Advanced Scientific Validation & Follow-Up Suite
+[2026-11-01 18:40:53] Target Output Directory: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_4_Advanced_Validation_20261101_184053
+[2026-11-01 18:40:54] === CORRECTION A: CONTINUING 4 MAXITER RUNS & VERIFYING STATIONARITY ===
+[2026-11-01 18:40:54] Continuing MAXITER Run: Point_Grey_Grasshopper (Start J=0.407934)
+[2026-11-01 18:42:36]   -> Finished Point_Grey_Grasshopper: Delta_J=4.21e-06 (Rel: 0.0010%), GradNorm=1.16e-04, Classification: CONVERGED_STATIONARY
+[2026-11-01 18:42:37] Continuing MAXITER Run: Original_Baseline_Camera (Start J=0.404221)
+[2026-11-01 18:44:19]   -> Finished Original_Baseline_Camera: Delta_J=1.00e-06 (Rel: 0.0002%), GradNorm=3.18e-03, Classification: CONVERGED_STATIONARY
+[2026-11-01 18:44:19] Continuing MAXITER Run: Random_Smooth_6_seed606 (Start J=0.410243)
+[2026-11-01 18:45:19]   -> Finished Random_Smooth_6_seed606: Delta_J=4.83e-08 (Rel: 0.0000%), GradNorm=1.98e-03, Classification: CONVERGED_STATIONARY
+[2026-11-01 18:45:19] Continuing MAXITER Run: Random_Smooth_7_seed707 (Start J=0.408905)
+[2026-11-01 18:49:28]   -> Finished Random_Smooth_7_seed707: Delta_J=9.75e-04 (Rel: 0.2385%), GradNorm=7.66e-05, Classification: FURTHER_IMPROVED
+[2026-11-01 18:49:28] Correction A successfully completed.
+[2026-11-01 18:49:28] === EXPERIMENT B: TESTING NEAR-OPTIMAL VALLEY VIA LINEAR PARAMETER INTERPOLATION ===
+[2026-11-01 18:49:28] Interpolating along path: Canon_1DMarkIII -> Random_Smooth_3_seed303
+[2026-11-01 18:49:48] Interpolating along path: Canon_1DMarkIII -> Original_Baseline_Camera
+[2026-11-01 18:50:10] Interpolating along path: Random_Smooth_1_seed101 -> Random_Smooth_2_seed202
+[2026-11-01 18:50:33] Experiment B completed.
+[2026-11-01 18:50:33] === EXPERIMENT C: SENSOR NOISE ROBUSTNESS CROSS-TEST (13 CAMERAS x 4 SNR LEVELS) ===
+[2026-11-01 18:50:33] Noise Cross-Test: Canon_1DMarkIII (Cond=2.76)
+[2026-11-01 19:03:12] Initializing Experiment 4 Advanced Scientific Validation & Follow-Up Suite
+[2026-11-01 19:03:12] Target Output Directory: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_4_Advanced_Validation_20261101_184053
+[2026-11-01 19:03:13] === CORRECTION A: CONTINUING 4 MAXITER RUNS & VERIFYING STATIONARITY ===
+[2026-11-01 19:03:13] Loading existing verified Correction A results...
+[2026-11-01 19:03:13] Correction A verified results loaded successfully.
+[2026-11-01 19:03:13] === EXPERIMENT B: TESTING NEAR-OPTIMAL VALLEY VIA LINEAR PARAMETER INTERPOLATION ===
+[2026-11-01 19:03:13] Loading existing verified Experiment B valley interpolation results...
+[2026-11-01 19:03:13] Experiment B results loaded successfully.
+[2026-11-01 19:03:13] === EXPERIMENT C: SENSOR NOISE ROBUSTNESS CROSS-TEST (13 CAMERAS x 4 SNR LEVELS) ===
+[2026-11-01 19:03:13] Noise Cross-Test: Canon_1DMarkIII (Cond=2.76)
+[2026-11-01 19:03:13] Noise Cross-Test: Nikon_D200 (Cond=2.81)
+[2026-11-01 19:03:14] Noise Cross-Test: Point_Grey_Grasshopper (Cond=2.35)
+[2026-11-01 19:03:14] Noise Cross-Test: CIE_1931_Derived (Cond=4.88)
+[2026-11-01 19:03:14] Noise Cross-Test: Original_Baseline_Camera (Cond=4.48)
+[2026-11-01 19:03:14] Noise Cross-Test: Random_Smooth_1_seed101 (Cond=2.85)
+[2026-11-01 19:03:16] Noise Cross-Test: Random_Smooth_2_seed202 (Cond=7.53)
+[2026-11-01 19:03:17] Noise Cross-Test: Random_Smooth_3_seed303 (Cond=14.82)
+[2026-11-01 19:03:17] Noise Cross-Test: Random_Smooth_4_seed404 (Cond=5.04)
+[2026-11-01 19:03:17] Noise Cross-Test: Random_Smooth_5_seed505 (Cond=2.58)
+[2026-11-01 19:03:17] Noise Cross-Test: Random_Smooth_6_seed606 (Cond=5.38)
+[2026-11-01 19:03:18] Noise Cross-Test: Random_Smooth_7_seed707 (Cond=2.34)
+[2026-11-01 19:03:18] Noise Cross-Test: Random_Smooth_8_seed808 (Cond=2.46)
+[2026-11-01 19:03:18] Experiment C completed. Correlation Cond vs Noise Degradation: r = 0.995
+[2026-11-01 19:03:18] === EXPERIMENT D: TESTING ALTERNATIVE PARAMETERIZATION (CUBIC B-SPLINES) ===
+[2026-11-01 19:03:19] Optimizing Cubic B-Spline Camera: Spline_Canon_1DMarkIII (Start J=20.9759)
+[2026-11-01 19:07:07]   -> Finished Spline_Canon_1DMarkIII: Final Amb=0.3214, DeltaE00=1.95, Peaks=[620, 530, 450] nm
+[2026-11-01 19:07:07] Optimizing Cubic B-Spline Camera: Spline_Nikon_D200 (Start J=21.1501)
+[2026-11-01 19:11:58]   -> Finished Spline_Nikon_D200: Final Amb=0.3213, DeltaE00=1.95, Peaks=[620, 530, 450] nm
+[2026-11-01 19:12:00] Optimizing Cubic B-Spline Camera: Spline_Original_Baseline (Start J=28.4484)
+[2026-11-01 19:25:43]   -> Finished Spline_Original_Baseline: Final Amb=0.3221, DeltaE00=1.91, Peaks=[610, 580, 450] nm
+[2026-11-01 19:25:43] Optimizing Cubic B-Spline Camera: Spline_Random_1 (Start J=1000000.0000)
+[2026-11-01 19:25:43]   -> Finished Spline_Random_1: Final Amb=999.0000, DeltaE00=23.03, Peaks=[670, 670, 670] nm
+[2026-11-01 19:25:43] Optimizing Cubic B-Spline Camera: Spline_Random_2 (Start J=1000000.0000)
+[2026-11-01 19:25:43]   -> Finished Spline_Random_2: Final Amb=999.0000, DeltaE00=23.03, Peaks=[670, 670, 670] nm
+[2026-11-01 19:25:43] Experiment D completed.
+[2026-11-01 19:25:43] === RUNNING SYMMETRIC DISTANCE ANALYSIS WITH HUNGARIAN MATCHING ===
+[2026-11-01 19:25:43] Symmetric distance analysis completed.
+[2026-11-01 19:25:43] === GENERATING 11 PUBLICATION-QUALITY FIGURES ===
+[2026-11-01 19:25:52] All 11 publication figures successfully generated.
+[2026-11-01 19:25:52] === COMPILING MASTER DATA LEDGER & RESEARCH REPORT PDF ===
+[2026-11-01 19:25:57] Final Advanced Validation PDF successfully built: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_4_Advanced_Validation_20261101_184053\Reports\Experiment_4_Advanced_Validation_Report.pdf
+[2026-11-01 19:25:57] All Advanced Validation Experiments & PDF Report completed in 1363.6 seconds.
+[2026-11-01 19:32:39] Initializing Experiment 4 Advanced Scientific Validation & Follow-Up Suite
+[2026-11-01 19:32:39] Target Output Directory: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_4_Advanced_Validation_20261101_184053
+[2026-11-01 19:32:41] === CORRECTION A: CONTINUING 4 MAXITER RUNS & VERIFYING STATIONARITY ===
+[2026-11-01 19:32:41] Loading existing verified Correction A results...
+[2026-11-01 19:32:41] Correction A verified results loaded successfully.
+[2026-11-01 19:32:41] === EXPERIMENT B: TESTING NEAR-OPTIMAL VALLEY VIA LINEAR PARAMETER INTERPOLATION ===
+[2026-11-01 19:32:41] Loading existing verified Experiment B valley interpolation results...
+[2026-11-01 19:32:41] Experiment B results loaded successfully.
+[2026-11-01 19:32:41] === EXPERIMENT C: SENSOR NOISE ROBUSTNESS CROSS-TEST (13 CAMERAS x 4 SNR LEVELS) ===
+[2026-11-01 19:32:41] Loading existing verified Experiment C noise results...
+[2026-11-01 19:32:41] Experiment C cached results loaded successfully.
+[2026-11-01 19:32:41] === EXPERIMENT D: TESTING ALTERNATIVE PARAMETERIZATION (CUBIC B-SPLINES) ===
+[2026-11-01 19:32:41] Loading existing verified Experiment D spline optimization results...
+[2026-11-01 19:32:41] Experiment D cached results loaded successfully.
+[2026-11-01 19:32:41] === RUNNING SYMMETRIC DISTANCE ANALYSIS WITH HUNGARIAN MATCHING ===
+[2026-11-01 19:32:41] Symmetric distance analysis completed.
+[2026-11-01 19:32:41] === GENERATING 11 PUBLICATION-QUALITY FIGURES ===
+[2026-11-01 19:32:52] All 11 publication figures successfully generated.
+[2026-11-01 19:32:52] === COMPILING MASTER DATA LEDGER & RESEARCH REPORT PDF ===
+[2026-11-01 19:32:55] Final Advanced Validation PDF successfully built: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_4_Advanced_Validation_20261101_184053\Reports\Experiment_4_Advanced_Validation_Report.pdf
+[2026-11-01 19:32:55] All Advanced Validation Experiments & PDF Report completed in 14.1 seconds.

@@ -1,0 +1,34 @@
+Index,CMF ID,Display Name,Category,Is Camera,Red Peak (nm),Red Max,Green Peak (nm),Green Max,Blue Peak (nm),Blue Max,Overall Max,Red Integral,Green Integral,Blue Integral,Graph Filename
+1,global_optimized_cmf,Global Optimized CMF,Global Optimized CMF (Active Master),True,600,0.6964,540,0.6797,460,1.5581,1.5581,106.72,106.72,106.72,global_optimized_cmf.png
+2,original_calibrated_camera,Original Calibrated Camera Model,Project Baseline Camera Model,True,600,1.1082,560,0.9651,450,1.7897,1.7897,106.72,106.93,106.52,original_calibrated_camera.png
+3,canon_1dmarkiii,Canon 1DMarkIII,Physical Reference Camera,True,590,0.5575,530,1.0,460,0.8411,1.0,42.9,92.38,69.45,canon_1dmarkiii.png
+4,canon_20d,Canon 20D,Physical Reference Camera,True,600,0.584,530,1.0,470,0.7705,1.0,49.18,91.94,60.38,canon_20d.png
+5,canon_300d,Canon 300D,Physical Reference Camera,True,590,0.7065,530,0.9957,470,1.0,1.0,50.36,98.09,93.17,canon_300d.png
+6,canon_40d,Canon 40D,Physical Reference Camera,True,600,0.5149,530,1.0,460,0.8914,1.0,44.93,97.94,74.62,canon_40d.png
+7,canon_500d,Canon 500D,Physical Reference Camera,True,580,0.5921,530,1.0,460,0.8697,1.0,54.79,110.84,87.7,canon_500d.png
+8,canon_50d,Canon 50D,Physical Reference Camera,True,590,0.5751,530,1.0,460,0.9313,1.0,53.01,109.77,89.07,canon_50d.png
+9,canon_5dmarkii,Canon 5DMarkII,Physical Reference Camera,True,600,0.5989,510,1.0,460,0.7745,1.0,49.22,96.08,60.88,canon_5dmarkii.png
+10,canon_600d,Canon 600D,Physical Reference Camera,True,590,0.5307,530,1.0,460,0.8035,1.0,46.65,103.87,71.21,canon_600d.png
+11,canon_60d,Canon 60D,Physical Reference Camera,True,590,0.5472,530,1.0,460,0.8545,1.0,47.23,104.36,74.99,canon_60d.png
+12,hasselblad_h2,Hasselblad H2,Physical Reference Camera,True,610,0.5172,530,1.0,480,0.8576,1.0,33.47,84.81,85.36,hasselblad_h2.png
+13,nikon_d3x,Nikon D3X,Physical Reference Camera,True,600,0.6913,540,1.0,470,0.9631,1.0,44.91,97.91,74.5,nikon_d3x.png
+14,nikon_d200,Nikon D200,Physical Reference Camera,True,590,0.7935,530,1.0,450,0.8443,1.0,50.31,86.62,63.21,nikon_d200.png
+15,nikon_d3,Nikon D3,Physical Reference Camera,True,590,0.7176,530,1.0,460,0.8912,1.0,47.89,86.23,67.44,nikon_d3.png
+16,nikon_d300s,Nikon D300s,Physical Reference Camera,True,590,0.8415,530,1.0,460,0.8722,1.0,57.88,87.57,73.5,nikon_d300s.png
+17,nikon_d40,Nikon D40,Physical Reference Camera,True,590,0.6751,530,1.0,460,0.8287,1.0,41.56,89.07,70.46,nikon_d40.png
+18,nikon_d50,Nikon D50,Physical Reference Camera,True,590,0.6267,530,1.0,460,0.8504,1.0,40.73,88.3,69.4,nikon_d50.png
+19,nikon_d5100,Nikon D5100,Physical Reference Camera,True,590,0.7378,530,1.0,450,0.9072,1.0,48.36,95.81,72.11,nikon_d5100.png
+20,nikon_d700,Nikon D700,Physical Reference Camera,True,590,0.7437,530,1.0,460,0.9117,1.0,50.24,88.51,69.46,nikon_d700.png
+21,nikon_d80,Nikon D80,Physical Reference Camera,True,590,0.767,530,1.0,470,0.8133,1.0,44.72,81.82,54.7,nikon_d80.png
+22,nikon_d90,Nikon D90,Physical Reference Camera,True,590,0.6952,530,1.0,460,0.9013,1.0,47.26,87.47,74.23,nikon_d90.png
+23,nokia_n900,Nokia N900,Physical Reference Camera,True,600,1.0,530,0.9252,460,0.6061,1.0,74.35,92.76,72.86,nokia_n900.png
+24,olympus_e_pl2,Olympus E-PL2,Physical Reference Camera,True,610,1.0,530,0.9944,470,0.783,1.0,73.11,94.42,71.73,olympus_e_pl2.png
+25,pentax_k_5,Pentax K-5,Physical Reference Camera,True,590,0.6527,530,1.0,470,0.7944,1.0,47.77,100.55,66.71,pentax_k_5.png
+26,pentax_q,Pentax Q,Physical Reference Camera,True,610,0.907,520,1.0,470,0.6909,1.0,79.3,117.98,74.22,pentax_q.png
+27,point_grey_grasshopper_50s5c,Point Grey Grasshopper 50S5C,Physical Reference Camera,True,620,0.5676,550,0.5059,480,1.0,1.0,50.11,52.11,94.14,point_grey_grasshopper_50s5c.png
+28,point_grey_grasshopper2_14s5c,Point Grey Grasshopper2 14S5C,Physical Reference Camera,True,600,0.6067,530,0.549,470,1.0,1.0,55.53,52.66,91.54,point_grey_grasshopper2_14s5c.png
+29,phase_one,Phase One,Physical Reference Camera,True,590,0.8181,530,1.0,470,0.5593,1.0,55.95,78.39,56.88,phase_one.png
+30,sony_nex_5n,SONY NEX-5N,Physical Reference Camera,True,590,0.5949,530,1.0,450,0.7834,1.0,38.73,97.38,70.33,sony_nex_5n.png
+31,previous_optimized_cmf,Previous Optimized CMF,Previous Optimized CMF (Run 2 Seed 101),True,600,0.6962,540,0.6797,460,1.5581,1.5581,106.72,106.72,106.72,previous_optimized_cmf.png
+32,cie_1931_2deg,CIE 1931 2° Standard Observer,CIE Standard Colorimetric Observer,False,600,1.0622,560,0.995,450,1.7721,1.7721,106.67,106.81,106.5,cie_1931_2deg.png
+33,cie_1964_10deg,CIE 1964 10° Supplementary Observer,CIE Standard Colorimetric Observer,False,600,1.124,560,0.9973,450,1.9948,1.9948,116.53,116.61,116.53,cie_1964_10deg.png

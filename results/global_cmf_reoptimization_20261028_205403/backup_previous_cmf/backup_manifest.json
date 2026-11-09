@@ -1,0 +1,11 @@
+{
+  "timestamp": "20261028_205403",
+  "previous_cmf_hashes": {
+    "M_camera_optimized.npy": "0bf3a13c719346da19b48632f4a7fe95ccdca5247f8b7f15b22f2451f6d00127",
+    "M_camera_optimized.csv": "c9396dd1aab43a063ae43333762ea00f2293f553eacfd531c74a004a687ddc1a",
+    "M_camera_optimized_metadata.json": "1cbeedb731629ad5bce5d343ea34db5014c7dd0b31211869e50f693f0f877f11",
+    "A_camera_optimized.npy": "858dbab723335da37d3413075e64b7675091dae42641b045a167b8d6a903d474",
+    "camera_offset_optimized.npy": "7930704686ec7be3d5f68890bfb92dc9899b26f2e222bb6d722690380d52d8c6"
+  },
+  "backup_location": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_205403\\backup_previous_cmf"
+}

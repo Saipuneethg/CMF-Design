@@ -1,0 +1,125 @@
+Experiment,Condition,CSSF,Unique_Materials,Noise_Realizations,Total_Solves,Successful_Solves,Failed_Solves,Paired_Comparisons
+Experiment 2 (Illuminant),D50,Optimized CSSF,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Baseline CSSF,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,CIE 1931 2° CMF,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,CIE 1964 10° CMF,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Canon 1DMarkIII,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Canon 20D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Canon 300D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Canon 40D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Canon 500D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Canon 50D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Canon 5DMarkII,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Canon 600D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Canon 60D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Hasselblad H2,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nikon D3X,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nikon D200,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nikon D3,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nikon D300s,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nikon D40,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nikon D50,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nikon D5100,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nikon D700,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nikon D80,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nikon D90,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Nokia N900,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Olympus E-PL2,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Pentax K-5,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Pentax Q,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Point Grey Grasshopper 50S5C,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Point Grey Grasshopper2 14S5C,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,Phase One,100,1,100,100,0,100
+Experiment 2 (Illuminant),D50,SONY NEX-5N,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Optimized CSSF,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Baseline CSSF,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,CIE 1931 2° CMF,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,CIE 1964 10° CMF,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Canon 1DMarkIII,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Canon 20D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Canon 300D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Canon 40D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Canon 500D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Canon 50D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Canon 5DMarkII,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Canon 600D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Canon 60D,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Hasselblad H2,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nikon D3X,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nikon D200,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nikon D3,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nikon D300s,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nikon D40,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nikon D50,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nikon D5100,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nikon D700,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nikon D80,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nikon D90,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Nokia N900,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Olympus E-PL2,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Pentax K-5,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Pentax Q,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Point Grey Grasshopper 50S5C,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Point Grey Grasshopper2 14S5C,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,Phase One,100,1,100,100,0,100
+Experiment 2 (Illuminant),D65,SONY NEX-5N,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Optimized CSSF,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Baseline CSSF,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,CIE 1931 2° CMF,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,CIE 1964 10° CMF,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Canon 1DMarkIII,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Canon 20D,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Canon 300D,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Canon 40D,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Canon 500D,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Canon 50D,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Canon 5DMarkII,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Canon 600D,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Canon 60D,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Hasselblad H2,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nikon D3X,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nikon D200,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nikon D3,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nikon D300s,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nikon D40,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nikon D50,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nikon D5100,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nikon D700,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nikon D80,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nikon D90,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Nokia N900,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Olympus E-PL2,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Pentax K-5,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Pentax Q,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Point Grey Grasshopper 50S5C,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Point Grey Grasshopper2 14S5C,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,Phase One,100,1,100,100,0,100
+Experiment 2 (Illuminant),A,SONY NEX-5N,100,1,100,100,0,100
+Experiment 3 (Noise),Noise_Free,Optimized CSSF,100,1,100,100,0,100
+Experiment 3 (Noise),Noise_Free,Baseline CSSF,100,1,100,100,0,100
+Experiment 3 (Noise),Noise_Free,CIE 1931 2° CMF,100,1,100,100,0,100
+Experiment 3 (Noise),Noise_Free,CIE 1964 10° CMF,100,1,100,100,0,100
+Experiment 3 (Noise),Low_Noise,Optimized CSSF,100,5,500,500,0,100
+Experiment 3 (Noise),Low_Noise,Baseline CSSF,100,5,500,500,0,100
+Experiment 3 (Noise),Low_Noise,CIE 1931 2° CMF,100,5,500,500,0,100
+Experiment 3 (Noise),Low_Noise,CIE 1964 10° CMF,100,5,500,500,0,100
+Experiment 3 (Noise),Moderate_Noise,Optimized CSSF,100,5,500,500,0,100
+Experiment 3 (Noise),Moderate_Noise,Baseline CSSF,100,5,500,500,0,100
+Experiment 3 (Noise),Moderate_Noise,CIE 1931 2° CMF,100,5,500,500,0,100
+Experiment 3 (Noise),Moderate_Noise,CIE 1964 10° CMF,100,5,500,500,0,100
+Experiment 3 (Noise),High_Noise,Optimized CSSF,100,5,500,500,0,100
+Experiment 3 (Noise),High_Noise,Baseline CSSF,100,5,500,500,0,100
+Experiment 3 (Noise),High_Noise,CIE 1931 2° CMF,100,5,500,500,0,100
+Experiment 3 (Noise),High_Noise,CIE 1964 10° CMF,100,5,500,500,0,100
+Combined 12-Matrix,D50 x Noise_Free,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,D50 x Low_Noise,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,D50 x Moderate_Noise,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,D50 x High_Noise,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,D65 x Noise_Free,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,D65 x Low_Noise,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,D65 x Moderate_Noise,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,D65 x High_Noise,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,A x Noise_Free,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,A x Low_Noise,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,A x Moderate_Noise,Optimized & Baseline,100,1,200,200,0,100
+Combined 12-Matrix,A x High_Noise,Optimized & Baseline,100,1,200,200,0,100

@@ -1,0 +1,39 @@
+{
+  "Total_Original_Optimization_Runs": 13,
+  "Total_Pairwise_Paths_Evaluated": 78,
+  "Total_Points_Per_Path": 101,
+  "Total_Interpolation_Evaluations_Param": 7878,
+  "Total_Interpolation_Evaluations_Direct": 7878,
+  "Total_Multi_Solution_Evaluations": 1074,
+  "Ambiguity_Statistics": {
+    "Ensemble_Reference_Mean": 0.3282338930563589,
+    "Mean_Interpolated_Ambiguity": 0.3288333383073171,
+    "Std_Interpolated_Ambiguity": 0.005483666447709234,
+    "Median_Interpolated_Ambiguity": 0.326527953148,
+    "Min_Interpolated_Ambiguity": 0.3217009902,
+    "Max_Interpolated_Ambiguity": 0.344522297382,
+    "IQR_Interpolated_Ambiguity": 0.0050290301439999685,
+    "CI95_Lower": 0.32237074673182503,
+    "CI95_Upper": 0.341853090375475
+  },
+  "Near_Optimality_Point_Percentages": {
+    "Tolerance_0_5_pct": 21.74409748667174,
+    "Tolerance_1_0_pct": 56.676821528306675,
+    "Tolerance_2_0_pct": 83.84107641533383,
+    "Tolerance_5_0_pct": 100.0
+  },
+  "Feasibility_Statistics": {
+    "Feasible_Points_Count": 7878,
+    "Infeasible_Points_Count": 0,
+    "Feasibility_Rate_Pct": 100.0,
+    "Condition_Number_Mean": 3.510739620531743,
+    "Condition_Number_Median": 2.898637429185,
+    "Condition_Number_Max": 11.9192434771
+  },
+  "Path_Classification_Counts": {
+    "Moderate Near-Optimal Valley": 31,
+    "Continuous Broad Near-Optimal Valley": 24,
+    "Narrow Near-Optimal Bridge": 23
+  },
+  "Correlation_Spectral_Distance_vs_Ambiguity_Diff": 0.26900848190367144
+}

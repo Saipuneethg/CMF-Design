@@ -1,0 +1,80 @@
+{
+  "cleanup_timestamp": "2026-10-28T20:56:56.373079",
+  "status": "VERIFIED_SAFE_CLEANUP",
+  "backup_location": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\backup_previous_optimized_cmf",
+  "removed_files_count": 13,
+  "removed_files": [
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_193454",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_194017",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_194125",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_194358",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_195844",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_200331",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_200349",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_200446",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_200815",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_200931",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_201532",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\results\\global_cmf_reoptimization_20261028_204905",
+      "reason": "Redundant intermediate scratch test experiment directory"
+    },
+    {
+      "path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\scratch\\candidate_evaluation.json",
+      "reason": "Obsolete intermediate scratch evaluation cache"
+    }
+  ],
+  "strictly_retained_dependencies": [
+    "Dataset/ (entire source spectral dataset)",
+    "Spectral/ (entire original spectral cubes)",
+    "artifacts/A_red.npy (polytope normals - 714,340 facets)",
+    "artifacts/b_red.npy (polytope offsets)",
+    "artifacts/pca_basis.npy (PCA basis)",
+    "artifacts/pca_mean.npy (PCA mean)",
+    "camera comparisions/sensitivity_functions/ (28 reference cameras)",
+    "camera comparisions/metadata/camera_database_inventory.json",
+    "results/backup_previous_optimized_cmf/ (complete backup of previous run)",
+    "global_cmf_reoptimization_20261028_205403/ (complete new experiment directory)",
+    "random_colours_ambiguity_results/ (historical 100-colour benchmark dataset)"
+  ],
+  "post_cleanup_verification": {
+    "active_optimized_cmf_exists": true,
+    "source_datasets_intact": true,
+    "polytope_intact": true,
+    "reference_cameras_intact": true,
+    "backup_intact": true
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "source_image": "media_1793335117502.png",
+  "resolution": "910 x 1024",
+  "total_pixels": 931840,
+  "total_unique_colors": 119390,
+  "colors_analyzed_success": 119390,
+  "colors_feasible_in_gamut": 1351,
+  "colors_outside_gamut": 118039,
+  "colors_failed": 0,
+  "cmf_name": "Advanced Global Optimized CMF",
+  "cmf_sha256": "6324faa2c7aed07ab8e9952d8d72b47c540a53c74c0bb8e80b6c2f57818d6729",
+  "wavelength_range_nm": [
+    400,
+    700
+  ],
+  "bands_count": 31,
+  "timing_breakdown_sec": {
+    "color_extraction_sec": 1.424,
+    "spectral_and_xy_reconstruction_sec": 0.117,
+    "full_ambiguity_calculation_sec": 289.97,
+    "total_computation_time_sec": 37.974,
+    "average_time_per_color_ms": 2.429
+  },
+  "ambiguity_statistics": {
+    "min": 0.00112,
+    "mean": 0.22749,
+    "median": 0.23832,
+    "p75": 0.3362,
+    "p95": 0.40055,
+    "max": 0.43133
+  },
+  "highest_ambiguity_color": {
+    "rank": 1,
+    "r": 71,
+    "g": 76,
+    "b": 80,
+    "hex": "#474c50",
+    "cie_x": 0.2897,
+    "cie_y": 0.3282,
+    "ambiguity": 0.43133,
+    "pixel_count": 1
+  }
+}

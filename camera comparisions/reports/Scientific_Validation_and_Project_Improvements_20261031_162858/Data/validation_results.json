@@ -1,0 +1,26 @@
+{
+  "validation_timestamp": "20261031_162858",
+  "master_results_file": "master_results.csv",
+  "accounting_file": "experiment_accounting.csv",
+  "total_material_solves": 18400,
+  "total_successful_solves": 18400,
+  "total_failed_solves": 0,
+  "overall_feasibility_rate_pct": 100.0,
+  "illuminant_summary": {
+    "D50": {
+      "baseline": 0.277179,
+      "optimized": 0.250881,
+      "reduction_pct": 9.4879
+    },
+    "D65": {
+      "baseline": 0.273236,
+      "optimized": 0.252316,
+      "reduction_pct": 7.6561
+    },
+    "A": {
+      "baseline": 0.281225,
+      "optimized": 0.242258,
+      "reduction_pct": 13.8559
+    }
+  }
+}

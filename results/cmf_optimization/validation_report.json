@@ -1,0 +1,10 @@
+{
+  "validation_status": "PASSED",
+  "primary_ambiguity_reduction_percent": 4.037997573379575,
+  "physical_non_negativity_passed": true,
+  "camera_rank": 3,
+  "camera_fiber_dimension": 5,
+  "conditioning_stable": true,
+  "colorimetric_fidelity_acceptable": true,
+  "reproducibility_verified": true
+}

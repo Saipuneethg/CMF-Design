@@ -1,0 +1,22 @@
+{
+  "model_name": "Original Calibrated Camera Model",
+  "matrix_shape": [
+    3,
+    31
+  ],
+  "source_file": "artifacts/M_camera.npy",
+  "wavelength_min_nm": 400,
+  "wavelength_max_nm": 700,
+  "wavelength_step_nm": 10,
+  "channel_ordering": [
+    "red",
+    "green",
+    "blue"
+  ],
+  "channel_throughputs": [
+    10.67195820620993,
+    10.69329148574076,
+    10.651506840555955
+  ],
+  "mean_throughput": 10.672252177502214
+}

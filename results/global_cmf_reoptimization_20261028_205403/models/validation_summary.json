@@ -1,0 +1,62 @@
+{
+  "acceptance_criteria": {
+    "ambiguity_reduced_vs_base": true,
+    "ambiguity_reduced_or_maintained_vs_old": true,
+    "color_difference_within_tolerance": true,
+    "physical_non_negativity": true,
+    "full_measurement_rank_3": true,
+    "fiber_dimension_5": true,
+    "well_conditioned": true,
+    "smooth_curvature": true
+  },
+  "all_passed": true,
+  "test_metrics": {
+    "baseline": {
+      "amb_mean": 0.3625543848943508,
+      "amb_median": 0.39942610172093196,
+      "amb_p95": 0.5702362464187547,
+      "col_mean": 0.035769298977798,
+      "col_median": 0.025345960023658142
+    },
+    "previous_optimized": {
+      "amb_mean": 0.32859723444836936,
+      "amb_median": 0.3534332952335868,
+      "amb_p95": 0.5288667400258998,
+      "col_mean": 1.6145822508595615,
+      "col_median": 1.207479381586682
+    },
+    "new_optimized": {
+      "amb_mean": 0.3286007827104554,
+      "amb_median": 0.35344101579800125,
+      "amb_p95": 0.5288702131607822,
+      "col_mean": 1.6140802916714951,
+      "col_median": 1.20751697155281
+    },
+    "relative_improvements": {
+      "amb_reduction_vs_base_pct": 9.365105925774305,
+      "amb_reduction_vs_old_pct": -0.0010798210435325317,
+      "col_improvement_vs_old_pct": 0.031089106039606348
+    }
+  },
+  "historical_100_results": {
+    "base_mean": 0.11753301444997401,
+    "old_mean": 0.10225003474804584,
+    "new_mean": 0.10225023361254781,
+    "reduction_vs_base": 13.002968492679184,
+    "reduction_vs_old": -0.00019448844439694913
+  },
+  "parameters": [
+    2.974555913665214,
+    455.8771202025273,
+    27.36226959731909,
+    2.8005929628332327,
+    542.6917324407491,
+    63.551042645158795,
+    2.252860769734637,
+    603.038344925095,
+    49.87812291331894,
+    1.2595160874547224,
+    460.286456916548,
+    21.775732828661287
+  ]
+}

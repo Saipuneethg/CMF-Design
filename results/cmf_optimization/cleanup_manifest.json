@@ -1,0 +1,315 @@
+{
+  "cleanup_timestamp": "20261029_204600",
+  "action": "Removal of superseded previous images (.png), markdown reports (.md), PDF report, and checksums from results/cmf_optimization/",
+  "deleted_count": 13,
+  "total_bytes_freed": 3620103,
+  "deleted_files": [
+    {
+      "file": "FINAL_RESULTS_MANIFEST.md",
+      "relative_path": "results/cmf_optimization/FINAL_RESULTS_MANIFEST.md",
+      "file_type": "markdown",
+      "size_bytes": 9955,
+      "sha256": "15c943f59f487269ec6a12437809dfa83aa3ec4dfc39a456c5dd6aee1fb00be0",
+      "backup_confirmed": true,
+      "reason": "Superseded final results manifest from 100-sample run (Run_2_seed101, Oct 25 2026); backed up in results/backup_previous_optimized_cmf/"
+    },
+    {
+      "file": "optimization_audit.md",
+      "relative_path": "results/cmf_optimization/optimization_audit.md",
+      "file_type": "markdown",
+      "size_bytes": 9556,
+      "sha256": "99eae3ce9dd6615f3ab495da54100bc81dcd80ac9fe9e1b4d274e44f5afed22c",
+      "backup_confirmed": true,
+      "reason": "Superseded diagnostic audit document for 100-sample run; backed up in results/backup_previous_optimized_cmf/"
+    },
+    {
+      "file": "research_report.md",
+      "relative_path": "results/cmf_optimization/research_report.md",
+      "file_type": "markdown",
+      "size_bytes": 31024,
+      "sha256": "df58172503d2845f9be0d7e89f8d7dd2ef840e0b03cfb2767e19554e4d53ed60",
+      "backup_confirmed": true,
+      "reason": "Superseded comprehensive research report for 100-sample run; backed up in results/backup_previous_optimized_cmf/"
+    },
+    {
+      "file": "all_camera_models_ambiguity_comparison.png",
+      "relative_path": "results/cmf_optimization/all_camera_models_ambiguity_comparison.png",
+      "file_type": "png",
+      "size_bytes": 528072,
+      "sha256": "b2f9e9a70dc253513aa3fdce4ffdf8f6f17326ba7e427f2f651c760df98fd231",
+      "backup_confirmed": true,
+      "reason": "Obsolete 100-sample 28-camera comparison plot; superseded by all_cameras_global_ranking.png; backed up in backup directory"
+    },
+    {
+      "file": "ambiguity_comparison.png",
+      "relative_path": "results/cmf_optimization/ambiguity_comparison.png",
+      "file_type": "png",
+      "size_bytes": 117394,
+      "sha256": "a5e0a6d0ee0eaaff923122c802ca65a7f7b6c51641245670e79cb5585987c715",
+      "backup_confirmed": true,
+      "reason": "Obsolete 100-sample ambiguity boxplot; superseded by paired_heldout_reduction.png; backed up in backup directory"
+    },
+    {
+      "file": "camera_models_ambiguity_reduction_analysis.png",
+      "relative_path": "results/cmf_optimization/camera_models_ambiguity_reduction_analysis.png",
+      "file_type": "png",
+      "size_bytes": 222007,
+      "sha256": "e6bf3d158cb54dc35f50a3d0d8e0d187908bcac437555becea84d5a334a7f748",
+      "backup_confirmed": true,
+      "reason": "Obsolete 100-sample reduction plot; superseded by paired_heldout_reduction.png; backed up in backup directory"
+    },
+    {
+      "file": "colorimetric_comparison.png",
+      "relative_path": "results/cmf_optimization/colorimetric_comparison.png",
+      "file_type": "png",
+      "size_bytes": 72820,
+      "sha256": "1add137276cb2d9b664c04a19afe421dc3d87824c0267359236057bc87fbd90c",
+      "backup_confirmed": true,
+      "reason": "Obsolete 100-sample delta E plot; superseded by color_difference_distribution.png; backed up in backup directory"
+    },
+    {
+      "file": "numerical_sensitivity_table.png",
+      "relative_path": "results/cmf_optimization/numerical_sensitivity_table.png",
+      "file_type": "png",
+      "size_bytes": 941414,
+      "sha256": "3b124e2f037cc4117a00a23415e5211cfb7ab5d4a8381fe0507f5565cd3362c1",
+      "backup_confirmed": true,
+      "reason": "Obsolete table graphic for old 100-sample CMF; backed up in backup directory"
+    },
+    {
+      "file": "paired_ambiguity_analysis.png",
+      "relative_path": "results/cmf_optimization/paired_ambiguity_analysis.png",
+      "file_type": "png",
+      "size_bytes": 208149,
+      "sha256": "6e0bf6abc78d41997afd5c5f4e882a03f6901de96ca48ddfb55b2d59753715f7",
+      "backup_confirmed": true,
+      "reason": "Obsolete 100-sample paired scatter plot; superseded by per_color_joint_scatter.png; backed up in backup directory"
+    },
+    {
+      "file": "sensitivity_curves.png",
+      "relative_path": "results/cmf_optimization/sensitivity_curves.png",
+      "file_type": "png",
+      "size_bytes": 311587,
+      "sha256": "9ebbb0fe8797deecf4c7fe7f5949ca6fb60dde339b44fbda965ff253637cd290",
+      "backup_confirmed": true,
+      "reason": "Obsolete 100-sample sensitivity curves; superseded by sensitivity_curves_global_opt.png; backed up in backup directory"
+    },
+    {
+      "file": "sensitivity_curves_comparison.png",
+      "relative_path": "results/cmf_optimization/sensitivity_curves_comparison.png",
+      "file_type": "png",
+      "size_bytes": 163362,
+      "sha256": "92bf9b6a1333fa7ced36ec8bb3e993c5b4765cd5671e5b063760a947303b2c35",
+      "backup_confirmed": true,
+      "reason": "Combined comparison plot superseded by separate sensitivity_curves_old_opt.png and sensitivity_curves_global_opt.png"
+    },
+    {
+      "file": "camera_optimization_report_updated.pdf",
+      "relative_path": "results/cmf_optimization/camera_optimization_report_updated.pdf",
+      "file_type": "pdf",
+      "size_bytes": 1002643,
+      "sha256": "a65ece9bcffa6d5bd5957a070ac49628afd9fdf1045cf330ad9fb22af6892a82",
+      "backup_confirmed": true,
+      "reason": "Superseded PDF report for 100-sample run; superseded by optimization_report.pdf and CMF_Optimization_Algorithms_and_Process_Report.pdf; backed up in backup directory"
+    },
+    {
+      "file": "checksums.sha256",
+      "relative_path": "results/cmf_optimization/checksums.sha256",
+      "file_type": "sha256",
+      "size_bytes": 2120,
+      "sha256": "bad1f97361f9a0fe3d8f18280e5a8e6376e37b00db1735835be2a1b5a77945cb",
+      "backup_confirmed": true,
+      "reason": "Legacy checksum manifest for the 23 files of the 100-sample release; backed up in backup directory"
+    }
+  ],
+  "backup_directory": "results/backup_previous_optimized_cmf",
+  "backup_files_count": 29,
+  "active_installed_cmf": {
+    "path": "artifacts/M_camera_optimized.npy",
+    "sha256": "6324faa2c7aed07ab8e9952d8d72b47c540a53c74c0bb8e80b6c2f57818d6729",
+    "status": "Verified active and functional"
+  },
+  "preserved_active_results_count": 35,
+  "preserved_active_results": [
+    {
+      "file": "A_camera_optimized.npy",
+      "size_bytes": 320,
+      "sha256": "b825de9284ab3ab716d8f73a3fa1e9e013c9df98cd30f92609fec26b591385d2"
+    },
+    {
+      "file": "CMF_Optimization_Algorithms_and_Process_Report.pdf",
+      "size_bytes": 949520,
+      "sha256": "a5df06479fa2e64832d25dd2588e4bba833736e53e435ff2877194ff4f14d382"
+    },
+    {
+      "file": "M_camera_optimized.csv",
+      "size_bytes": 1656,
+      "sha256": "1944e00ea062fb325b8b1a9a7974fae3a701e46f1eb33593e91e72af09b69675"
+    },
+    {
+      "file": "M_camera_optimized.npy",
+      "size_bytes": 872,
+      "sha256": "6324faa2c7aed07ab8e9952d8d72b47c540a53c74c0bb8e80b6c2f57818d6729"
+    },
+    {
+      "file": "M_camera_optimized_metadata.json",
+      "size_bytes": 11194,
+      "sha256": "c72ad95dbb2a376ec7e3510b901acc845998061136d2c670ed8146778bef049d"
+    },
+    {
+      "file": "all_cameras_global_ranking.png",
+      "size_bytes": 179672,
+      "sha256": "ed44c4c6282f0f6697ccf3d8ab256020571fede38088643236cadd9f63095e84"
+    },
+    {
+      "file": "ambiguity_analysis.md",
+      "size_bytes": 2086,
+      "sha256": "dc242ab5923d7ab4bf86263761462f9d69d7c5016ac9a36ecc98a1f2594b2807"
+    },
+    {
+      "file": "baseline_metrics.json",
+      "size_bytes": 5447,
+      "sha256": "a603b485ce399d3cbde9a2b1c6d76595a55e015dc3e898d255b95726d13312ed"
+    },
+    {
+      "file": "camera_offset_optimized.npy",
+      "size_bytes": 152,
+      "sha256": "09a4ae0806986b809ffd1334af79c0f536a8f83535175217245c7d2d708f65f8"
+    },
+    {
+      "file": "cleanup_manifest.json",
+      "size_bytes": 3397,
+      "sha256": "754cc4b522dfe091ecf2f282b475b991179b45f1f4ab963d2ff964a6a1303cf2"
+    },
+    {
+      "file": "cleanup_report.md",
+      "size_bytes": 2785,
+      "sha256": "2a0a7ac7a91e333f1ccec5d76b29a8fff37e30416d94aa99f28dc9552a77305c"
+    },
+    {
+      "file": "color_difference_analysis.md",
+      "size_bytes": 1287,
+      "sha256": "3e16d24507a90c35e331d076a6761f651b8c0744feff08a298117b39968fa744"
+    },
+    {
+      "file": "color_difference_distribution.png",
+      "size_bytes": 122349,
+      "sha256": "2d9260b4cd106acf2a889334509c0cbe1f1d2b51b9804c7e79657d56fedec640"
+    },
+    {
+      "file": "comparison.csv",
+      "size_bytes": 629,
+      "sha256": "468b801a2bbc6d90fde1bc87948e8232862cb6b179eee78deb88ce6c3b4c1f12"
+    },
+    {
+      "file": "executive_summary.md",
+      "size_bytes": 1736,
+      "sha256": "e6329e8723ec144659ec954982dd94608f802e537c79192e2fcac545de98c5c9"
+    },
+    {
+      "file": "gamut_coverage_analysis.md",
+      "size_bytes": 1297,
+      "sha256": "4c0de09c54d22c548ed03eb8ffd48bfface3cd83085edf0b1bbd99cd9c0ef683"
+    },
+    {
+      "file": "gamut_sampling_distribution.png",
+      "size_bytes": 244964,
+      "sha256": "5049ed6e369bf58576ff61d1664e2da94398cca003a9589adf007a76d4321cf0"
+    },
+    {
+      "file": "mcmc_lp_validation.json",
+      "size_bytes": 2016,
+      "sha256": "148d3d5fa63b0cd6addc3f1774539a04ce3485fa7885e2ca64967a6b5f31029c"
+    },
+    {
+      "file": "multi_start_summary.csv",
+      "size_bytes": 811,
+      "sha256": "7aae73cec6d4946da4a6dc845d0a9f84bfa1ea13fe25111c4df2e0147b993234"
+    },
+    {
+      "file": "optimization_config.json",
+      "size_bytes": 888,
+      "sha256": "fbb5d1f0b97b5102eb5925d385d2796dd3ae683ba3336a57ae99a05a27affab6"
+    },
+    {
+      "file": "optimization_history.csv",
+      "size_bytes": 3009,
+      "sha256": "de993fc748bb0b71a5c5931ec6026ac8e021f1302bc31cb525b69e1c3d9430e4"
+    },
+    {
+      "file": "optimization_report.md",
+      "size_bytes": 2220,
+      "sha256": "324fe4887c60f977354a2d2a2b1ae1c5c9d701ef771f3ba1edd52804e278a5b1"
+    },
+    {
+      "file": "optimization_report.pdf",
+      "size_bytes": 215069,
+      "sha256": "80d7b876c251c5e21819b607d4e7a8bc75eb6ae44e27129dd093cb5a9c18c7b8"
+    },
+    {
+      "file": "optimized_metrics.json",
+      "size_bytes": 5408,
+      "sha256": "05007419262b6740aedfb86feff9e30287f6cd831720739fa2c60a29ad798108"
+    },
+    {
+      "file": "paired_heldout_reduction.png",
+      "size_bytes": 165497,
+      "sha256": "bc79e976a168381c5ceda2d89b5d39b23622c1b09a19d2e008afe10a96c9519b"
+    },
+    {
+      "file": "paired_heldout_results.csv",
+      "size_bytes": 2737,
+      "sha256": "80659f00b70d31bd905988019de66d7faa343dceab0727e1fc2bf6fc5c88bfa0"
+    },
+    {
+      "file": "paired_statistics.json",
+      "size_bytes": 16751,
+      "sha256": "dce1d6c33b794930a6332a630e717d38475085ae4942e66a2d638e599c374adf"
+    },
+    {
+      "file": "pareto_ambiguity_vs_color_tradeoff.png",
+      "size_bytes": 88282,
+      "sha256": "9f32a366cc8d2712a28cadcaf15bb01609de7e163a1b56de9f6d7c40c72bb720"
+    },
+    {
+      "file": "per_color_joint_scatter.png",
+      "size_bytes": 94662,
+      "sha256": "6a24488b8f1040f08eeca4645adc7a4dc06a70b8e206c05bd194e9dc13090f8e"
+    },
+    {
+      "file": "reference_camera_detailed_ranking.png",
+      "size_bytes": 101580,
+      "sha256": "8fc6dc14ef5626e8559f456e2e493e331ea1129e3e0a0742012dab1749974942"
+    },
+    {
+      "file": "reference_cmf_comparison.md",
+      "size_bytes": 3510,
+      "sha256": "b636bd04027bba87ecfc89dab87080027c5e4c3383ae33a28b00acb66d3e89dd"
+    },
+    {
+      "file": "replacement_validation.md",
+      "size_bytes": 1191,
+      "sha256": "02ed0e84a3cd2f5cb004770f72c7c06d91cb727c1341a6a2764996cd5bb810a7"
+    },
+    {
+      "file": "sensitivity_curves_global_opt.png",
+      "size_bytes": 156663,
+      "sha256": "302280b79d36f38a8a662652eb9b20b06770943f920c92a4143fdbaa43aa9828"
+    },
+    {
+      "file": "sensitivity_curves_old_opt.png",
+      "size_bytes": 153925,
+      "sha256": "cb179e02989ff915efe8685318bc96323ce74e4508defd6247cab93ff7005dbd"
+    },
+    {
+      "file": "validation_report.json",
+      "size_bytes": 308,
+      "sha256": "f88cc12b77ef32fb18ff972487522620e8169563a5027a74a9e14f786cd379ef"
+    }
+  ],
+  "test_verification": {
+    "test_suite": "tests/test_camera_optimization.py",
+    "tests_run": 13,
+    "all_passed": true
+  }
+}

@@ -1,0 +1,5 @@
+Condition,Condition_Label,CMF,Mean_Ambiguity,Std_Ambiguity_Across_Realizations,Mean_RGB_Error,Mean_Spectral_RMSE,Feasibility_Rate_Pct,Constraint_Tolerance_Eps
+Low_Noise,Low Noise (Bright / ISO 100),Advanced Global Optimized CMF,0.252585980195,0.0,0.00615489808594,0.000693307915088,100.0,0.00791686238409
+Low_Noise,Low Noise (Bright / ISO 100),Original Baseline CMF,0.273371483754,0.0,0.00650939340998,0.000536205651467,100.0,0.00791686238409
+Low_Noise,Low Noise (Bright / ISO 100),CIE 1931 2° Standard Observer,0.273377809582,0.0,0.00622734628417,0.000514613339711,100.0,0.00791686238409
+Low_Noise,Low Noise (Bright / ISO 100),CIE 1964 10° Standard Observer,0.265521467564,0.0,0.00642428646523,0.000533405696047,100.0,0.00791686238409

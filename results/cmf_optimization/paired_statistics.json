@@ -1,0 +1,517 @@
+{
+  "n_samples": 50,
+  "baseline": {
+    "mean": 0.2331347406653187,
+    "median": 0.13904660508065675,
+    "std": 0.1968819891145337,
+    "p75": 0.42944809891106334,
+    "p90": 0.5311708889190991,
+    "p95": 0.5412949597519118,
+    "max": 0.5771448048265855,
+    "min": 0.039406323818134144
+  },
+  "optimized": {
+    "mean": 0.22372076549454836,
+    "median": 0.16012225077411296,
+    "std": 0.18120152575693912,
+    "p75": 0.3975736435019853,
+    "p90": 0.49537192946982533,
+    "p95": 0.5110742634754579,
+    "max": 0.5386437191258805,
+    "min": 0.03639001666573609
+  },
+  "paired_difference": {
+    "mean": -0.009413975170770379,
+    "median": -0.006382692641991181,
+    "std": 0.031731286537122205,
+    "min": -0.05755701249595596,
+    "max": 0.11555214242270795,
+    "mean_relative_change_percent": -0.2184577975369965,
+    "median_relative_change_percent": -6.6396369941122355
+  },
+  "sample_counts": {
+    "improved": 42,
+    "worsened": 8,
+    "unchanged": 0,
+    "percentage_improved": 84.0,
+    "percentage_worsened": 16.0,
+    "percentage_unchanged": 0.0
+  },
+  "bootstrap_confidence_intervals_95": {
+    "mean_difference": [
+      -0.01757145995120259,
+      -4.7554913538911163e-05
+    ],
+    "median_difference": [
+      -0.01724801214553484,
+      -0.003297531245214154
+    ],
+    "resamples": 10000,
+    "seed": 12345
+  },
+  "hypothesis_tests": {
+    "wilcoxon_signed_rank": {
+      "statistic": 252.0,
+      "p_value_one_sided_less": 5.6873400688495224e-05,
+      "p_value_two_sided": 0.00011374680137699045,
+      "alternative": "optimized < baseline"
+    },
+    "paired_permutation_test": {
+      "statistic_mean_difference": -0.009413975170770379,
+      "p_value": 0.0181,
+      "permutations": 10000
+    }
+  },
+  "sample_records": [
+    {
+      "sample_id": 1,
+      "spectrum_index": 4213,
+      "baseline_spread": 0.4258119971417876,
+      "optimized_spread": 0.3759606232489375,
+      "absolute_difference": -0.049851373892850104,
+      "relative_change_percent": -11.707367154394786,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 2,
+      "spectrum_index": 5976,
+      "baseline_spread": 0.04735694556811217,
+      "optimized_spread": 0.04531653016213598,
+      "absolute_difference": -0.002040415405976194,
+      "relative_change_percent": -4.308587434216004,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 3,
+      "spectrum_index": 3881,
+      "baseline_spread": 0.2388588936088309,
+      "optimized_spread": 0.21860583980716394,
+      "absolute_difference": -0.020253053801666948,
+      "relative_change_percent": -8.47908716969715,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 4,
+      "spectrum_index": 4418,
+      "baseline_spread": 0.4616349549384545,
+      "optimized_spread": 0.4842324934582628,
+      "absolute_difference": 0.02259753851980828,
+      "relative_change_percent": 4.895109930057397,
+      "status": "WORSENED"
+    },
+    {
+      "sample_id": 5,
+      "spectrum_index": 3106,
+      "baseline_spread": 0.2402502881120033,
+      "optimized_spread": 0.22300227596646846,
+      "absolute_difference": -0.01724801214553484,
+      "relative_change_percent": -7.179184791442962,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 6,
+      "spectrum_index": 1406,
+      "baseline_spread": 0.5532083414636902,
+      "optimized_spread": 0.5178694662028017,
+      "absolute_difference": -0.035338875260888525,
+      "relative_change_percent": -6.387986697269998,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 7,
+      "spectrum_index": 1578,
+      "baseline_spread": 0.5391759668794349,
+      "optimized_spread": 0.4963596373438054,
+      "absolute_difference": -0.04281632953562953,
+      "relative_change_percent": -7.941067882427275,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 8,
+      "spectrum_index": 1706,
+      "baseline_spread": 0.13723916221164564,
+      "optimized_spread": 0.1272942456292292,
+      "absolute_difference": -0.009944916582416446,
+      "relative_change_percent": -7.246413066176934,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 9,
+      "spectrum_index": 683,
+      "baseline_spread": 0.06387929531222505,
+      "optimized_spread": 0.11989077209943587,
+      "absolute_difference": 0.056011476787210815,
+      "relative_change_percent": 87.68330413390062,
+      "status": "WORSENED"
+    },
+    {
+      "sample_id": 10,
+      "spectrum_index": 5165,
+      "baseline_spread": 0.057560339061203114,
+      "optimized_spread": 0.05067285276037201,
+      "absolute_difference": -0.006887486300831101,
+      "relative_change_percent": -11.96568055915677,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 11,
+      "spectrum_index": 2951,
+      "baseline_spread": 0.4392993319124632,
+      "optimized_spread": 0.3817423194165072,
+      "absolute_difference": -0.05755701249595596,
+      "relative_change_percent": -13.102003193445565,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 12,
+      "spectrum_index": 5767,
+      "baseline_spread": 0.04622038395965636,
+      "optimized_spread": 0.04310590005496243,
+      "absolute_difference": -0.003114483904693925,
+      "relative_change_percent": -6.738334124208952,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 13,
+      "spectrum_index": 800,
+      "baseline_spread": 0.44351548948955427,
+      "optimized_spread": 0.4157193141915226,
+      "absolute_difference": -0.02779617529803169,
+      "relative_change_percent": -6.267238902980038,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 14,
+      "spectrum_index": 5382,
+      "baseline_spread": 0.04687300492793471,
+      "optimized_spread": 0.043416375254159506,
+      "absolute_difference": -0.003456629673775205,
+      "relative_change_percent": -7.37445717228846,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 15,
+      "spectrum_index": 5603,
+      "baseline_spread": 0.04862040025505411,
+      "optimized_spread": 0.04540741041742584,
+      "absolute_difference": -0.0032129898376282717,
+      "relative_change_percent": -6.608316305035519,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 16,
+      "spectrum_index": 2575,
+      "baseline_spread": 0.10700408485571909,
+      "optimized_spread": 0.10774428093166087,
+      "absolute_difference": 0.0007401960759417792,
+      "relative_change_percent": 0.6917456253561123,
+      "status": "WORSENED"
+    },
+    {
+      "sample_id": 17,
+      "spectrum_index": 2847,
+      "baseline_spread": 0.04804537026749595,
+      "optimized_spread": 0.04563464693531479,
+      "absolute_difference": -0.002410723332181161,
+      "relative_change_percent": -5.017597572376466,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 18,
+      "spectrum_index": 2586,
+      "baseline_spread": 0.053644270788936826,
+      "optimized_spread": 0.05711745789077852,
+      "absolute_difference": 0.0034731871018416904,
+      "relative_change_percent": 6.474479102357327,
+      "status": "WORSENED"
+    },
+    {
+      "sample_id": 19,
+      "spectrum_index": 705,
+      "baseline_spread": 0.11006246703056094,
+      "optimized_spread": 0.2256146094532689,
+      "absolute_difference": 0.11555214242270795,
+      "relative_change_percent": 104.98778152103631,
+      "status": "WORSENED"
+    },
+    {
+      "sample_id": 20,
+      "spectrum_index": 5349,
+      "baseline_spread": 0.04307495243744423,
+      "optimized_spread": 0.04002547777954046,
+      "absolute_difference": -0.0030494746579037765,
+      "relative_change_percent": -7.079461462743082,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 21,
+      "spectrum_index": 5337,
+      "baseline_spread": 0.047835099841009664,
+      "optimized_spread": 0.04491984132326991,
+      "absolute_difference": -0.002915258517739751,
+      "relative_change_percent": -6.094392041470061,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 22,
+      "spectrum_index": 3211,
+      "baseline_spread": 0.3942004681380522,
+      "optimized_spread": 0.3700482995364217,
+      "absolute_difference": -0.024152168601630497,
+      "relative_change_percent": -6.126874662455299,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 23,
+      "spectrum_index": 2450,
+      "baseline_spread": 0.4030131349978737,
+      "optimized_spread": 0.3899008167688767,
+      "absolute_difference": -0.013112318228997,
+      "relative_change_percent": -3.253570936110105,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 24,
+      "spectrum_index": 4970,
+      "baseline_spread": 0.05422715840270249,
+      "optimized_spread": 0.05089555207467023,
+      "absolute_difference": -0.003331606328032255,
+      "relative_change_percent": -6.143796625467692,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 25,
+      "spectrum_index": 2351,
+      "baseline_spread": 0.039406323818134144,
+      "optimized_spread": 0.03639001666573609,
+      "absolute_difference": -0.0030163071523980553,
+      "relative_change_percent": -7.654373359765165,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 26,
+      "spectrum_index": 1580,
+      "baseline_spread": 0.4024474667328289,
+      "optimized_spread": 0.3456542522187083,
+      "absolute_difference": -0.05679321451412056,
+      "relative_change_percent": -14.111957263685209,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 27,
+      "spectrum_index": 1225,
+      "baseline_spread": 0.542800997720115,
+      "optimized_spread": 0.5046031779018779,
+      "absolute_difference": -0.03819781981823711,
+      "relative_change_percent": -7.03716831374232,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 28,
+      "spectrum_index": 4246,
+      "baseline_spread": 0.260674544685196,
+      "optimized_spread": 0.2390006900299881,
+      "absolute_difference": -0.021673854655207908,
+      "relative_change_percent": -8.314526714291327,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 29,
+      "spectrum_index": 4823,
+      "baseline_spread": 0.050528534616586546,
+      "optimized_spread": 0.04569113669261188,
+      "absolute_difference": -0.004837397923974668,
+      "relative_change_percent": -9.5735963068811,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 30,
+      "spectrum_index": 5339,
+      "baseline_spread": 0.04747429037000096,
+      "optimized_spread": 0.04449043018266882,
+      "absolute_difference": -0.0029838601873321408,
+      "relative_change_percent": -6.285212825882794,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 31,
+      "spectrum_index": 5275,
+      "baseline_spread": 0.051406963467728425,
+      "optimized_spread": 0.04781497203153994,
+      "absolute_difference": -0.003591991436188484,
+      "relative_change_percent": -6.987363566889952,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 32,
+      "spectrum_index": 4724,
+      "baseline_spread": 0.2689787874035686,
+      "optimized_spread": 0.29461593051961826,
+      "absolute_difference": 0.025637143116049643,
+      "relative_change_percent": 9.531288085399966,
+      "status": "WORSENED"
+    },
+    {
+      "sample_id": 33,
+      "spectrum_index": 893,
+      "baseline_spread": 0.5771448048265855,
+      "optimized_spread": 0.5386437191258805,
+      "absolute_difference": -0.038501085700704984,
+      "relative_change_percent": -6.670957683188952,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 34,
+      "spectrum_index": 5985,
+      "baseline_spread": 0.04343584339260214,
+      "optimized_spread": 0.04087614176538385,
+      "absolute_difference": -0.0025597016272182888,
+      "relative_change_percent": -5.893063026500942,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 35,
+      "spectrum_index": 80,
+      "baseline_spread": 0.5037575549574766,
+      "optimized_spread": 0.4611090515598926,
+      "absolute_difference": -0.042648503397584026,
+      "relative_change_percent": -8.46607717896838,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 36,
+      "spectrum_index": 5954,
+      "baseline_spread": 0.04753908473654673,
+      "optimized_spread": 0.04410776811544773,
+      "absolute_difference": -0.0034313166210989954,
+      "relative_change_percent": -7.217885325547916,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 37,
+      "spectrum_index": 730,
+      "baseline_spread": 0.10072847879309149,
+      "optimized_spread": 0.18891956406271262,
+      "absolute_difference": 0.08819108526962113,
+      "relative_change_percent": 87.55327820523956,
+      "status": "WORSENED"
+    },
+    {
+      "sample_id": 38,
+      "spectrum_index": 1630,
+      "baseline_spread": 0.14085404794966785,
+      "optimized_spread": 0.12919331944587378,
+      "absolute_difference": -0.011660728503794071,
+      "relative_change_percent": -8.278589556730994,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 39,
+      "spectrum_index": 3870,
+      "baseline_spread": 0.17070584604750536,
+      "optimized_spread": 0.1604773229548055,
+      "absolute_difference": -0.010228523092699865,
+      "relative_change_percent": -5.991899709078148,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 40,
+      "spectrum_index": 6034,
+      "baseline_spread": 0.05650605602716929,
+      "optimized_spread": 0.050628157044018025,
+      "absolute_difference": -0.005877898983151261,
+      "relative_change_percent": -10.402246053635464,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 41,
+      "spectrum_index": 5688,
+      "baseline_spread": 0.04660399059751234,
+      "optimized_spread": 0.04344024472818303,
+      "absolute_difference": -0.0031637458693293125,
+      "relative_change_percent": -6.788572885640804,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 42,
+      "spectrum_index": 1485,
+      "baseline_spread": 0.40967604178347883,
+      "optimized_spread": 0.40013125241302155,
+      "absolute_difference": -0.009544789370457274,
+      "relative_change_percent": -2.3298383105111786,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 43,
+      "spectrum_index": 378,
+      "baseline_spread": 0.4724826500232314,
+      "optimized_spread": 0.42667385891431475,
+      "absolute_difference": -0.04580879110891667,
+      "relative_change_percent": -9.6953382535135,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 44,
+      "spectrum_index": 5105,
+      "baseline_spread": 0.06884855175850563,
+      "optimized_spread": 0.06436929162300034,
+      "absolute_difference": -0.004479260135505286,
+      "relative_change_percent": -6.505961303611464,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 45,
+      "spectrum_index": 2244,
+      "baseline_spread": 0.4306601328341553,
+      "optimized_spread": 0.4063639008644854,
+      "absolute_difference": -0.0242962319696699,
+      "relative_change_percent": -5.641625522608158,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 46,
+      "spectrum_index": 2163,
+      "baseline_spread": 0.528837533685932,
+      "optimized_spread": 0.4952621841504942,
+      "absolute_difference": -0.03357534953543778,
+      "relative_change_percent": -6.348896853334475,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 47,
+      "spectrum_index": 2227,
+      "baseline_spread": 0.5394542466796634,
+      "optimized_spread": 0.5163687880356598,
+      "absolute_difference": -0.023085458644003576,
+      "relative_change_percent": -4.2794099381169755,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 48,
+      "spectrum_index": 1918,
+      "baseline_spread": 0.1461548435205653,
+      "optimized_spread": 0.1597671785934204,
+      "absolute_difference": 0.013612335072855114,
+      "relative_change_percent": 9.313639387489568,
+      "status": "WORSENED"
+    },
+    {
+      "sample_id": 49,
+      "spectrum_index": 351,
+      "baseline_spread": 0.12873617942384846,
+      "optimized_spread": 0.10521470848460264,
+      "absolute_difference": -0.023521470939245823,
+      "relative_change_percent": -18.271064936457524,
+      "status": "IMPROVED"
+    },
+    {
+      "sample_id": 50,
+      "spectrum_index": 2879,
+      "baseline_spread": 0.5302814358123952,
+      "optimized_spread": 0.47573417789647904,
+      "absolute_difference": -0.054547257915916136,
+      "relative_change_percent": -10.286473225740842,
+      "status": "IMPROVED"
+    }
+  ]
+}

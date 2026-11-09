@@ -1,0 +1,596 @@
+[
+  {
+    "cmf_index": 1,
+    "cmf_id": "global_optimized_cmf",
+    "display_name": "Global Optimized CMF",
+    "slug": "global_optimized_cmf",
+    "category": "Global Optimized CMF (Active Master)",
+    "graph_filename": "global_optimized_cmf.png",
+    "graph_sha256": "a61cbf39daee760af8f73f4ff52cde4167fa36bc3516a149c8a7a5ab4ac2e572",
+    "source_file": "artifacts/M_camera_optimized.npy",
+    "data_min": 8.17764584465103e-18,
+    "data_max": 1.5581358900586708,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 540,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 2,
+    "cmf_id": "original_calibrated_camera",
+    "display_name": "Original Calibrated Camera Model",
+    "slug": "original_calibrated_camera",
+    "category": "Project Baseline Camera Model",
+    "graph_filename": "original_calibrated_camera.png",
+    "graph_sha256": "41e9f0324a28dd9b1fbfc98d4e12167d0472c9212c1420aaece1660e8002a43c",
+    "source_file": "artifacts/M_camera.npy",
+    "data_min": -0.047986816639022746,
+    "data_max": 1.7896861128615256,
+    "has_negative_values": true,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 560,
+      "blue_nm": 450
+    }
+  },
+  {
+    "cmf_index": 3,
+    "cmf_id": "previous_optimized_cmf",
+    "display_name": "Previous Optimized CMF",
+    "slug": "previous_optimized_cmf",
+    "category": "Previous Optimized CMF (Run 2 Seed 101)",
+    "graph_filename": "previous_optimized_cmf.png",
+    "graph_sha256": "b6e74f36e87b8ae1f19c3943e675ad508288264f005bd87cd304b3d2fe40740b",
+    "source_file": "results/backup_previous_optimized_cmf/M_camera_optimized.npy",
+    "data_min": 8.176067501173083e-18,
+    "data_max": 1.5581405569844666,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 540,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 4,
+    "cmf_id": "cie_1931_2deg",
+    "display_name": "CIE 1931 2\u00b0 Standard Observer",
+    "slug": "cie_1931_2deg",
+    "category": "CIE Standard Colorimetric Observer",
+    "graph_filename": "cie_1931_2deg.png",
+    "graph_sha256": "675890da6c0f739491f99f71ef342920bed32844cbe862947585a8132cef4350",
+    "source_file": "colour.MSDS_CMFS['CIE 1931 2 Degree Standard Observer']",
+    "data_min": 0.0,
+    "data_max": 1.7721100000000007,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 560,
+      "blue_nm": 450
+    }
+  },
+  {
+    "cmf_index": 5,
+    "cmf_id": "cie_1964_10deg",
+    "display_name": "CIE 1964 10\u00b0 Supplementary Observer",
+    "slug": "cie_1964_10deg",
+    "category": "CIE Standard Colorimetric Observer",
+    "graph_filename": "cie_1964_10deg.png",
+    "graph_sha256": "f848081bdb75acf20120772c107c1bedf33c0a51d2f2910784de44bb1db6b40f",
+    "source_file": "colour.MSDS_CMFS['CIE 1964 10 Degree Standard Observer']",
+    "data_min": -1.3552527156068805e-20,
+    "data_max": 1.9948000000000012,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 560,
+      "blue_nm": 450
+    }
+  },
+  {
+    "cmf_index": 6,
+    "cmf_id": "canon_1dmarkiii",
+    "display_name": "Canon 1DMarkIII",
+    "slug": "canon_1dmarkiii",
+    "category": "Physical Reference Camera",
+    "graph_filename": "canon_1dmarkiii.png",
+    "graph_sha256": "1a2fef5b36ed79dce19e62e6e638cc5e01580dddcd31630d85299b89df3cbfef",
+    "source_file": "camera comparisions/canon_1dmarkiii_sensitivity.csv",
+    "data_min": 1.6586e-05,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 7,
+    "cmf_id": "canon_20d",
+    "display_name": "Canon 20D",
+    "slug": "canon_20d",
+    "category": "Physical Reference Camera",
+    "graph_filename": "canon_20d.png",
+    "graph_sha256": "bdee476b98782b6f531e84b5d1bf8e956f83ac6f4401bbff8f038c78b3fef9c7",
+    "source_file": "camera comparisions/canon_20d_sensitivity.csv",
+    "data_min": 0.00010512,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 530,
+      "blue_nm": 470
+    }
+  },
+  {
+    "cmf_index": 8,
+    "cmf_id": "canon_300d",
+    "display_name": "Canon 300D",
+    "slug": "canon_300d",
+    "category": "Physical Reference Camera",
+    "graph_filename": "canon_300d.png",
+    "graph_sha256": "e54f13dfafbb3b173a785915ee3d1afc9e3f3d6bc3db79ad86f759f87e5d58d4",
+    "source_file": "camera comparisions/canon_300d_sensitivity.csv",
+    "data_min": 6.6623e-05,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 470
+    }
+  },
+  {
+    "cmf_index": 9,
+    "cmf_id": "canon_40d",
+    "display_name": "Canon 40D",
+    "slug": "canon_40d",
+    "category": "Physical Reference Camera",
+    "graph_filename": "canon_40d.png",
+    "graph_sha256": "ecc59d2ab83f95e1b35d51919ea6fef18278373c28ccef0b91a299e3a1c91c5a",
+    "source_file": "camera comparisions/canon_40d_sensitivity.csv",
+    "data_min": 0.00028048,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 10,
+    "cmf_id": "canon_500d",
+    "display_name": "Canon 500D",
+    "slug": "canon_500d",
+    "category": "Physical Reference Camera",
+    "graph_filename": "canon_500d.png",
+    "graph_sha256": "0b45ea830b19ea6d04fd7d0f8b53e3546caa70cfb119f8ab114744fb906876db",
+    "source_file": "camera comparisions/canon_500d_sensitivity.csv",
+    "data_min": 0.00049182,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 580,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 11,
+    "cmf_id": "canon_50d",
+    "display_name": "Canon 50D",
+    "slug": "canon_50d",
+    "category": "Physical Reference Camera",
+    "graph_filename": "canon_50d.png",
+    "graph_sha256": "15aec44212000a841c79a2a058307390d714a5bae03310ecea3b9a1be199aef5",
+    "source_file": "camera comparisions/canon_50d_sensitivity.csv",
+    "data_min": 0.00028127,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 12,
+    "cmf_id": "canon_5dmarkii",
+    "display_name": "Canon 5DMarkII",
+    "slug": "canon_5dmarkii",
+    "category": "Physical Reference Camera",
+    "graph_filename": "canon_5dmarkii.png",
+    "graph_sha256": "ed7050f277a3e7f348ebce8ec00b016e7a7a88e8134748897fa73826656da632",
+    "source_file": "camera comparisions/canon_5dmarkii_sensitivity.csv",
+    "data_min": 0.0004,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 510,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 13,
+    "cmf_id": "canon_600d",
+    "display_name": "Canon 600D",
+    "slug": "canon_600d",
+    "category": "Physical Reference Camera",
+    "graph_filename": "canon_600d.png",
+    "graph_sha256": "a1b10d24040dad7ac634604660bb2274d2a2b2a7bb262b35e90f0e7f27f9a490",
+    "source_file": "camera comparisions/canon_600d_sensitivity.csv",
+    "data_min": 0.00036101,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 14,
+    "cmf_id": "canon_60d",
+    "display_name": "Canon 60D",
+    "slug": "canon_60d",
+    "category": "Physical Reference Camera",
+    "graph_filename": "canon_60d.png",
+    "graph_sha256": "d13eee04bfe7c1d0f39b326c9e9fa6e8b49dbd1ffbacb8135f7bb46b42ee6836",
+    "source_file": "camera comparisions/canon_60d_sensitivity.csv",
+    "data_min": 0.00020182,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 15,
+    "cmf_id": "hasselblad_h2",
+    "display_name": "Hasselblad H2",
+    "slug": "hasselblad_h2",
+    "category": "Physical Reference Camera",
+    "graph_filename": "hasselblad_h2.png",
+    "graph_sha256": "27360c9c1e107d90b54b1f01e2dee525142aa7b8e56b776bc385a8bb82b4f20c",
+    "source_file": "camera comparisions/hasselblad_h2_sensitivity.csv",
+    "data_min": 0.0019314,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 610,
+      "green_nm": 530,
+      "blue_nm": 480
+    }
+  },
+  {
+    "cmf_index": 16,
+    "cmf_id": "nikon_d3x",
+    "display_name": "Nikon D3X",
+    "slug": "nikon_d3x",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nikon_d3x.png",
+    "graph_sha256": "85ba429b5f80dc6915acaccbc1ec1f4673719b99b7878a60acc883dd5506692a",
+    "source_file": "camera comparisions/nikon_d3x_sensitivity.csv",
+    "data_min": 8.3985e-05,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 540,
+      "blue_nm": 470
+    }
+  },
+  {
+    "cmf_index": 17,
+    "cmf_id": "nikon_d200",
+    "display_name": "Nikon D200",
+    "slug": "nikon_d200",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nikon_d200.png",
+    "graph_sha256": "3eaa2b481e5b8fcfec9509690282156582ca499856de29deacd0f08a82fe9dbe",
+    "source_file": "camera comparisions/nikon_d200_sensitivity.csv",
+    "data_min": 5.7231e-05,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 450
+    }
+  },
+  {
+    "cmf_index": 18,
+    "cmf_id": "nikon_d3",
+    "display_name": "Nikon D3",
+    "slug": "nikon_d3",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nikon_d3.png",
+    "graph_sha256": "79e49fc2f84b14bacc00e597b049a43753ee836b1b42e82cef6cae9de8137bdf",
+    "source_file": "camera comparisions/nikon_d3_sensitivity.csv",
+    "data_min": 4.0654e-05,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 19,
+    "cmf_id": "nikon_d300s",
+    "display_name": "Nikon D300s",
+    "slug": "nikon_d300s",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nikon_d300s.png",
+    "graph_sha256": "a4befc261ee6ae99e3bff5460e6da8b1f5acb56940b7322671ae7fd4bcd37f47",
+    "source_file": "camera comparisions/nikon_d300s_sensitivity.csv",
+    "data_min": 0.00025012,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 20,
+    "cmf_id": "nikon_d40",
+    "display_name": "Nikon D40",
+    "slug": "nikon_d40",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nikon_d40.png",
+    "graph_sha256": "ab35a6bebac4dcffcfac9cb51b7c9a0618ee44762652c4a2afc75f2c9d5b5c1a",
+    "source_file": "camera comparisions/nikon_d40_sensitivity.csv",
+    "data_min": 0.0002792,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 21,
+    "cmf_id": "nikon_d50",
+    "display_name": "Nikon D50",
+    "slug": "nikon_d50",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nikon_d50.png",
+    "graph_sha256": "26e8a5697438a27127091d88a7f49ffca1895594b86df5be78de0e15fd6bea1a",
+    "source_file": "camera comparisions/nikon_d50_sensitivity.csv",
+    "data_min": 0.00026866,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 22,
+    "cmf_id": "nikon_d5100",
+    "display_name": "Nikon D5100",
+    "slug": "nikon_d5100",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nikon_d5100.png",
+    "graph_sha256": "3ae31f3fe5b79e54dd6d3f9b48c466382a8797a8f7d1976508d3904efa02924f",
+    "source_file": "camera comparisions/nikon_d5100_sensitivity.csv",
+    "data_min": 0.00012044,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 450
+    }
+  },
+  {
+    "cmf_index": 23,
+    "cmf_id": "nikon_d700",
+    "display_name": "Nikon D700",
+    "slug": "nikon_d700",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nikon_d700.png",
+    "graph_sha256": "13f44aa0fb15c95d0f89be9f8ba8e927b14bba1e78c4627a80fa5db7f5f85e6a",
+    "source_file": "camera comparisions/nikon_d700_sensitivity.csv",
+    "data_min": 3.4504e-05,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 24,
+    "cmf_id": "nikon_d80",
+    "display_name": "Nikon D80",
+    "slug": "nikon_d80",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nikon_d80.png",
+    "graph_sha256": "392d13720a46c7426685ad0c773527956b913f55d2f9f4559f20e687d7444837",
+    "source_file": "camera comparisions/nikon_d80_sensitivity.csv",
+    "data_min": 2.9122e-05,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 470
+    }
+  },
+  {
+    "cmf_index": 25,
+    "cmf_id": "nikon_d90",
+    "display_name": "Nikon D90",
+    "slug": "nikon_d90",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nikon_d90.png",
+    "graph_sha256": "a791cdaae682e4ff005f97c27620d1dfcc0b8c60de5a288f9c3cf4300d49d264",
+    "source_file": "camera comparisions/nikon_d90_sensitivity.csv",
+    "data_min": 3.3758e-05,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 26,
+    "cmf_id": "nokia_n900",
+    "display_name": "Nokia N900",
+    "slug": "nokia_n900",
+    "category": "Physical Reference Camera",
+    "graph_filename": "nokia_n900.png",
+    "graph_sha256": "9570233b45418900bb76b9e73a44460ea4f29458f17ae3a96205fd648f92f5d3",
+    "source_file": "camera comparisions/nokia_n900_sensitivity.csv",
+    "data_min": 0.0014485,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 530,
+      "blue_nm": 460
+    }
+  },
+  {
+    "cmf_index": 27,
+    "cmf_id": "olympus_e_pl2",
+    "display_name": "Olympus E-PL2",
+    "slug": "olympus_e_pl2",
+    "category": "Physical Reference Camera",
+    "graph_filename": "olympus_e_pl2.png",
+    "graph_sha256": "b488221ad8c74e0644672361c4b82f3b0649c74ec9e3738081385319d4e3c288",
+    "source_file": "camera comparisions/olympus_e_pl2_sensitivity.csv",
+    "data_min": 0.00024342,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 610,
+      "green_nm": 530,
+      "blue_nm": 470
+    }
+  },
+  {
+    "cmf_index": 28,
+    "cmf_id": "pentax_k_5",
+    "display_name": "Pentax K-5",
+    "slug": "pentax_k_5",
+    "category": "Physical Reference Camera",
+    "graph_filename": "pentax_k_5.png",
+    "graph_sha256": "5b50bcc2549b0615ab350a444a0f79252d4d6a940301a731cdde207ba7aa8f91",
+    "source_file": "camera comparisions/pentax_k_5_sensitivity.csv",
+    "data_min": 0.00024816,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 470
+    }
+  },
+  {
+    "cmf_index": 29,
+    "cmf_id": "pentax_q",
+    "display_name": "Pentax Q",
+    "slug": "pentax_q",
+    "category": "Physical Reference Camera",
+    "graph_filename": "pentax_q.png",
+    "graph_sha256": "f0117f77dac58cabe7e0da05925e7ae1de44f080dc45e93f777278617cf531bf",
+    "source_file": "camera comparisions/pentax_q_sensitivity.csv",
+    "data_min": 0.00043022,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 610,
+      "green_nm": 520,
+      "blue_nm": 470
+    }
+  },
+  {
+    "cmf_index": 30,
+    "cmf_id": "point_grey_grasshopper_50s5c",
+    "display_name": "Point Grey Grasshopper 50S5C",
+    "slug": "point_grey_grasshopper_50s5c",
+    "category": "Physical Reference Camera",
+    "graph_filename": "point_grey_grasshopper_50s5c.png",
+    "graph_sha256": "fb89e7b334dd6e2989ec2e9a18a4e024f661e3fe794f60adf47e0c33b7b2be3d",
+    "source_file": "camera comparisions/point_grey_grasshopper_50s5c_sensitivity.csv",
+    "data_min": 0.0003502,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 620,
+      "green_nm": 550,
+      "blue_nm": 480
+    }
+  },
+  {
+    "cmf_index": 31,
+    "cmf_id": "point_grey_grasshopper2_14s5c",
+    "display_name": "Point Grey Grasshopper2 14S5C",
+    "slug": "point_grey_grasshopper2_14s5c",
+    "category": "Physical Reference Camera",
+    "graph_filename": "point_grey_grasshopper2_14s5c.png",
+    "graph_sha256": "7088412e0cf0668012faf76a50a2817f15b43920131615255bda81336923779b",
+    "source_file": "camera comparisions/point_grey_grasshopper2_14s5c_sensitivity.csv",
+    "data_min": 0.0,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 600,
+      "green_nm": 530,
+      "blue_nm": 470
+    }
+  },
+  {
+    "cmf_index": 32,
+    "cmf_id": "phase_one",
+    "display_name": "Phase One",
+    "slug": "phase_one",
+    "category": "Physical Reference Camera",
+    "graph_filename": "phase_one.png",
+    "graph_sha256": "de329c3de24c18386628ba4600e28a7edb391c7eb97fa0762fac02bb90fa956a",
+    "source_file": "camera comparisions/phase_one_sensitivity.csv",
+    "data_min": 0.00034704,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 470
+    }
+  },
+  {
+    "cmf_index": 33,
+    "cmf_id": "sony_nex_5n",
+    "display_name": "SONY NEX-5N",
+    "slug": "sony_nex_5n",
+    "category": "Physical Reference Camera",
+    "graph_filename": "sony_nex_5n.png",
+    "graph_sha256": "410934050fc03923017eeb4cfade2549da25fcb1c0f7a5b1d49afc4cfc914810",
+    "source_file": "camera comparisions/sony_nex_5n_sensitivity.csv",
+    "data_min": 0.00012112,
+    "data_max": 1.0,
+    "has_negative_values": false,
+    "peak_wavelengths": {
+      "red_nm": 590,
+      "green_nm": 530,
+      "blue_nm": 450
+    }
+  }
+]

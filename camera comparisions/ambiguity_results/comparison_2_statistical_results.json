@@ -1,0 +1,21 @@
+{
+  "sample_size": 100,
+  "mean_difference": 0.0059962016158924955,
+  "median_difference": 0.0024992631030568498,
+  "std_difference": 0.011781071303024101,
+  "cohen_d": 0.5089691303670594,
+  "bootstrap_95_ci": [
+    0.0037016650836833144,
+    0.008369290691776768
+  ],
+  "paired_t_test": {
+    "statistic": 5.089691303670593,
+    "p_value_two_sided": 1.7089879648310228e-06,
+    "p_value_one_sided_greater": 8.544939824155114e-07
+  },
+  "wilcoxon_signed_rank": {
+    "statistic": 3793.0,
+    "p_value_one_sided_greater": 6.509190409855747e-06
+  },
+  "statistical_significance": true
+}

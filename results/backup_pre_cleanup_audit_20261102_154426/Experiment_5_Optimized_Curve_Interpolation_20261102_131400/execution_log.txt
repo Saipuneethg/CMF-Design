@@ -1,0 +1,30 @@
+[2026-11-02 13:14:00] ================================================================================
+[2026-11-02 13:14:00] STARTING EXPERIMENT 5: INTERPOLATION-BASED ANALYSIS OF OPTIMIZED CAMERA CURVES
+[2026-11-02 13:14:00] Output Directory: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_131400
+[2026-11-02 13:14:00] ================================================================================
+[2026-11-02 13:14:00] Step 1: Loading 13 final optimized camera curves and recovering parameter vectors...
+[2026-11-02 13:14:00]   Loaded Canon_1DMarkIII             : Ambiguity=0.3262, Cond=2.31, FitErr=3.65e-10
+[2026-11-02 13:14:01]   Loaded Nikon_D200                  : Ambiguity=0.3262, Cond=2.35, FitErr=1.47e-09
+[2026-11-02 13:14:01]   Loaded Point_Grey_Grasshopper      : Ambiguity=0.3262, Cond=2.29, FitErr=6.60e-10
+[2026-11-02 13:14:01]   Loaded CIE_1931_Derived            : Ambiguity=0.3403, Cond=4.39, FitErr=1.10e-09
+[2026-11-02 13:14:01]   Loaded Original_Baseline_Camera    : Ambiguity=0.3415, Cond=4.45, FitErr=1.85e-09
+[2026-11-02 13:14:02]   Loaded Random_Smooth_1_seed101     : Ambiguity=0.3239, Cond=2.39, FitErr=2.50e-09
+[2026-11-02 13:14:02]   Loaded Random_Smooth_2_seed202     : Ambiguity=0.3302, Cond=6.34, FitErr=3.90e-09
+[2026-11-02 13:14:03]   Loaded Random_Smooth_3_seed303     : Ambiguity=0.3219, Cond=11.86, FitErr=1.68e-09
+[2026-11-02 13:14:03]   Loaded Random_Smooth_4_seed404     : Ambiguity=0.3231, Cond=4.18, FitErr=7.74e-09
+[2026-11-02 13:14:03]   Loaded Random_Smooth_5_seed505     : Ambiguity=0.3263, Cond=2.15, FitErr=3.20e-10
+[2026-11-02 13:14:04]   Loaded Random_Smooth_6_seed606     : Ambiguity=0.3275, Cond=5.45, FitErr=1.42e-09
+[2026-11-02 13:14:04]   Loaded Random_Smooth_7_seed707     : Ambiguity=0.3275, Cond=2.07, FitErr=4.11e-10
+[2026-11-02 13:14:04]   Loaded Random_Smooth_8_seed808     : Ambiguity=0.3261, Cond=2.06, FitErr=2.56e-10
+[2026-11-02 13:14:04] Ensemble Reference Ambiguity (13 Runs Mean): 0.328234
+[2026-11-02 13:14:04] 
+================================================================================
+[2026-11-02 13:14:04] EXPERIMENT A & B: EXHAUSTIVE PAIRWISE INTERPOLATION ACROSS ALL 78 PAIRS
+[2026-11-02 13:14:04] Evaluating 101 points per path (t = 0.00, 0.01, ..., 1.00)
+[2026-11-02 13:14:04] Total points: 78 pairs x 101 points = 7,878 evaluations per method
+[2026-11-02 13:14:04] ================================================================================
+[2026-11-02 13:14:04] Created metadata for all 78 pairs.
+[2026-11-02 13:14:04] Spawning 4 worker processes (mmap chunked mode)...
+[2026-11-02 13:14:04] Evaluating Experiment A: Parameter-Space Interpolation (7,878 evaluations)...
+[2026-11-02 13:25:00] Experiment A completed in 655.62 s (83.22 ms/eval).
+[2026-11-02 13:25:00] Evaluating Experiment B: Direct Spectral Curve Interpolation (7,878 evaluations)...

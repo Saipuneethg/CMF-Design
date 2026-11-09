@@ -1,0 +1,232 @@
+[2026-11-02 14:18:23] ================================================================================
+[2026-11-02 14:18:23] STARTING EXPERIMENT 5: INTERPOLATION-BASED ANALYSIS OF OPTIMIZED CAMERA CURVES
+[2026-11-02 14:18:23] Output Directory: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823
+[2026-11-02 14:18:23] ================================================================================
+[2026-11-02 14:18:23] Step 1: Loading 13 final optimized camera curves and recovering parameter vectors...
+[2026-11-02 14:18:23]   Loaded Canon_1DMarkIII             : Ambiguity=0.3262, Cond=2.31, FitErr=3.65e-10
+[2026-11-02 14:18:24]   Loaded Nikon_D200                  : Ambiguity=0.3262, Cond=2.35, FitErr=1.47e-09
+[2026-11-02 14:18:24]   Loaded Point_Grey_Grasshopper      : Ambiguity=0.3262, Cond=2.29, FitErr=6.60e-10
+[2026-11-02 14:18:24]   Loaded CIE_1931_Derived            : Ambiguity=0.3403, Cond=4.39, FitErr=1.10e-09
+[2026-11-02 14:18:25]   Loaded Original_Baseline_Camera    : Ambiguity=0.3415, Cond=4.45, FitErr=1.85e-09
+[2026-11-02 14:18:25]   Loaded Random_Smooth_1_seed101     : Ambiguity=0.3239, Cond=2.39, FitErr=2.50e-09
+[2026-11-02 14:18:26]   Loaded Random_Smooth_2_seed202     : Ambiguity=0.3302, Cond=6.34, FitErr=3.90e-09
+[2026-11-02 14:18:27]   Loaded Random_Smooth_3_seed303     : Ambiguity=0.3219, Cond=11.86, FitErr=1.68e-09
+[2026-11-02 14:18:27]   Loaded Random_Smooth_4_seed404     : Ambiguity=0.3231, Cond=4.18, FitErr=7.74e-09
+[2026-11-02 14:18:27]   Loaded Random_Smooth_5_seed505     : Ambiguity=0.3263, Cond=2.15, FitErr=3.20e-10
+[2026-11-02 14:18:28]   Loaded Random_Smooth_6_seed606     : Ambiguity=0.3275, Cond=5.45, FitErr=1.42e-09
+[2026-11-02 14:18:28]   Loaded Random_Smooth_7_seed707     : Ambiguity=0.3275, Cond=2.07, FitErr=4.11e-10
+[2026-11-02 14:18:29]   Loaded Random_Smooth_8_seed808     : Ambiguity=0.3261, Cond=2.06, FitErr=2.56e-10
+[2026-11-02 14:18:29] Ensemble Reference Ambiguity (13 Runs Mean): 0.328234
+[2026-11-02 14:18:29] 
+================================================================================
+[2026-11-02 14:18:29] EXPERIMENT A & B: EXHAUSTIVE PAIRWISE INTERPOLATION ACROSS ALL 78 PAIRS
+[2026-11-02 14:18:29] Evaluating 101 points per path (t = 0.00, 0.01, ..., 1.00)
+[2026-11-02 14:18:29] Total points: 78 pairs x 101 points = 7,878 evaluations per method
+[2026-11-02 14:18:29] ================================================================================
+[2026-11-02 14:18:29] Created metadata for all 78 pairs.
+[2026-11-02 14:18:29] Spawning 4 worker processes (ultra-low IPC memory overhead)...
+[2026-11-02 14:18:29] Evaluating Experiment A: Parameter-Space Interpolation (7,878 evaluations)...
+[2026-11-02 14:37:19] Experiment A completed in 1130.50 s (143.50 ms/eval).
+[2026-11-02 14:37:19] Evaluating Experiment B: Direct Spectral Curve Interpolation (7,878 evaluations)...
+[2026-11-02 14:47:57] Experiment B completed in 638.32 s (81.03 ms/eval).
+[2026-11-02 14:47:58] Raw pairwise results and curves successfully stored.
+[2026-11-02 14:47:58] 
+================================================================================
+[2026-11-02 14:47:58] EXPERIMENT C: MULTI-SOLUTION CONVEX COMBINATIONS ON SIMPLEX
+[2026-11-02 14:47:58] ================================================================================
+[2026-11-02 14:47:58] Evaluating 1074 multi-solution convex combinations across 5 clusters...
+[2026-11-02 14:49:36] Multi-solution evaluations completed in 97.90 s.
+[2026-11-02 14:49:36] Multi-solution interpolation results successfully stored.
+[2026-11-02 14:49:36] 
+================================================================================
+[2026-11-02 14:49:36] EXPERIMENT D & E: NEAR-OPTIMALITY THRESHOLD ANALYSIS & PATH RANKING
+[2026-11-02 14:49:36] ================================================================================
+[2026-11-02 14:49:37] Near-optimality analysis and ranking completed.
+[2026-11-02 14:49:37] Top ranked pair: Canon_1DMarkIII <-> Point_Grey_Grasshopper (1.0% near-opt: 100.0%)
+[2026-11-02 14:49:37] 
+================================================================================
+[2026-11-02 14:49:37] EXPERIMENT G: GRAPH CONNECTIVITY ANALYSIS OF THE SOLUTION MANIFOLD
+[2026-11-02 14:49:37] ================================================================================
+[2026-11-02 14:49:37] Tolerance 0.5%: Edges= 3/78 (3.8%), Components=10, Largest Comp=4/13 nodes
+[2026-11-02 14:49:37] Tolerance 1.0%: Edges=27/78 (34.6%), Components=5, Largest Comp=9/13 nodes
+[2026-11-02 14:49:37] Tolerance 2.0%: Edges=55/78 (70.5%), Components=3, Largest Comp=11/13 nodes
+[2026-11-02 14:49:37] Tolerance 5.0%: Edges=78/78 (100.0%), Components=1, Largest Comp=13/13 nodes
+[2026-11-02 14:49:37] 
+================================================================================
+[2026-11-02 14:49:37] EXPERIMENT H: STATISTICAL ANALYSIS AND HYPOTHESIS TESTING
+[2026-11-02 14:49:37] ================================================================================
+[2026-11-02 14:56:06] ================================================================================
+[2026-11-02 14:56:06] STARTING EXPERIMENT 5: INTERPOLATION-BASED ANALYSIS OF OPTIMIZED CAMERA CURVES
+[2026-11-02 14:56:06] Output Directory: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823
+[2026-11-02 14:56:06] ================================================================================
+[2026-11-02 14:56:06] Step 1: Loading 13 final optimized camera curves and recovering parameter vectors...
+[2026-11-02 14:56:07]   Loaded Canon_1DMarkIII             : Ambiguity=0.3262, Cond=2.31, FitErr=3.65e-10
+[2026-11-02 14:56:07]   Loaded Nikon_D200                  : Ambiguity=0.3262, Cond=2.35, FitErr=1.47e-09
+[2026-11-02 14:56:08]   Loaded Point_Grey_Grasshopper      : Ambiguity=0.3262, Cond=2.29, FitErr=6.60e-10
+[2026-11-02 14:56:10]   Loaded CIE_1931_Derived            : Ambiguity=0.3403, Cond=4.39, FitErr=1.10e-09
+[2026-11-02 14:56:11]   Loaded Original_Baseline_Camera    : Ambiguity=0.3415, Cond=4.45, FitErr=1.85e-09
+[2026-11-02 14:56:12]   Loaded Random_Smooth_1_seed101     : Ambiguity=0.3239, Cond=2.39, FitErr=2.50e-09
+[2026-11-02 14:56:13]   Loaded Random_Smooth_2_seed202     : Ambiguity=0.3302, Cond=6.34, FitErr=3.90e-09
+[2026-11-02 14:56:15]   Loaded Random_Smooth_3_seed303     : Ambiguity=0.3219, Cond=11.86, FitErr=1.68e-09
+[2026-11-02 14:56:16]   Loaded Random_Smooth_4_seed404     : Ambiguity=0.3231, Cond=4.18, FitErr=7.74e-09
+[2026-11-02 14:56:17]   Loaded Random_Smooth_5_seed505     : Ambiguity=0.3263, Cond=2.15, FitErr=3.20e-10
+[2026-11-02 14:56:20]   Loaded Random_Smooth_6_seed606     : Ambiguity=0.3275, Cond=5.45, FitErr=1.42e-09
+[2026-11-02 14:56:20]   Loaded Random_Smooth_7_seed707     : Ambiguity=0.3275, Cond=2.07, FitErr=4.11e-10
+[2026-11-02 14:56:21]   Loaded Random_Smooth_8_seed808     : Ambiguity=0.3261, Cond=2.06, FitErr=2.56e-10
+[2026-11-02 14:56:21] Ensemble Reference Ambiguity (13 Runs Mean): 0.328234
+[2026-11-02 14:56:21] 
+================================================================================
+[2026-11-02 14:56:21] EXPERIMENT A & B: EXHAUSTIVE PAIRWISE INTERPOLATION ACROSS ALL 78 PAIRS
+[2026-11-02 14:56:21] Evaluating 101 points per path (t = 0.00, 0.01, ..., 1.00)
+[2026-11-02 14:56:21] Total points: 78 pairs x 101 points = 7,878 evaluations per method
+[2026-11-02 14:56:21] ================================================================================
+[2026-11-02 14:56:21] Found existing pairwise interpolation raw results. Loading directly from disk...
+[2026-11-02 14:56:21] Successfully loaded 7878 parameter evals and 7878 direct spectral evals.
+[2026-11-02 14:56:21] 
+================================================================================
+[2026-11-02 14:56:21] EXPERIMENT C: MULTI-SOLUTION CONVEX COMBINATIONS ON SIMPLEX
+[2026-11-02 14:56:21] ================================================================================
+[2026-11-02 14:56:21] Found existing multi-solution interpolation results. Loading directly from disk...
+[2026-11-02 14:56:21] Successfully loaded 1074 multi-solution combinations.
+[2026-11-02 14:56:21] 
+================================================================================
+[2026-11-02 14:56:21] EXPERIMENT D & E: NEAR-OPTIMALITY THRESHOLD ANALYSIS & PATH RANKING
+[2026-11-02 14:56:21] ================================================================================
+[2026-11-02 14:56:21] Found existing pairwise path rankings. Loading directly from disk...
+[2026-11-02 14:56:21] Successfully loaded rankings for all 78 paths.
+[2026-11-02 14:56:21] 
+================================================================================
+[2026-11-02 14:56:21] EXPERIMENT G: GRAPH CONNECTIVITY ANALYSIS OF THE SOLUTION MANIFOLD
+[2026-11-02 14:56:21] ================================================================================
+[2026-11-02 14:56:21] Found existing graph connectivity summary. Loading directly from disk...
+[2026-11-02 14:56:21] 
+================================================================================
+[2026-11-02 14:56:21] EXPERIMENT H: STATISTICAL ANALYSIS AND HYPOTHESIS TESTING
+[2026-11-02 14:56:21] ================================================================================
+[2026-11-02 14:56:21] Statistical analysis successfully compiled.
+[2026-11-02 14:56:21] Mean Interpolated Ambiguity: 0.3288 +/- 0.0055
+[2026-11-02 14:56:21] Feasibility Rate: 100.00% across all 7,878 points.
+[2026-11-02 14:56:21] 
+================================================================================
+[2026-11-02 14:56:21] ADDITIONAL ROBUSTNESS ANALYSIS: NOISE & ILLUMINANT SENSITIVITY
+[2026-11-02 14:56:21] ================================================================================
+[2026-11-02 14:56:37] Additional noise and illuminant robustness analysis completed.
+[2026-11-02 14:56:37] 
+================================================================================
+[2026-11-02 14:56:37] EXPERIMENT F: GENERATING 10 PUBLICATION SCIENTIFIC FIGURES
+[2026-11-02 14:56:37] ================================================================================
+[2026-11-02 14:56:38]   Saved C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823\figures\Figure_1_Original_13_Optimized_Curves_Overlay.png
+[2026-11-02 14:56:40]   Saved C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823\figures\Figure_2_Pairwise_Interpolation_Curves.png
+[2026-11-02 14:56:42]   Saved C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823\figures\Figure_3_Ambiguity_Along_Interpolation_Paths.png
+[2026-11-02 14:56:43]   Saved C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823\figures\Figure_4_All_78_Pairwise_Interpolation_Paths.png
+[2026-11-02 14:56:46]   Saved C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823\figures\Figure_5_Near_Optimal_Region_Heatmap.png
+[2026-11-02 14:56:47]   Saved C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823\figures\Figure_6_Spectral_Curve_Evolution.png
+[2026-11-02 14:56:48]   Saved C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823\figures\Figure_7_Multi_Solution_Interpolation.png
+[2026-11-02 14:56:48]   Saved C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823\figures\Figure_8_Spectral_Distance_vs_Ambiguity.png
+[2026-11-02 14:56:51]   Saved C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823\figures\Figure_9_Interpolation_Feasibility_Conditioning.png
+[2026-11-02 14:56:52]   Saved C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823\figures\Figure_10_Parameter_vs_Direct_Interpolation.png
+[2026-11-02 14:56:52] All 10 figures successfully generated and saved.
+[2026-11-02 14:56:52] 
+================================================================================
+[2026-11-02 14:56:52] SCIENTIFIC QUESTIONS SYNTHESIS & ANSWERS (EXPERIMENT G)
+[2026-11-02 14:56:52] ================================================================================
+[2026-11-02 15:00:25] ================================================================================
+[2026-11-02 15:00:25] STARTING EXPERIMENT 5: INTERPOLATION-BASED ANALYSIS OF OPTIMIZED CAMERA CURVES
+[2026-11-02 15:00:25] Output Directory: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823
+[2026-11-02 15:00:25] ================================================================================
+[2026-11-02 15:00:26] Step 1: Loading 13 final optimized camera curves and recovering parameter vectors...
+[2026-11-02 15:00:26]   Loaded Canon_1DMarkIII             : Ambiguity=0.3262, Cond=2.31, FitErr=3.65e-10
+[2026-11-02 15:00:27]   Loaded Nikon_D200                  : Ambiguity=0.3262, Cond=2.35, FitErr=1.47e-09
+[2026-11-02 15:00:28]   Loaded Point_Grey_Grasshopper      : Ambiguity=0.3262, Cond=2.29, FitErr=6.60e-10
+[2026-11-02 15:00:28]   Loaded CIE_1931_Derived            : Ambiguity=0.3403, Cond=4.39, FitErr=1.10e-09
+[2026-11-02 15:00:29]   Loaded Original_Baseline_Camera    : Ambiguity=0.3415, Cond=4.45, FitErr=1.85e-09
+[2026-11-02 15:00:30]   Loaded Random_Smooth_1_seed101     : Ambiguity=0.3239, Cond=2.39, FitErr=2.50e-09
+[2026-11-02 15:00:31]   Loaded Random_Smooth_2_seed202     : Ambiguity=0.3302, Cond=6.34, FitErr=3.90e-09
+[2026-11-02 15:00:33]   Loaded Random_Smooth_3_seed303     : Ambiguity=0.3219, Cond=11.86, FitErr=1.68e-09
+[2026-11-02 15:00:33]   Loaded Random_Smooth_4_seed404     : Ambiguity=0.3231, Cond=4.18, FitErr=7.74e-09
+[2026-11-02 15:00:34]   Loaded Random_Smooth_5_seed505     : Ambiguity=0.3263, Cond=2.15, FitErr=3.20e-10
+[2026-11-02 15:00:35]   Loaded Random_Smooth_6_seed606     : Ambiguity=0.3275, Cond=5.45, FitErr=1.42e-09
+[2026-11-02 15:00:35]   Loaded Random_Smooth_7_seed707     : Ambiguity=0.3275, Cond=2.07, FitErr=4.11e-10
+[2026-11-02 15:00:36]   Loaded Random_Smooth_8_seed808     : Ambiguity=0.3261, Cond=2.06, FitErr=2.56e-10
+[2026-11-02 15:00:36] Ensemble Reference Ambiguity (13 Runs Mean): 0.328234
+[2026-11-02 15:00:36] 
+================================================================================
+[2026-11-02 15:00:36] EXPERIMENT A & B: EXHAUSTIVE PAIRWISE INTERPOLATION ACROSS ALL 78 PAIRS
+[2026-11-02 15:00:36] Evaluating 101 points per path (t = 0.00, 0.01, ..., 1.00)
+[2026-11-02 15:00:36] Total points: 78 pairs x 101 points = 7,878 evaluations per method
+[2026-11-02 15:00:36] ================================================================================
+[2026-11-02 15:00:36] Found existing pairwise interpolation raw results. Loading directly from disk...
+[2026-11-02 15:00:36] Successfully loaded 7878 parameter evals and 7878 direct spectral evals.
+[2026-11-02 15:00:36] 
+================================================================================
+[2026-11-02 15:00:36] EXPERIMENT C: MULTI-SOLUTION CONVEX COMBINATIONS ON SIMPLEX
+[2026-11-02 15:00:36] ================================================================================
+[2026-11-02 15:00:36] Found existing multi-solution interpolation results. Loading directly from disk...
+[2026-11-02 15:00:36] Successfully loaded 1074 multi-solution combinations.
+[2026-11-02 15:00:36] 
+================================================================================
+[2026-11-02 15:00:36] EXPERIMENT D & E: NEAR-OPTIMALITY THRESHOLD ANALYSIS & PATH RANKING
+[2026-11-02 15:00:36] ================================================================================
+[2026-11-02 15:00:36] Found existing pairwise path rankings. Loading directly from disk...
+[2026-11-02 15:00:36] Successfully loaded rankings for all 78 paths.
+[2026-11-02 15:00:36] 
+================================================================================
+[2026-11-02 15:00:36] EXPERIMENT G: GRAPH CONNECTIVITY ANALYSIS OF THE SOLUTION MANIFOLD
+[2026-11-02 15:00:36] ================================================================================
+[2026-11-02 15:00:36] Found existing graph connectivity summary. Loading directly from disk...
+[2026-11-02 15:00:36] 
+================================================================================
+[2026-11-02 15:00:36] EXPERIMENT H: STATISTICAL ANALYSIS AND HYPOTHESIS TESTING
+[2026-11-02 15:00:36] ================================================================================
+[2026-11-02 15:00:36] Statistical analysis successfully compiled.
+[2026-11-02 15:00:36] Mean Interpolated Ambiguity: 0.3288 +/- 0.0055
+[2026-11-02 15:00:36] Feasibility Rate: 100.00% across all 7,878 points.
+[2026-11-02 15:00:36] 
+================================================================================
+[2026-11-02 15:00:36] ADDITIONAL ROBUSTNESS ANALYSIS: NOISE & ILLUMINANT SENSITIVITY
+[2026-11-02 15:00:36] ================================================================================
+[2026-11-02 15:00:36] Found existing additional robustness analysis table. Loading directly from disk...
+[2026-11-02 15:00:36] 
+================================================================================
+[2026-11-02 15:00:36] EXPERIMENT F: GENERATING 10 PUBLICATION SCIENTIFIC FIGURES
+[2026-11-02 15:00:36] ================================================================================
+[2026-11-02 15:00:36] All 10 figures already exist in figures directory. Skipping re-rendering.
+[2026-11-02 15:00:36] 
+================================================================================
+[2026-11-02 15:00:36] SCIENTIFIC QUESTIONS SYNTHESIS & ANSWERS (EXPERIMENT G)
+[2026-11-02 15:00:36] ================================================================================
+[2026-11-02 15:00:36] 
+Q1_Similar_Ambiguity:
+YES. All 13 optimized camera designs achieve very close ambiguity scores with an ensemble mean of 0.3282 and a coefficient of variation of 1.76%. The commercial and random initializations converge within 0.3219 - 0.3302, while CIE and Baseline converge to ~0.340 - 0.341.
+[2026-11-02 15:00:36] 
+Q2_Preserves_Ambiguity:
+YES. Across all 7,878 interpolated points evaluated, 83.8% preserve near-optimal ambiguity within 2.0% of the reference value, demonstrating that the interpolation paths traverse an extended, continuous near-optimal valley.
+[2026-11-02 15:00:36] 
+Q3_Broad_Near_Optimal_Pairs:
+YES. There are 24 pairs (out of 78) where 100% (or >=95%) of the intermediate interpolation points remain within the stringent 1.0% near-optimality threshold. These include pairs between commercial cameras (Canon, Nikon, Point Grey) and between specific randomly initialized optima.
+[2026-11-02 15:00:36] 
+Q4_Narrow_Near_Optimal_Pairs:
+YES. 20 pairs exhibit narrow near-optimal regions, primarily connecting the CIE 1931-derived solution or Baseline camera (which feature a secondary blue-region lobe) with single-peaked commercial camera optima.
+[2026-11-02 15:00:36] 
+Q5_Lower_Ambiguity_Intermediates:
+YES. In 5 out of 78 pairwise paths (6.4%), intermediate interpolated camera designs achieve an ambiguity strictly lower than both original endpoints. This reveals that the solution space contains a continuous manifold where convex blending hones a superior metameric fiber geometry.
+[2026-11-02 15:00:36] 
+Q6_Spectrally_Different_Equivalent_Ambiguity:
+YES. Pairs with substantial Frobenius spectral distance (||M_A - M_B||_F up to 0.82) exhibit almost identical ambiguity values (|A_A - A_B| < 0.005), confirming that spectral profile uniqueness does not dictate ambiguity performance. Multiple distinct physical spectral filter profiles can yield mathematically equivalent metameric fiber compactification.
+[2026-11-02 15:00:36] 
+Q7_Connected_Solution_Region:
+YES. Graph-theoretic connectivity analysis confirms that at the 2.0% tolerance level, 11 of the 13 solution nodes form a single connected component, and at 1.0% tolerance, 9 nodes are continuously connected. The solution manifold possesses a dominant connected core linking commercial cameras and multiple random initializations.
+[2026-11-02 15:00:36] 
+Q8_Param_vs_Direct_Agreement:
+NO. Both approaches yield concordant conclusions. The mean absolute ambiguity discrepancy between parameter-space GMM interpolation and direct spectral curve interpolation across all 7,878 evaluations is merely 0.00169 (relative discrepancy < 0.3%). This confirms that the near-optimal valley is an intrinsic property of the spectral sensitivity manifold.
+[2026-11-02 15:00:36] 
+Q9_Physical_Feasibility:
+YES. 100.0% of parameter-space interpolated curves and 100.0% of direct curves satisfy strict physical non-negativity (M >= 0), target throughput normalization, and full operator rank (rank 3), proving that continuous interpolation does not produce physically unrealizable or degenerate sensors.
+[2026-11-02 15:00:36] 
+Q10_Conditioning_vs_Ambiguity:
+GENERALLY YES, BUT WITH NUANCE. Across the near-optimal valley, matrix conditioning kappa(M) remains well-behaved with a mean of 3.51 and median of 2.90. However, specific paths connecting to Random 3 exhibit localized condition peaks (up to 11.9) while retaining near-optimal ambiguity, demonstrating that metameric fiber volume and measurement matrix conditioning are distinct mathematical objectives that must be co-regularized.
+[2026-11-02 15:00:36] 
+================================================================================
+[2026-11-02 15:00:36] EXPERIMENT 5 CORE EXECUTION SUCCESSFULLY COMPLETED!
+[2026-11-02 15:00:36] Results stored in: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_5_Optimized_Curve_Interpolation_20261102_141823
+[2026-11-02 15:00:36] ================================================================================

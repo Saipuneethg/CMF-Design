@@ -1,0 +1,5 @@
+Condition,Condition_Label,CMF,Mean_Ambiguity,Std_Ambiguity_Across_Realizations,Mean_RGB_Error,Mean_Spectral_RMSE,Feasibility_Rate_Pct,Constraint_Tolerance_Eps
+Moderate_Noise,Moderate Noise (Standard / ISO 800),Advanced Global Optimized CMF,0.253266437351,0.0,0.012625367356,0.0013845357888,100.0,0.0161368195279
+Moderate_Noise,Moderate Noise (Standard / ISO 800),Original Baseline CMF,0.27375508374,0.0,0.013713197671,0.00112791674242,100.0,0.0161368195279
+Moderate_Noise,Moderate Noise (Standard / ISO 800),CIE 1931 2° Standard Observer,0.273759899831,0.0,0.0131997814098,0.00107868238325,100.0,0.0161368195279
+Moderate_Noise,Moderate Noise (Standard / ISO 800),CIE 1964 10° Standard Observer,0.26592003187,0.0,0.0132347020441,0.00101472645347,100.0,0.0161368195279

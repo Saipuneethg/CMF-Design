@@ -1,0 +1,5 @@
+Condition,Condition_Label,CMF,Mean_Ambiguity,Std_Ambiguity_Across_Realizations,Mean_RGB_Error,Mean_Spectral_RMSE,Feasibility_Rate_Pct,Constraint_Tolerance_Eps
+Noise_Free,Noise-Free Reference,Advanced Global Optimized CMF,0.252316465251,0.0,0.0,0.0,100.0,0.0
+Noise_Free,Noise-Free Reference,Original Baseline CMF,0.273235745978,0.0,0.0,0.0,100.0,0.0
+Noise_Free,Noise-Free Reference,CIE 1931 2° Standard Observer,0.273242580339,0.0,0.0,0.0,100.0,0.0
+Noise_Free,Noise-Free Reference,CIE 1964 10° Standard Observer,0.265379630232,0.0,0.0,0.0,100.0,0.0

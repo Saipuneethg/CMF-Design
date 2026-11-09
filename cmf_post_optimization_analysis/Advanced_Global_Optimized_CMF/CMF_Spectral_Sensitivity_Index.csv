@@ -1,0 +1,34 @@
+CMF index,CMF ID,CMF display name,CMF category,Number of wavelength samples,Minimum wavelength,Maximum wavelength,Graph filename,RGB data availability,Generation status
+1,global_optimized_cmf,Global Optimized CMF,Global Optimized CMF (Active Master),31,400,700,global_optimized_cmf.png,"R, G, B channels verified",Success
+2,original_calibrated_camera,Original Calibrated Camera Model,Project Baseline Camera Model,31,400,700,original_calibrated_camera.png,"R, G, B channels verified",Success
+3,previous_optimized_cmf,Previous Optimized CMF,Previous Optimized CMF (Run 2 Seed 101),31,400,700,previous_optimized_cmf.png,"R, G, B channels verified",Success
+4,cie_1931_2deg,CIE 1931 2° Standard Observer,CIE Standard Colorimetric Observer,31,400,700,cie_1931_2deg.png,"R, G, B channels verified",Success
+5,cie_1964_10deg,CIE 1964 10° Supplementary Observer,CIE Standard Colorimetric Observer,31,400,700,cie_1964_10deg.png,"R, G, B channels verified",Success
+6,canon_1dmarkiii,Canon 1DMarkIII,Physical Reference Camera,31,400,700,canon_1dmarkiii.png,"R, G, B channels verified",Success
+7,canon_20d,Canon 20D,Physical Reference Camera,31,400,700,canon_20d.png,"R, G, B channels verified",Success
+8,canon_300d,Canon 300D,Physical Reference Camera,31,400,700,canon_300d.png,"R, G, B channels verified",Success
+9,canon_40d,Canon 40D,Physical Reference Camera,31,400,700,canon_40d.png,"R, G, B channels verified",Success
+10,canon_500d,Canon 500D,Physical Reference Camera,31,400,700,canon_500d.png,"R, G, B channels verified",Success
+11,canon_50d,Canon 50D,Physical Reference Camera,31,400,700,canon_50d.png,"R, G, B channels verified",Success
+12,canon_5dmarkii,Canon 5DMarkII,Physical Reference Camera,31,400,700,canon_5dmarkii.png,"R, G, B channels verified",Success
+13,canon_600d,Canon 600D,Physical Reference Camera,31,400,700,canon_600d.png,"R, G, B channels verified",Success
+14,canon_60d,Canon 60D,Physical Reference Camera,31,400,700,canon_60d.png,"R, G, B channels verified",Success
+15,hasselblad_h2,Hasselblad H2,Physical Reference Camera,31,400,700,hasselblad_h2.png,"R, G, B channels verified",Success
+16,nikon_d3x,Nikon D3X,Physical Reference Camera,31,400,700,nikon_d3x.png,"R, G, B channels verified",Success
+17,nikon_d200,Nikon D200,Physical Reference Camera,31,400,700,nikon_d200.png,"R, G, B channels verified",Success
+18,nikon_d3,Nikon D3,Physical Reference Camera,31,400,700,nikon_d3.png,"R, G, B channels verified",Success
+19,nikon_d300s,Nikon D300s,Physical Reference Camera,31,400,700,nikon_d300s.png,"R, G, B channels verified",Success
+20,nikon_d40,Nikon D40,Physical Reference Camera,31,400,700,nikon_d40.png,"R, G, B channels verified",Success
+21,nikon_d50,Nikon D50,Physical Reference Camera,31,400,700,nikon_d50.png,"R, G, B channels verified",Success
+22,nikon_d5100,Nikon D5100,Physical Reference Camera,31,400,700,nikon_d5100.png,"R, G, B channels verified",Success
+23,nikon_d700,Nikon D700,Physical Reference Camera,31,400,700,nikon_d700.png,"R, G, B channels verified",Success
+24,nikon_d80,Nikon D80,Physical Reference Camera,31,400,700,nikon_d80.png,"R, G, B channels verified",Success
+25,nikon_d90,Nikon D90,Physical Reference Camera,31,400,700,nikon_d90.png,"R, G, B channels verified",Success
+26,nokia_n900,Nokia N900,Physical Reference Camera,31,400,700,nokia_n900.png,"R, G, B channels verified",Success
+27,olympus_e_pl2,Olympus E-PL2,Physical Reference Camera,31,400,700,olympus_e_pl2.png,"R, G, B channels verified",Success
+28,pentax_k_5,Pentax K-5,Physical Reference Camera,31,400,700,pentax_k_5.png,"R, G, B channels verified",Success
+29,pentax_q,Pentax Q,Physical Reference Camera,31,400,700,pentax_q.png,"R, G, B channels verified",Success
+30,point_grey_grasshopper_50s5c,Point Grey Grasshopper 50S5C,Physical Reference Camera,31,400,700,point_grey_grasshopper_50s5c.png,"R, G, B channels verified",Success
+31,point_grey_grasshopper2_14s5c,Point Grey Grasshopper2 14S5C,Physical Reference Camera,31,400,700,point_grey_grasshopper2_14s5c.png,"R, G, B channels verified",Success
+32,phase_one,Phase One,Physical Reference Camera,31,400,700,phase_one.png,"R, G, B channels verified",Success
+33,sony_nex_5n,SONY NEX-5N,Physical Reference Camera,31,400,700,sony_nex_5n.png,"R, G, B channels verified",Success

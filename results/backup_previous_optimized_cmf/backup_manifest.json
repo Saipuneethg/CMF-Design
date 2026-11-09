@@ -1,0 +1,10 @@
+{
+  "timestamp": "20261028_193454",
+  "hashes": {
+    "artifacts/M_camera_optimized.npy": "110a9f78e61771ede3e9d52c00688490d91d497511cc56f9277f08a50c26cd54",
+    "artifacts/M_camera_optimized.csv": "cd9fd1ff39d71a68771b66af828513da415f4d2392a85ac0f5cf958089d1c9be",
+    "artifacts/M_camera_optimized_metadata.json": "1bd5b93223698930385cc277fb739a3663ca5630dbd93e5356aa4f97f38b9c11",
+    "artifacts/A_camera_optimized.npy": "5ed4ba591d1ee9dbbc980aeadab4a03aa06379c205b184157a58d4eb53eeb1e6",
+    "artifacts/camera_offset_optimized.npy": "bdb6270599c54e67d10b6120e07a524ba95e1253dab9002e8b51326b0dcfdfbf"
+  }
+}

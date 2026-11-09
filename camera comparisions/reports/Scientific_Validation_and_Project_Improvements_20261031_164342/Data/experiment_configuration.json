@@ -1,0 +1,57 @@
+{
+  "execution_timestamp": "20261031_164342",
+  "random_seed": 42,
+  "output_root": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\camera comparisions\\reports\\Scientific_Validation_and_Project_Improvements_20261031_164342",
+  "pdf_report_path": "C:\\Users\\saipu\\OneDrive\\Desktop\\fiber polytopes-2\\camera comparisions\\reports\\Scientific_Validation_and_Project_Improvements_20261031_164342\\Reports\\Updated_Scientific_Research_Report.pdf",
+  "sensor_specs": {
+    "sensor_model": "Scientific Grade CMOS (Representative Model based on Sony IMX/Pregius Architecture)",
+    "pixel_pitch_um": 3.45,
+    "quantum_efficiency_peak": 0.72,
+    "dark_current_e_per_pix_s": 0.5,
+    "adc_resolution_bits": 12,
+    "analog_gain_iso_base": 1.0
+  },
+  "noise_regimes": {
+    "Noise_Free": {
+      "full_well_electrons": null,
+      "read_noise_electrons": 0.0,
+      "target_snr_db": 999.0,
+      "label": "Noise-Free Reference",
+      "iso_equivalent": "Ideal Optical Measurement",
+      "color": "#10b981"
+    },
+    "Low_Noise": {
+      "full_well_electrons": 40000,
+      "read_noise_electrons": 3.0,
+      "target_snr_db": 40.0,
+      "label": "Low Noise (Bright / ISO 100)",
+      "iso_equivalent": "ISO 100 (Studio / Direct Daylight)",
+      "color": "#3b82f6"
+    },
+    "Moderate_Noise": {
+      "full_well_electrons": 10000,
+      "read_noise_electrons": 8.0,
+      "target_snr_db": 32.0,
+      "label": "Moderate Noise (Standard / ISO 800)",
+      "iso_equivalent": "ISO 800 (Overcast / Interior Illumination)",
+      "color": "#f59e0b"
+    },
+    "High_Noise": {
+      "full_well_electrons": 2500,
+      "read_noise_electrons": 15.0,
+      "target_snr_db": 24.0,
+      "label": "High Noise (Low-Light / ISO 3200)",
+      "iso_equivalent": "ISO 3200 (Low-Light / High-Speed Capture)",
+      "color": "#ef4444"
+    }
+  },
+  "evaluated_illuminants": [
+    "D50",
+    "D65",
+    "A"
+  ],
+  "materials_count": 100,
+  "cssfs_evaluated_count": 32,
+  "total_solves_count": 18400,
+  "execution_duration_seconds": 376.91
+}

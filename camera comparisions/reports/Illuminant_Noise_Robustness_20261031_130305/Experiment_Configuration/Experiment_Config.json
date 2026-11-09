@@ -1,0 +1,93 @@
+{
+  "experiment_id": "Illuminant_Noise_Robustness_20261031_130305",
+  "timestamp": "20261031_130305",
+  "random_seed": 42,
+  "wavelength_sampling": {
+    "start_nm": 400,
+    "end_nm": 700,
+    "step_nm": 10,
+    "bands": 31
+  },
+  "illuminants_evaluated": [
+    "D50",
+    "D65",
+    "A"
+  ],
+  "noise_conditions": {
+    "Noise_Free": {
+      "full_well_electrons": null,
+      "read_noise_electrons": 0.0,
+      "target_snr_db": 999.0,
+      "label": "Noise-Free Reference",
+      "color": "#10b981"
+    },
+    "Low_Noise": {
+      "full_well_electrons": 40000,
+      "read_noise_electrons": 3.0,
+      "target_snr_db": 40.0,
+      "label": "Low Noise (Bright / ISO 100)",
+      "color": "#3b82f6"
+    },
+    "Moderate_Noise": {
+      "full_well_electrons": 10000,
+      "read_noise_electrons": 8.0,
+      "target_snr_db": 32.0,
+      "label": "Moderate Noise (Standard / ISO 800)",
+      "color": "#f59e0b"
+    },
+    "High_Noise": {
+      "full_well_electrons": 2500,
+      "read_noise_electrons": 15.0,
+      "target_snr_db": 24.0,
+      "label": "High Noise (Low-Light / ISO 3200)",
+      "color": "#ef4444"
+    }
+  },
+  "repeated_realizations_count": 5,
+  "evaluated_materials_count": 100,
+  "cmfs_evaluated_count": 32,
+  "statistical_summary": [
+    {
+      "Condition_Type": "Illuminant",
+      "Condition": "D50",
+      "Sample_Count": 100,
+      "Mean_Improvement": 0.026298550601918033,
+      "CI95_Lower": 0.021970546728307314,
+      "CI95_Upper": 0.030626554475528752,
+      "Paired_T_Stat": 11.90968416041569,
+      "Paired_T_P_Value": 8.005016587135416e-21,
+      "Wilcoxon_W_Stat": 210.0,
+      "Wilcoxon_P_Value": 1.7242622413327714e-15,
+      "Cohen_d": 1.190968416041569,
+      "Win_Rate_Pct": 92.0
+    },
+    {
+      "Condition_Type": "Illuminant",
+      "Condition": "D65",
+      "Sample_Count": 100,
+      "Mean_Improvement": 0.020919280726434623,
+      "CI95_Lower": 0.017076680812840958,
+      "CI95_Upper": 0.024761880640028287,
+      "Paired_T_Stat": 10.670325078279172,
+      "Paired_T_P_Value": 3.7925758569900114e-18,
+      "Wilcoxon_W_Stat": 334.0,
+      "Wilcoxon_P_Value": 4.944734111085703e-14,
+      "Cohen_d": 1.0670325078279173,
+      "Win_Rate_Pct": 87.0
+    },
+    {
+      "Condition_Type": "Illuminant",
+      "Condition": "A",
+      "Sample_Count": 100,
+      "Mean_Improvement": 0.03896625607782846,
+      "CI95_Lower": 0.0340885506210879,
+      "CI95_Upper": 0.043843961534569015,
+      "Paired_T_Stat": 15.657743705496177,
+      "Paired_T_P_Value": 1.5450922936724607e-28,
+      "Wilcoxon_W_Stat": 36.0,
+      "Wilcoxon_P_Value": 1.1485179010089616e-17,
+      "Cohen_d": 1.5657743705496177,
+      "Win_Rate_Pct": 97.0
+    }
+  ]
+}

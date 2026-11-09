@@ -1,0 +1,63 @@
+[2026-10-31 22:13:23] Initializing Experiment 4: Initialization Independence & Convergence Stability
+[2026-10-31 22:13:23] Output directory: C:\Users\saipu\OneDrive\Desktop\fiber polytopes-2\camera comparisions\reports\Experiment_4_Initialization_Independence_20261031_221323
+[2026-10-31 22:13:23] === STEP 1: PREPARING 13 EXPERIMENTAL CAMERA INITIALIZATIONS ===
+[2026-10-31 22:13:23] Configuring Initialization: Canon_1DMarkIII (Measured Commercial Camera)
+[2026-10-31 22:13:38] Configuring Initialization: Nikon_D200 (Measured Commercial Camera)
+[2026-10-31 22:13:49] Configuring Initialization: Point_Grey_Grasshopper (Measured Reference Camera)
+[2026-10-31 22:14:03] Configuring Initialization: CIE_1931_Derived (Standard Observer CMF Derived)
+[2026-10-31 22:14:13] Configuring Initialization: Original_Baseline_Camera (Project Baseline Hardware Camera)
+[2026-10-31 22:14:25] Configuring Initialization: Random_Smooth_1_seed101 (Smooth Random Sensitivity (Seed 101))
+[2026-10-31 22:14:35] Configuring Initialization: Random_Smooth_2_seed202 (Smooth Random Sensitivity (Seed 202))
+[2026-10-31 22:14:47] Configuring Initialization: Random_Smooth_3_seed303 (Smooth Random Sensitivity (Seed 303))
+[2026-10-31 22:14:58] Configuring Initialization: Random_Smooth_4_seed404 (Smooth Random Sensitivity (Seed 404))
+[2026-10-31 22:15:10] Configuring Initialization: Random_Smooth_5_seed505 (Smooth Random Sensitivity (Seed 505))
+[2026-10-31 22:15:22] Configuring Initialization: Random_Smooth_6_seed606 (Smooth Random Sensitivity (Seed 606))
+[2026-10-31 22:15:34] Configuring Initialization: Random_Smooth_7_seed707 (Smooth Random Sensitivity (Seed 707))
+[2026-10-31 22:15:46] Configuring Initialization: Random_Smooth_8_seed808 (Smooth Random Sensitivity (Seed 808))
+[2026-10-31 22:15:57] All 13 initializations successfully created and saved.
+[2026-10-31 22:15:57] === STEP 2: RUNNING DETERMINISTIC OPTIMIZATION FROM EVERY INITIALIZATION ===
+[2026-10-31 22:15:57] --- Optimizing from: Canon_1DMarkIII ---
+[2026-10-31 22:20:23]   -> Finished Canon_1DMarkIII in 254.4s (35 iters): Final Amb=0.3318 (Init: 0.3640), DeltaE00=1.46, Cond=2.32
+[2026-10-31 22:20:25] --- Optimizing from: Nikon_D200 ---
+[2026-10-31 22:23:17]   -> Finished Nikon_D200 in 159.2s (22 iters): Final Amb=0.3319 (Init: 0.3793), DeltaE00=1.46, Cond=2.35
+[2026-10-31 22:23:17] --- Optimizing from: Point_Grey_Grasshopper ---
+[2026-10-31 22:26:27]   -> Finished Point_Grey_Grasshopper in 181.9s (45 iters): Final Amb=0.3318 (Init: 0.3146), DeltaE00=1.46, Cond=2.30
+[2026-10-31 22:26:27] --- Optimizing from: CIE_1931_Derived ---
+[2026-10-31 22:29:16]   -> Finished CIE_1931_Derived in 160.5s (8 iters): Final Amb=0.3488 (Init: 0.3616), DeltaE00=1.10, Cond=4.41
+[2026-10-31 22:29:16] --- Optimizing from: Original_Baseline_Camera ---
+[2026-10-31 22:33:33]   -> Finished Original_Baseline_Camera in 247.7s (12 iters): Final Amb=0.3500 (Init: 0.3612), DeltaE00=0.92, Cond=4.48
+[2026-10-31 22:33:33] --- Optimizing from: Random_Smooth_1_seed101 ---
+[2026-10-31 22:37:40]   -> Finished Random_Smooth_1_seed101 in 235.7s (33 iters): Final Amb=0.3294 (Init: 0.3129), DeltaE00=1.61, Cond=2.36
+[2026-10-31 22:37:40] --- Optimizing from: Random_Smooth_2_seed202 ---
+[2026-10-31 22:45:40]   -> Finished Random_Smooth_2_seed202 in 468.4s (22 iters): Final Amb=0.3366 (Init: 0.3204), DeltaE00=1.18, Cond=6.36
+[2026-10-31 22:45:40] --- Optimizing from: Random_Smooth_3_seed303 ---
+[2026-10-31 23:20:58]   -> Finished Random_Smooth_3_seed303 in 2097.8s (30 iters): Final Amb=0.3276 (Init: 0.3362), DeltaE00=1.62, Cond=11.92
+[2026-10-31 23:20:58] --- Optimizing from: Random_Smooth_4_seed404 ---
+[2026-10-31 23:25:15]   -> Finished Random_Smooth_4_seed404 in 242.3s (28 iters): Final Amb=0.3285 (Init: 0.3377), DeltaE00=1.57, Cond=4.18
+[2026-10-31 23:25:15] --- Optimizing from: Random_Smooth_5_seed505 ---
+[2026-10-31 23:59:22]   -> Finished Random_Smooth_5_seed505 in 2022.5s (23 iters): Final Amb=0.3320 (Init: 0.3272), DeltaE00=1.46, Cond=2.16
+[2026-10-31 23:59:22] --- Optimizing from: Random_Smooth_6_seed606 ---
+[2026-11-01 14:31:17]   -> Finished Random_Smooth_6_seed606 in 52304.0s (22 iters): Final Amb=0.3333 (Init: 0.3204), DeltaE00=1.84, Cond=5.38
+[2026-11-01 14:31:17] --- Optimizing from: Random_Smooth_7_seed707 ---
+[2026-11-01 14:33:59]   -> Finished Random_Smooth_7_seed707 in 152.1s (45 iters): Final Amb=0.3331 (Init: 0.3227), DeltaE00=1.38, Cond=2.07
+[2026-11-01 14:33:59] --- Optimizing from: Random_Smooth_8_seed808 ---
+[2026-11-01 14:37:21]   -> Finished Random_Smooth_8_seed808 in 192.8s (36 iters): Final Amb=0.3317 (Init: 0.3267), DeltaE00=1.45, Cond=2.07
+[2026-11-01 14:37:23] Deterministic optimization runs completed.
+[2026-11-01 14:37:23] === STEP 3: EVALUATING OPTIMIZER STOCHASTIC SEED VARIABILITY ===
+[2026-11-01 14:37:23] Stochastic Run: Original_Baseline_Camera with Seed 42
+[2026-11-01 14:40:01] Stochastic Run: Original_Baseline_Camera with Seed 101
+[2026-11-01 14:41:54] Stochastic Run: Original_Baseline_Camera with Seed 202
+[2026-11-01 14:44:39] Stochastic Run: Canon_1DMarkIII with Seed 42
+[2026-11-01 14:46:05] Stochastic Run: Canon_1DMarkIII with Seed 101
+[2026-11-01 14:47:42] Stochastic Run: Canon_1DMarkIII with Seed 202
+[2026-11-01 14:49:43] Stochastic Run: CIE_1931_Derived with Seed 42
+[2026-11-01 14:52:14] Stochastic Run: CIE_1931_Derived with Seed 101
+[2026-11-01 14:55:32] Stochastic Run: CIE_1931_Derived with Seed 202
+[2026-11-01 14:56:10] Stochastic Run: Random_Smooth_1_seed101 with Seed 42
+[2026-11-01 14:57:46] Stochastic Run: Random_Smooth_1_seed101 with Seed 101
+[2026-11-01 14:58:21] Stochastic Run: Random_Smooth_1_seed101 with Seed 202
+[2026-11-01 14:59:22] Stochastic seed evaluation completed.
+[2026-11-01 14:59:22] === STEP 4: COMPUTING PAIRWISE CURVE DISTANCES WITH CHANNEL MATCHING ===
+[2026-11-01 14:59:22] Mean Pairwise Curve Distance (Frobenius): 0.4600
+[2026-11-01 14:59:22] Max Pairwise Curve Distance (Frobenius):  0.8230
+[2026-11-01 14:59:22] === STEP 5: GENERATING 10 PUBLICATION-QUALITY FIGURES ===
