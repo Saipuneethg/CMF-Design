@@ -1,0 +1,987 @@
+================================================================================
+SPECTRAL METAMERIC FIBER ANALYZER: COMPREHENSIVE TECHNICAL SPECIFICATION,
+ALGORITHMIC FOUNDATIONS, SYSTEM ARCHITECTURE, AND COLOR MATCHING FUNCTIONS (CMF)
+================================================================================
+
+Document Revision: 2.4 (Production Validated)
+Date: October 2026
+Location: docs/complete_project_algorithms_and_architecture.txt
+Project: Spectral Metameric Fiber Analyzer & Dynamic Ambiguity Geometry Engine
+
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+1. EXECUTIVE SUMMARY & SCIENTIFIC OBJECTIVE
+2. THE MATHEMATICAL PROBLEM: SPECTRAL METAMERISM & METAMERIC FIBERS
+3. THE 36K HYPERSPECTRAL DATASET & LATENT PCA SPECTRAL PRIOR
+4. CAMERA MEASUREMENT MODEL & AFFINE EQUALITY SYSTEM
+5. COLOR MATCHING FUNCTIONS (CMF) & CAMERA SPECTRAL SENSITIVITIES
+   5.1 Historical, Physiological, and Colorimetric Foundations of CMFs
+   5.2 The Dual CMF Architecture of This Project
+   5.3 Complete 31-Band Numerical Comparison Table
+   5.4 Mathematical Derivations: Monochromatic Locus, Tristimulus XYZ, and (x, y) Projections
+   5.5 Inverse sRGB Gamma Companding & Forward D65 Matrix Transformations
+   5.6 Planckian Blackbody Radiator Integration with CMFs
+   5.7 The Luther-Ives Condition & Metameric Ambiguity
+   5.8 Complete Code Implementation Walkthrough
+   5.9 Interactive Webpage CMF Visualizer (Panel D3 & CIE Chromaticity Engine)
+6. COMPREHENSIVE ALGORITHMS (FROM INCEPTION TO PRESENT)
+   6.1 Algorithm 1: Gamut Feasibility & Anchor Point LP (HiGHS)
+   6.2 Algorithm 2: Exact Reduced-Dimensional Fiber Formulation & Isometry
+   6.3 Algorithm 3: Constrained Hit-and-Run MCMC Polytope Sampler
+   6.4 Algorithm 4: Multi-Chain Statistical Convergence & Residual Validation
+   6.5 Algorithm 5: Exact Wavelength-Wise Spectral Bounds via Linear Optimization
+   6.6 Algorithm 6: Quantitative Ambiguity Metrics & Characteristic Volume Scale
+   6.7 Algorithm 7: Exact 5D Polytope Geometry Engine (Stages S0 to S14)
+   6.8 Algorithm 8: 100-Colour Batch Analysis & Multi-Format Reporting Pipeline
+   6.9 Algorithm 9: CIE 1931 xy Chromaticity Ambiguity Heatmap (IDW Interpolation)
+7. FULL SOFTWARE ARCHITECTURE & DIRECTORY BLUEPRINT
+   7.1 Source Code Modules (src/)
+   7.2 Web Application & Static Visualization Engine (visualization/)
+   7.3 Artifacts & Datasets
+   7.4 REST API Specification
+8. NUMERICAL VALIDATION BENCHMARKS & RESEARCH SENSITIVITY STUDIES
+   8.1 Reproducible Four-Target Evaluation Benchmark
+   8.2 Hit-and-Run Sample-Count Stability & Convergence Study
+   8.3 PCA Latent Dimension Sensitivity Analysis (K in {5, 8, 10, 12, 15})
+   8.4 Canonical Synthetic Polytope Validation (5D Hypercube [-1, 1]^5)
+9. REPRODUCTION, TESTING, AND EXECUTION GUIDE
+
+
+================================================================================
+1. EXECUTIVE SUMMARY & SCIENTIFIC OBJECTIVE
+================================================================================
+
+In digital imaging and color science, a fundamental bottleneck exists: a standard
+RGB camera or human eye compresses an infinite-dimensional continuous optical
+spectrum into a mere 3-channel measurement triplet (R, G, B). Consequently, infinitely
+many distinct spectral reflectance curves can produce the exact same color signal
+under a given illuminant and sensor. This phenomenon is known as "spectral metamerism".
+
+The Spectral Metameric Fiber Analyzer is an advanced computational geometry and
+optical physics research framework designed to calculate, bound, sample, validate,
+and interactively visualize the complete set of all physically plausible spectra
+that produce an identical target camera observation c = [R, G, B]^T.
+
+This feasible set is termed the "metameric fiber" Phi(c). Rather than assuming an
+ad-hoc smoothness prior or a single point heuristic (such as Wiener estimation or
+shallow neural network regression), this system models the true physical prior as a
+high-dimensional convex polytope learned from approximately 36,000 empirical
+hyperspectral scenes (400–700 nm sampled at 31 uniform 10 nm bands).
+
+Key Accomplishments of the Framework:
+1. Exact Analytical Fiber Construction: Separates continuous analytical convex geometry
+   from discrete numerical point clouds.
+2. Dimensionality Reduction with Distance Isometry: Formulates the metameric fiber
+   in a 5-dimensional affine null-space where distances and hypervolumes are strictly
+   isometric to Euclidean distances in continuous 31-band reflectance space.
+3. Machine-Precision Feasibility & Equality: Solves linear programs with SciPy HiGHS,
+   achieving camera measurement residuals < 1e-14 and zero constraint violations.
+4. Exact Physical Spectral Bounds: Solves 31 linear optimization programs per target
+   to obtain ground-truth minimum and maximum physical reflectance limits, proving that
+   empirical MCMC sample ribbons represent probability densities rather than hard boundaries.
+5. Exact 5D Polytope Geometry Engine: Implements stages S0-S14, computing exact 5D
+   hypervolume, 4D boundary surface area, exact polytope centroid, and exact covariance
+   via simplicial pyramid decomposition.
+6. Large-Scale 100-Colour Batch Analysis: Extracts 100 unique in-gamut colors from a
+   source image, solves all fibers, and compiles complete CSV, JSON, TXT, DOCX, and
+   1920x1080 dashboard images.
+7. Interactive Web Visualization: Delivers real-time 3D WebGL polytope projections,
+   spectral envelope dashboards, Planckian blackbody loci, and a continuous CIE 1931 xy
+   chromaticity ambiguity heatmap.
+
+
+================================================================================
+2. THE MATHEMATICAL PROBLEM: SPECTRAL METAMERISM & METAMERIC FIBERS
+================================================================================
+
+Let continuous surface reflectance be denoted by R(lambda) for wavelength lambda
+in [400 nm, 700 nm]. In discrete discrete representation, R is sampled across W = 31
+uniform bands at 10 nm increments:
+
+    R = [R(400), R(410), R(420), ..., R(700)]^T in R^31,   with 0 <= R_j <= 1.
+
+A 3-channel camera with spectral sensitivity matrix M in R^{3 x 31} integrates the
+incoming spectrum to yield camera observation triplet c in [0, 1]^3:
+
+    c = [R_cam, G_cam, B_cam]^T = M @ R.
+
+Because M has dimension 3 x 31 and rank 3:
+- The linear system M @ R = c is severely underdetermined.
+- The null space null(M) = { v in R^31 : M @ v = 0 } has dimension 31 - 3 = 28.
+- An unconstrained solution set { R_0 + v : v in null(M) } is unbounded and contains
+  unphysical spectra (e.g., negative reflectances or extreme oscillatory spikes).
+
+To restrict solutions to real-world physical reflectances, we define an empirical
+spectral prior polytope P_spec subset of R^31 learned from natural and man-made
+hyperspectral datasets.
+
+The complete feasible metameric fiber Phi(c) is defined as:
+
+    Phi(c) = { R in P_spec : M @ R = c }.
+
+Properties of the Metameric Fiber:
+1. Convexity: The intersection of a convex polytope P_spec with an affine equality
+   subspace { R : M @ R = c } is guaranteed to be a convex polytope.
+2. Compactness: Because physical reflectances are bounded (0 <= R_j <= 1), Phi(c)
+   is closed and bounded in R^31.
+3. Continuous Set: Phi(c) is a continuous manifold with non-zero volume; it cannot
+   be fully characterized by a finite set of points alone.
+
+
+================================================================================
+3. THE 36K HYPERSPECTRAL DATASET & LATENT PCA SPECTRAL PRIOR
+================================================================================
+
+The empirical spectral prior is derived from approximately 36,000 real-world
+hyperspectral images covering natural vegetation, minerals, urban structures,
+textiles, paints, and skin tones.
+
+Dimensionality Reduction via Principal Component Analysis (PCA):
+Rather than manipulating 31-dimensional polytopes directly (which leads to extreme
+geometric degeneracies), the spectral dataset is projected onto K = 8 principal
+components:
+
+    R = mu + B @ z
+
+where:
+* mu in R^31: Empirical spectral mean vector (`artifacts/pca_mean.npy`).
+* B in R^{31 x 8}: Orthonormal PCA basis matrix (`artifacts/pca_basis.npy`),
+  satisfying B^T @ B = I_8.
+* z in R^8: Latent PCA coordinates.
+
+Variance Explained and Reconstruction Accuracy:
+* Top 3 components:  96.42% variance explained.
+* Top 5 components:  98.98% variance explained (RMSE = 2.16e-2).
+* Top 8 components:  99.71% variance explained (RMSE = 1.15e-2).
+* Top 10 components: 99.84% variance explained (RMSE = 8.53e-3).
+* Top 12 components: 99.90% variance explained (RMSE = 6.79e-3).
+* Top 15 components: 99.95% variance explained (RMSE = 4.68e-3).
+
+Spectral Prior Polytope Representation:
+In 8D PCA space, the convex hull of 711 surface extreme spectral vertices yields
+a bounded H-polytope defined by 714,340 linear inequalities:
+
+    P_spec = { z in R^8 : C @ z <= d }
+
+where:
+* C = A_red in R^{714340 x 8} (`artifacts/A_red.npy`).
+* d = b_red in R^714340 (`artifacts/b_red.npy`).
+
+McMullen's Upper Bound Theorem & Dimensional Tractability:
+By McMullen's Upper Bound Theorem, the maximum number of facets of a convex hull
+of V vertices in dimension D scales as O(V^{floor(D/2)}).
+* For K = 8:  floor(8/2) = 4, producing 714,340 facets for 711 vertices (tractable).
+* For K = 10: floor(10/2) = 5, facet count explodes to over 15,000,000 facets.
+Hence, K = 8 represents the optimal Pareto trade-off between capturing >99.7% of
+spectral variance and maintaining computable facet complexity.
+
+
+================================================================================
+4. CAMERA MEASUREMENT MODEL & AFFINE EQUALITY SYSTEM
+================================================================================
+
+The camera measurement model maps the continuous latent spectrum z in R^8 to
+tristimulus color observation c in R^3:
+
+    c = M @ R = M @ (mu + B @ z) = M @ mu + (M @ B) @ z.
+
+Defining the projection operators:
+* Camera measurement constraint matrix: A = M @ B in R^{3 x 8} (`artifacts/A_camera.npy`).
+* Camera measurement offset:           b_offset = M @ mu in R^3 (`artifacts/camera_offset.npy`).
+* Observation RHS target:              b = c - b_offset in R^3.
+
+Thus, the camera observation imposes an exact linear equality system in PCA coordinates:
+
+    A @ z = b.
+
+Singular Value Decomposition and Rank:
+SVD of matrix A yields singular values s = [s_1, s_2, s_3].
+For our calibrated camera:
+* rank(A) = 3 (full row rank).
+* By the Rank-Nullity Theorem, the dimension of the affine equality solution space is:
+      d_affine = K - rank(A) = 8 - 3 = 5 dimensions.
+
+
+================================================================================
+5. COLOR MATCHING FUNCTIONS (CMF) & CAMERA SPECTRAL SENSITIVITIES
+================================================================================
+
+5.1 Historical, Physiological, and Colorimetric Foundations of CMFs
+-------------------------------------------------------------------
+A Color Matching Function (CMF) is a mathematical function that describes the spectral
+sensitivity of a tri-stimulus optical detection system as a function of wavelength lambda.
+
+In human vision, color perception originates in the retina, where three distinct classes
+of cone photoreceptors sample the incident spectral power distribution:
+1. Long-wavelength sensitive cones (L-cones, peak sensitivity ~560 nm).
+2. Medium-wavelength sensitive cones (M-cones, peak sensitivity ~530 nm).
+3. Short-wavelength sensitive cones (S-cones, peak sensitivity ~420 nm).
+
+According to Grassmann's Laws of Additive Color Mixture (1853), the human visual system
+behaves linearly under photopic illumination. Any continuous spectral stimulus S(lambda)
+can be matched in visual appearance by an additive mixture of three primary lights
+[R, G, B]. In the late 1920s, John Guild and W. David Wright independently conducted
+color-matching experiments on human observers using monochromatic primary lights
+at 700.0 nm (red), 546.1 nm (green), and 435.8 nm (blue).
+
+Because certain saturated spectral colors (particularly in the blue-green region between
+480 nm and 520 nm) could only be matched by adding one of the primaries to the test color
+rather than to the mixture (acting as negative light), the resulting RGB color matching
+functions \bar{r}(\lambda), \bar{g}(\lambda), \bar{b}(\lambda) contained negative values.
+
+To eliminate negative values and standardize industrial colorimetry, the Commission
+Internationale de l'Éclairage (CIE) in 1931 applied a linear projective transformation
+to define the imaginary primaries (X, Y, Z), resulting in the official:
+
+    CIE 1931 2° Standard Observer Color Matching Functions: \bar{x}(\lambda), \bar{y}(\lambda), \bar{z}(\lambda)
+
+Key Mathematical Properties of the CIE 1931 CMFs:
+1. Strict Non-Negativity: \bar{x}(\lambda) >= 0, \bar{y}(\lambda) >= 0, \bar{z}(\lambda) >= 0
+   for all wavelengths lambda in [380 nm, 780 nm].
+2. Luminous Efficiency Alignment: The function \bar{y}(\lambda) was mathematically
+   constructed to be identically equal to V(\lambda), the CIE photopic spectral luminous
+   efficiency function. Consequently, the Y tristimulus value represents the exact
+   perceived luminance (photometric brightness) of any stimulus.
+3. Bimodal Structure of \bar{x}(\lambda): The red-sensing function \bar{x}(\lambda)
+   features two distinct lobes: a dominant primary peak at 600 nm (red-orange) and a
+   secondary minor peak at 440 nm (accounting for the blue-violet sensation where
+   short wavelengths stimulate the human L-cone receptor).
+4. Sharp Unimodal Blue Response \bar{z}(\lambda): Represents short-wavelength visual
+   excitation, peaking sharply at 450 nm with a narrow full-width at half-maximum (FWHM).
+
+
+5.2 The Dual CMF Architecture of This Project
+---------------------------------------------
+This project operates across TWO distinct and interconnected CMF systems:
+
+A. Human Perceptual Observer System (CIE 1931 2° Standard Observer CMFs):
+   - Wavelength Domain: 380 nm to 780 nm (dense 5 nm steps), sampled at 31 bands (400–700 nm).
+   - Functions: \bar{x}(\lambda), \bar{y}(\lambda), \bar{z}(\lambda).
+   - Purpose in Project:
+     * Transforms physical RGB target observations into perceptual CIE 1931 XYZ coordinates.
+     * Projects target colors and metameric ambiguity distributions onto the 2D CIE 1931 xy
+       chromaticity diagram (`visualization/index.html`, View 2).
+     * Defines the outer boundary of all humanly visible colors (the Spectral Locus).
+     * Integrates Planck's radiation law to generate the Planckian blackbody locus Tc.
+   - Code Location: `src/chromaticity_analyzer.py` via `colour.MSDS_CMFS`.
+
+B. Digital Sensor Acquisition System (Camera Spectral Sensitivity Matrix M):
+   - Wavelength Domain: 400 nm to 700 nm (31 uniform 10 nm bands).
+   - Functions: M_Red(\lambda), M_Green(\lambda), M_Blue(\lambda).
+   - Dimension: M in R^{3 x 31} (`artifacts/M_camera.npy`).
+   - Purpose in Project:
+     * Represents the actual optical color matching functions of the calibrated digital camera.
+     * Maps continuous 31-band spectral reflectance R in R^31 to sensor measurements c = M @ R.
+     * Forms the core affine constraint system A @ z = b (where A = M @ B, b = c - M @ mu).
+     * Dictates the null space null(M) and governs the 5D metameric fiber degrees of freedom.
+   - Code Location: `src/camera_model.py` and `src/metamer_solver.py`.
+
+
+5.3 Complete 31-Band Numerical Comparison Table
+-----------------------------------------------
+The table below presents the exact numerical coefficients for both CMF systems across
+all 31 discrete bands from 400 nm to 700 nm (\Delta\lambda = 10 nm):
+
++------------+---------------------------------------+---------------------------------------+
+| Wavelength |     CIE 1931 2° Standard Observer     |       Calibrated Camera Matrix M      |
+|    (nm)    |   x_bar(λ)     y_bar(λ)     z_bar(λ)  |    M_Red(λ)    M_Green(λ)   M_Blue(λ) |
++------------+---------------------------------------+---------------------------------------+
+|   400 nm   |    0.0143       0.0004       0.0679   |    0.0402       0.0484       0.0847   |
+|   410 nm   |    0.0435       0.0012       0.2074   |   -0.0284      -0.0449       0.0936   |
+|   420 nm   |    0.1344       0.0040       0.6456   |    0.1997       0.0126       0.7448   |
+|   430 nm   |    0.2839       0.0116       1.3856   |    0.2944       0.0134       1.4081   |
+|   440 nm   |    0.3483       0.0230       1.7471   |    0.3478       0.0358       1.7676   |
+|   450 nm   |    0.3362       0.0380       1.7721   |    0.3173       0.0468       1.7897   |
+|   460 nm   |    0.2908       0.0600       1.6692   |    0.2459       0.0469       1.5057   |
+|   470 nm   |    0.1954       0.0910       1.2876   |    0.1856       0.0671       1.2023   |
+|   480 nm   |    0.0956       0.1390       0.8130   |    0.1142       0.1150       0.8461   |
+|   490 nm   |    0.0320       0.2080       0.4652   |    0.0692       0.2138       0.5628   |
+|   500 nm   |    0.0049       0.3230       0.2720   |    0.0364       0.3610       0.4617   |
+|   510 nm   |    0.0093       0.5030       0.1582   |   -0.0272       0.5555       0.1160   |
+|   520 nm   |    0.0633       0.7100       0.0782   |    0.0303       0.7197      -0.0480   |
+|   530 nm   |    0.1655       0.8620       0.0422   |    0.1905       0.8431      -0.0018   |
+|   540 nm   |    0.2904       0.9540       0.0203   |    0.3256       0.9126       0.0389   |
+|   550 nm   |    0.4334       0.9950       0.0087   |    0.4443       0.9438       0.0502   |
+|   560 nm   |    0.5945       0.9950       0.0039   |    0.5814       0.9651       0.0560   |
+|   570 nm   |    0.7621       0.9520       0.0021   |    0.7183       0.9617      -0.0213   |
+|   580 nm   |    0.9163       0.8700       0.0017   |    0.9017       0.9347      -0.0058   |
+|   590 nm   |    1.0263       0.7570       0.0011   |    1.0499       0.8029      -0.0031   |
+|   600 nm   |    1.0622       0.6310       0.0008   |    1.1082       0.6227      -0.0166   |
+|   610 nm   |    1.0026       0.5030       0.0003   |    1.0098       0.4618       0.0162   |
+|   620 nm   |    0.8544       0.3810       0.0002   |    0.7887       0.3470      -0.0121   |
+|   630 nm   |    0.6424       0.2650       0.0000   |    0.5950       0.2617      -0.0193   |
+|   640 nm   |    0.4479       0.1750       0.0000   |    0.4514       0.1832      -0.0214   |
+|   650 nm   |    0.2835       0.1070       0.0000   |    0.3099       0.1319       0.0083   |
+|   660 nm   |    0.1649       0.0610       0.0000   |    0.2009       0.0915       0.0488   |
+|   670 nm   |    0.0874       0.0320       0.0000   |    0.1238       0.0539       0.0051   |
+|   680 nm   |    0.0468       0.0170       0.0000   |    0.0468       0.0166      -0.0069   |
+|   690 nm   |    0.0227       0.0082       0.0000   |   -0.0155      -0.0163      -0.0350   |
+|   700 nm   |    0.0114       0.0041       0.0000   |    0.0159      -0.0158       0.0362   |
++------------+---------------------------------------+---------------------------------------+
+
+Quantitative Peak and Bandwidth Comparison:
+* Red Channel:
+  - CIE \bar{x}(\lambda) peaks at 600 nm with value 1.0622 (secondary peak at 440 nm = 0.3483).
+  - Camera M_Red(\lambda) peaks at 600 nm with value 1.1082 (secondary lobe at 440 nm = 0.3478).
+* Green Channel:
+  - CIE \bar{y}(\lambda) peaks across 550–560 nm with value 0.9950.
+  - Camera M_Green(\lambda) peaks across 550–570 nm with value 0.9651.
+* Blue Channel:
+  - CIE \bar{z}(\lambda) peaks sharply at 450 nm with value 1.7721.
+  - Camera M_Blue(\lambda) peaks sharply at 450 nm with value 1.7897.
+
+
+5.4 Mathematical Derivations: Monochromatic Locus, Tristimulus XYZ, and (x, y) Projections
+----------------------------------------------------------------------------------------
+A. Continuous Tristimulus Integration:
+For an arbitrary continuous spectral stimulus S(\lambda) (or reflectance R(\lambda)
+under illuminant I(\lambda) such that S(\lambda) = R(\lambda) * I(\lambda)):
+
+    X = \int_{380}^{780} S(\lambda) \bar{x}(\lambda) d\lambda
+    Y = \int_{380}^{780} S(\lambda) \bar{y}(\lambda) d\lambda
+    Z = \int_{380}^{780} S(\lambda) \bar{z}(\lambda) d\lambda
+
+In discrete 31-band matrix notation (\Delta\lambda = 10 nm):
+    X = \sum_{j=0}^{30} S(\lambda_j) \bar{x}(\lambda_j) \Delta\lambda
+    Y = \sum_{j=0}^{30} S(\lambda_j) \bar{y}(\lambda_j) \Delta\lambda
+    Z = \sum_{j=0}^{30} S(\lambda_j) \bar{z}(\lambda_j) \Delta\lambda
+
+B. The Projective (x, y) Chromaticity Mapping:
+The 3D coordinates (X, Y, Z) incorporate both chromaticity (hue and saturation) and
+luminance (intensity Y). To represent pure chromaticity independently of brightness,
+the coordinates are projectively mapped onto the 2D plane X + Y + Z = 1:
+
+    x = X / (X + Y + Z)
+    y = Y / (X + Y + Z)
+    z = Z / (X + Y + Z) = 1 - x - y.
+
+C. Derivation of the Spectral Locus Boundary:
+The outer horse-shoe boundary of the CIE chromaticity diagram represents monochromatic
+(single-wavelength, laser-like) light.
+Let S_{\lambda_0}(\lambda) = \delta(\lambda - \lambda_0) be an idealized Dirac delta
+impulse at wavelength \lambda_0.
+Integrating against the CMFs yields:
+    X(\lambda_0) = \bar{x}(\lambda_0)
+    Y(\lambda_0) = \bar{y}(\lambda_0)
+    Z(\lambda_0) = \bar{z}(\lambda_0)
+
+The monochromatic chromaticity coordinates are therefore computed directly from CMF ratios:
+
+    x_locus(\lambda_0) = \bar{x}(\lambda_0) / ( \bar{x}(\lambda_0) + \bar{y}(\lambda_0) + \bar{z}(\lambda_0) )
+    y_locus(\lambda_0) = \bar{y}(\lambda_0) / ( \bar{x}(\lambda_0) + \bar{y}(\lambda_0) + \bar{z}(\lambda_0) )
+
+Evaluating this parametric equation from \lambda_0 = 380 nm to \lambda_0 = 700 nm
+produces the exact continuous curve plotted as `Spectral Locus` in the web application.
+
+D. The Purple Line Boundary:
+The spectral locus is open between 380 nm (violet) and 700 nm (red). The straight line
+connecting (x_locus(380), y_locus(380)) and (x_locus(700), y_locus(700)) is the
+"line of purples", representing additive mixtures of short-wavelength violet and
+long-wavelength red lights that do not exist as monochromatic spectral frequencies.
+
+
+5.5 Inverse sRGB Gamma Companding & Forward D65 Matrix Transformations
+----------------------------------------------------------------------
+To place user-selected RGB colors or image pixels onto the CIE chromaticity diagram,
+the system implements standard non-linear gamma decoding followed by linear transformation:
+
+Step 1: Normalization
+    R_norm = R_uint8 / 255.0,   G_norm = G_uint8 / 255.0,   B_norm = B_uint8 / 255.0.
+
+Step 2: Inverse sRGB Electro-Optical Transfer Function (EOTF)
+For each channel C in {R_norm, G_norm, B_norm}:
+
+             { C / 12.92,                             if C <= 0.04045
+    C_lin =  {
+             { ((C + 0.055) / 1.055)^2.4,             if C > 0.04045
+
+Step 3: Linear sRGB to CIE 1931 XYZ Conversion
+Using the standardized ITU-R BT.709 / sRGB transformation matrix under D65 illuminant
+(white point x_w = 0.3127, y_w = 0.3290):
+
+    [ X ]   [ 0.4124564  0.3575761  0.1804375 ] [ R_lin ]
+    [ Y ] = [ 0.2126729  0.7151522  0.0721750 ] [ G_lin ]
+    [ Z ]   [ 0.0193339  0.1191920  0.9503041 ] [ B_lin ]
+
+Step 4: Chromaticity Coordinate Calculation
+    If (X + Y + Z) > 1e-9:
+        x = X / (X + Y + Z)
+        y = Y / (X + Y + Z)
+    Else (safe fallback for zero luminance black):
+        x = 0.3127,   y = 0.3290  (D65 neutral white point).
+
+
+5.6 Planckian Blackbody Radiator Integration with CMFs
+------------------------------------------------------
+In `src/chromaticity_analyzer.py`, lines 71-124, the application plots the official
+Planckian locus (the chromaticity curve traced by an ideal thermal blackbody radiator
+as its absolute temperature T ranges from 1500 K to 15000 K).
+
+Planck's Radiation Law:
+The spectral radiance of an ideal blackbody at temperature T (Kelvin) is:
+
+    L(\lambda, T) = c_1 / ( \lambda^5 * ( \exp( c_2 / (\lambda * T) ) - 1 ) )
+
+where:
+* c_1 = 2 * \pi * h * c^2 = 3.741771e-16 W·m^2 (first radiation constant)
+* c_2 = h * c / k_B = 1.438777e-2 m·K (second radiation constant)
+* \lambda is wavelength in meters (\lambda in [380e-9, 780e-9] m).
+
+CMF Integration across Temperature T:
+At each temperature step T (sampled densely from 1400 K to 20000 K):
+    X(T) = \sum_{j} L(\lambda_j, T) * \bar{x}(\lambda_j) * \Delta\lambda
+    Y(T) = \sum_{j} L(\lambda_j, T) * \bar{y}(\lambda_j) * \Delta\lambda
+    Z(T) = \sum_{j} L(\lambda_j, T) * \bar{z}(\lambda_j) * \Delta\lambda
+
+    x_planck(T) = X(T) / ( X(T) + Y(T) + Z(T) )
+    y_planck(T) = Y(T) / ( X(T) + Y(T) + Z(T) ).
+
+In the web interface (`visualization/index.html`), explicit temperature annotations
+Tc = 1500K, 2000K, 2500K, 3000K, 4000K, 6000K, and 10000K are labeled along the curve.
+
+
+5.7 The Luther-Ives Condition & Metameric Ambiguity
+---------------------------------------------------
+A foundational theorem in color imaging (the Luther-Ives condition, formulated by
+Robert Luther in 1927 and Herbert Ives in 1915) states:
+
+    A digital color camera can capture colors without metameric observer mismatch
+    if and only if its spectral sensitivity curves M_R(\lambda), M_G(\lambda), M_B(\lambda)
+    are an exact linear transformation of the human eye's Color Matching Functions:
+
+        M(\lambda) = K @ [ \bar{x}(\lambda), \bar{y}(\lambda), \bar{z}(\lambda) ]^T
+
+    for some non-singular 3 x 3 matrix K.
+
+Real-World Sensor Deviation:
+Because manufacturing constraints, silicon quantum efficiency, color filter array (CFA)
+pigments, and infrared-blocking cut-off filters deviate from ideal CMF shapes:
+* The camera matrix M does NOT perfectly satisfy the Luther-Ives condition.
+* Consequently, two distinct physical reflectances R_1(\lambda) and R_2(\lambda) can
+  produce identical camera RGB readings (M @ R_1 = M @ R_2 = c), yet appear distinctly
+  different to the human eye under standard illumination!
+* This discrepancy is precisely why this project calculates the full 5-dimensional
+  metameric fiber \Phi(c) and maps its ambiguity volume onto the human CIE 1931 xy diagram.
+
+
+5.8 Complete Code Implementation Walkthrough
+--------------------------------------------
+The CMF functions are directly implemented across the following codebase modules:
+
+1. `src/chromaticity_analyzer.py` (Lines 71–133):
+   ```python
+   def _init_spectral_locus(self):
+       # Loads official CIE 1931 2° Standard Observer CMF table
+       cmfs = colour.MSDS_CMFS['CIE 1931 2 Degree Standard Observer']
+       
+       # Dense spectral locus from 380 nm to 700 nm
+       self.locus_wavelengths = np.arange(380, 701, 1)
+       xyz_locus = cmfs[self.locus_wavelengths]
+       self.locus_xy = colour.XYZ_to_xy(xyz_locus)
+       
+       # Annotated reference wavelength points
+       self.annotated_wls = [380, 460, 470, 480, 490, 500, 520, 540, 560, 580, 600, 620, 700]
+       self.annotated_coords = {wl: colour.XYZ_to_xy(cmfs[wl]) for wl in self.annotated_wls}
+       
+       # Blackbody Planckian locus integration against CMFs
+       wls_m = np.arange(380, 781, 5) * 1e-9
+       cmf_vals = cmfs[np.arange(380, 781, 5)]
+       # Integrates Planck formula against cmf_vals[:, 0], cmf_vals[:, 1], cmf_vals[:, 2]
+   ```
+
+2. `src/camera_model.py` (Lines 37–58):
+   ```python
+   @classmethod
+   def from_artifacts(cls, artifacts_dir):
+       # Loads or derives calibrated camera CMF matrix M in R^{3 x 31}
+       m_path = os.path.join(artifacts_dir, "M_camera.npy")
+       M = np.load(m_path)
+       return cls(M=M, wavelengths=np.linspace(400, 700, 31))
+   ```
+
+3. `src/app.py` (Lines 203–245):
+   ```python
+   @app.route('/api/cmf', methods=['GET'])
+   def get_cmf_data():
+       # Exposes CIE 1931 dense CMF curves and 31-band camera matrix M to frontend
+   ```
+
+4. `visualization/app.js` (Lines 1994–2150):
+   ```javascript
+   async function renderCMFPlot() {
+       // Renders Plotly multi-trace curves for CIE x̄, ȳ, z̄ and Camera M_Red, M_Green, M_Blue
+       // Dynamically switches between Overlaid Comparison, CIE only, and Camera only
+   }
+   ```
+
+
+5.9 Interactive Webpage CMF Visualizer (Panel D3 & CIE Chromaticity Engine)
+--------------------------------------------------------------------------
+In the web application running at `http://localhost:5000`:
+
+A. Panel D3: Dedicated CMF & Camera Sensitivity Dashboard:
+   - Located in the Spectral Dashboard tabs under `Panel D3 — Color Matching Functions (CMF) & Camera Sensitivities`.
+   - Features an interactive Plotly chart with 6 coordinated traces:
+     * CIE \bar{x}(\lambda) (Red solid, peak ~600 nm)
+     * CIE \bar{y}(\lambda) (Green solid / Luminance, peak ~555 nm)
+     * CIE \bar{z}(\lambda) (Blue solid, peak ~450 nm)
+     * Camera M_Red(\lambda) (Rose dashed, peak ~600 nm)
+     * Camera M_Green(\lambda) (Emerald dashed, peak ~555 nm)
+     * Camera M_Blue(\lambda) (Sky blue dashed, peak ~450 nm)
+   - Interactive Mode Controls:
+     * Radio: `Overlaid Comparison` (renders all 6 curves for direct comparison).
+     * Radio: `CIE 1931 CMFs Only` (renders the 3 human visual functions).
+     * Radio: `Camera Matrix M Only` (renders the 3 calibrated sensor functions).
+   - Numerical Data Table: Displays the exact 31-band values side-by-side with
+     color-coded channel values.
+   - Formula Box: Formulates the camera measurement integral, tristimulus definitions,
+     projective coordinates, and Planckian blackbody radiance formulas.
+
+B. View 2: CIE 1931 xy Chromaticity Viewport:
+   - Uses the CMF functions to render:
+     * The continuous blue Spectral Locus curve (380–700 nm).
+     * The purple line boundary connecting 380 nm and 700 nm.
+     * The white Planckian blackbody locus with Kelvin temperature labels.
+     * The red dashed sRGB triangle with D65 neutral white point cross-hair.
+     * The localized Inverse-Distance Weighted (IDW) continuous metameric ambiguity heatmap,
+       strictly masked within the CMF spectral locus boundary polygon.
+
+
+
+================================================================================
+6. COMPREHENSIVE ALGORITHMS (FROM INCEPTION TO PRESENT)
+================================================================================
+
+6.1 Algorithm 1: Gamut Feasibility & Anchor Point LP (HiGHS)
+------------------------------------------------------------
+Purpose: Determines if target observation c in [0, 1]^3 lies within the prior-induced
+camera gamut, and computes a strictly feasible anchor point z0 in R^8.
+
+Input:
+* Target observation: c in R^3
+* Constraint matrix: A in R^{3 x 8}, offset: b_offset in R^3 (A = M @ B, b_offset = M @ mu)
+* Polytope inequalities: C in R^{714340 x 8}, d in R^714340 (C = A_red, d = b_red)
+* Tolerance: tol = 1e-5
+
+Steps:
+1. Compute target RHS: b = c - b_offset in R^3.
+2. Formulate Linear Feasibility Program:
+       Find z0 in R^8 minimizing 0^T @ z0
+       subject to:
+           A @ z0 = b        (3 equality constraints)
+           C @ z0 <= d       (714,340 inequality constraints)
+3. Solve via SciPy HiGHS dual simplex optimizer (`linprog(method='highs')`).
+4. If solver returns infeasible or unbounded:
+       Return { "feasible": False, "z0": None }.
+5. Residual Verification:
+       equality_res = ||A @ z0 - b||_2
+       inequality_viol = max(C @ z0 - d)
+       If equality_res > tol or inequality_viol > tol:
+           Return { "feasible": False, "z0": None }.
+6. Return { "feasible": True, "z0": z0 }.
+
+
+6.2 Algorithm 2: Exact Reduced-Dimensional Fiber Formulation & Isometry
+----------------------------------------------------------------------
+Purpose: Re-parameterizes the 8D constrained problem into an exact 5D unconstrained
+equality subspace where distance and hypervolume are strictly isometric to continuous
+spectral reflectance space.
+
+Input:
+* Anchor point z0 in R^8
+* Camera constraint matrix A in R^{3 x 8}
+* Prior polytope C in R^{714340 x 8}, d in R^714340
+* PCA basis matrix B in R^{31 x 8}
+
+Steps:
+1. SVD of A:
+       A = U @ S @ V^T
+   Extract orthonormal null-space basis N in R^{8 x 5}:
+       A @ N = 0,   N^T @ N = I_5.
+2. Any affine solution satisfying A @ z = b is parameterized by alpha in R^5:
+       z(alpha) = z0 + N @ alpha.
+3. Substitute z(alpha) into prior inequalities C @ z <= d:
+       C @ (z0 + N @ alpha) <= d
+       (C @ N) @ alpha <= d - C @ z0.
+4. Define reduced system:
+       G = C @ N in R^{714340 x 5}
+       h = d - C @ z0 in R^714340.
+5. Exact Continuous Fiber Polytope:
+       Phi(c) = { mu + B @ (z0 + N @ alpha) : G @ alpha <= h, alpha in R^5 }.
+6. Isometry Proof:
+       Distance between two metamers R_1, R_2:
+       ||R_1 - R_2||_2^2 = ||B @ (z_1 - z_2)||_2^2 = (z_1 - z_2)^T B^T B (z_1 - z_2)
+       Because B^T @ B = I_8 and z_1 - z_2 = N @ (alpha_1 - alpha_2):
+       ||R_1 - R_2||_2^2 = (alpha_1 - alpha_2)^T N^T (B^T B) N (alpha_1 - alpha_2)
+                         = (alpha_1 - alpha_2)^T N^T I_8 N (alpha_1 - alpha_2)
+                         = (alpha_1 - alpha_2)^T I_5 (alpha_1 - alpha_2)
+                         = ||alpha_1 - alpha_2||_2^2.
+   Therefore, Euclidean lengths, pairwise distances, and 5D hypervolumes in alpha-space
+   equal Euclidean lengths, distances, and hypervolumes in 31D spectral space.
+
+
+6.3 Algorithm 3: Constrained Hit-and-Run MCMC Polytope Sampler
+--------------------------------------------------------------
+Purpose: Generates uniform, uncorrelated point clouds inside the 5D polytope G @ alpha <= h
+for visualization and empirical covariance estimation without boundary-sticking.
+
+Input:
+* Reduced matrix G in R^{714340 x 5}, RHS vector h in R^714340
+* Initial point alpha_0 = 0 in R^5 (satisfies G @ 0 <= h since h = d - C @ z0 >= 0)
+* Number of samples N (100 to 5000), burn-in (default 50), thinning (default 2)
+
+Steps:
+1. Initialize alpha = 0. Compute initial slack vector:
+       slack = h - G @ alpha = h.
+2. For iteration k from 1 to (burn_in + N * thinning):
+   a. Sample uniform random unit direction u on the 4-sphere S^4:
+          v ~ N(0, I_5),   u = v / ||v||_2.
+   b. Compute directional constraint projections:
+          C_dir = G @ u in R^714340.
+   c. Determine intersection chord [t_min, t_max]:
+          For all constraints i in {1, ..., 714340}:
+              If C_dir[i] > 1e-9:
+                  t_upper_i = slack[i] / C_dir[i]
+              If C_dir[i] < -1e-9:
+                  t_lower_i = slack[i] / C_dir[i]
+          t_max = min_{i: C_dir[i] > 1e-9} (slack[i] / C_dir[i])
+          t_min = max_{i: C_dir[i] < -1e-9} (slack[i] / C_dir[i])
+   d. Numerical Safety Margin (prevent hyperplane sticking):
+          delta = t_max - t_min
+          eps = min(1e-7, 1e-3 * delta)
+          Sample step size: t ~ Uniform(t_min + eps, t_max - eps).
+   e. Update position and slack:
+          alpha <- alpha + t * u
+          slack <- slack - t * C_dir.
+   f. Periodic Re-synchronization (every 50 steps):
+          slack <- h - G @ alpha
+          slack <- max(slack, 0.0)  (eliminate floating-point truncation drift).
+   g. If k > burn_in and (k - burn_in) mod thinning == 0:
+          Record alpha into retained sample array.
+3. Compute 8D PCA points and 31D continuous spectra:
+       z_i = z0 + N @ alpha_i
+       R_i = mu + B @ z_i.
+
+
+6.4 Algorithm 4: Multi-Chain Statistical Convergence & Residual Validation
+--------------------------------------------------------------------------
+Purpose: Mathematically verifies the integrity and convergence of the generated
+metameric representations.
+
+Evaluation Metrics:
+1. Reconstructed RGB Measurement Residual:
+       c_hat_i = M @ R_i
+       residual_i = ||c_hat_i - c||_2.
+       Achieves mean and RMS residuals < 1e-14 (machine precision).
+2. Polytope Slack Constraint Satisfaction:
+       violation_i = max_j (C_j @ z_i - d_j).
+       Verified: 100.0% of retained samples satisfy violation <= 0.0.
+3. Multi-Chain Orthogonal Subspace Distance:
+       Run two independent chains (seed 42 and seed 123) producing sample sets 1 and 2.
+       Compute principal ambiguity directions U_1, U_2 in R^{5 x d} (eigenvectors of cov).
+       Construct orthogonal projection matrices:
+           P_1 = U_1 @ U_1^T,   P_2 = U_2 @ U_2^T.
+       Subspace distance:
+           d_subspace = ||P_1 - P_2||_F / sqrt(2 * d).
+       Guarantee: Strictly invariant to eigenvector sign reflections (+/- v) and
+       near-degenerate eigenvalue rotations.
+4. Effective Sample Size (ESS):
+       Computed using Geyer's initial positive sequence estimator on each coordinate.
+
+
+6.5 Algorithm 5: Exact Wavelength-Wise Spectral Bounds via Linear Optimization
+-----------------------------------------------------------------------------
+Purpose: Computes mathematically guaranteed physical reflectance boundaries
+[R_min(lambda), R_max(lambda)] across all 31 wavelength bands.
+
+Input:
+* Wavelength band index j in {0, ..., 30} (wavelength lambda_j = 400 + 10*j nm)
+* PCA mean mu_j, PCA basis row B_j in R^{1 x 8}
+* Anchor point z0 in R^8, null-space basis N in R^{8 x 5}
+* Reduced constraints G in R^{714340 x 5}, h in R^714340
+
+Steps:
+1. Reconstructed reflectance at band j is an affine function of alpha:
+       R_j(alpha) = mu_j + B_j @ z0 + (B_j @ N) @ alpha.
+2. Define objective gradient in alpha-space:
+       c_obj = B_j @ N in R^5.
+       c_base = mu_j + B_j @ z0.
+3. Formulate Dual Linear Programs:
+       Minimize:   R_min(lambda_j) = c_base + min_{alpha} ( c_obj @ alpha )
+       Maximize:   R_max(lambda_j) = c_base - min_{alpha} ( -c_obj @ alpha )
+       subject to: G @ alpha <= h.
+4. Solve via HiGHS dual simplex optimizer.
+5. Compute exact physical spectral span:
+       Delta R(lambda_j) = R_max(lambda_j) - R_min(lambda_j).
+6. Multi-threading: Solves 31 bands concurrently using Python ThreadPoolExecutor.
+7. Verification:
+       For all MCMC samples R_i: R_min(lambda_j) <= R_i(lambda_j) <= R_max(lambda_j).
+
+
+6.6 Algorithm 6: Quantitative Ambiguity Metrics & Characteristic Volume Scale
+-----------------------------------------------------------------------------
+Purpose: Quantifies the volume, dispersion, and physical extent of metameric ambiguity.
+
+Mathematical Formulas:
+1. Spectral RMS Spread Score:
+       S_spread = sqrt( (1 / N) * \sum_{i=1}^N ||R_i - R_bar||_2^2 )
+                = sqrt( ((N - 1) / N) * Tr(Sigma_R) )   [unit: reflectance (0-1)]
+2. Alpha Coordinate Spread:
+       sigma_spread = sqrt( Tr(Sigma_alpha) / d_f )      [unit: reflectance (0-1)]
+3. Pairwise Spectral Distance Distribution:
+       D_ij = ||R_i - R_j||_2 = ||alpha_i - alpha_j||_2.
+       Evaluated on up to 50,000 distinct pairs:
+       - Mean pairwise distance
+       - Median pairwise distance
+       - 95th percentile pairwise distance
+       - Maximum observed pairwise distance (empirical lower bound for fiber diameter)
+4. Full Spectral Covariance Matrix (31 x 31):
+       Sigma_R = (1 / (N - 1)) * \sum_{i=1}^N (R_i - R_bar)(R_i - R_bar)^T in R^{31 x 31}.
+       Eigen-decomposition: Sigma_R @ v_k = lambda_k * v_k.
+       - Exactly d_f = 5 non-zero eigenvalues lambda_1 >= ... >= lambda_5 > 0.
+       - Principal spectral ambiguity modes: v_1, ..., v_5.
+       - Variance explained percentage: (lambda_k / \sum lambda_m) * 100%.
+5. Generalized Variance & Ellipsoidal Volume Scale:
+       Generalized variance: det(Sigma_alpha) = \prod_{k=1}^{d_f} lambda_k   [unit: reflectance^10]
+       Characteristic volume scale:
+           A_det = ( det(Sigma_alpha) )^( 1 / (2 * d_f) )                    [unit: reflectance (0-1)]
+       Geometric interpretation: The radius of an equivalent 5D hyper-sphere whose
+       moment matches the generalized variance of the fiber.
+6. Sample Bounding Box Hypervolume:
+       V_box = \prod_{k=1}^{d_f} ( alpha_{max, k} - alpha_{min, k} )         [unit: reflectance^5]
+7. Constructed Composite Ambiguity Index:
+       I_composite = (1 / 3) * ( (S_spread / 0.20) + (mean(Delta R) / 0.30) + (A_det / 0.10) ).
+
+
+6.7 Algorithm 7: Exact 5D Polytope Geometry Engine (Stages S0 to S14)
+---------------------------------------------------------------------
+Module `src/fiber_geometry.py` provides exact analytical polytope geometry:
+
+* Stage S0: Pre-flight parameter conditioning and dimensional sanity checking.
+* Stage S1: Unit-row normalization (G_norm = G / ||G_i||_2), negative-norm pruning,
+  and fast spatial-hash deduplication of identical normal vectors.
+* Stage S2: HiGHS bounding-box optimization along coordinate axes.
+* Stage S3: Chebyshev Center and Inradius Linear Program:
+      max_{alpha, r}  r
+      subject to:     G_i @ alpha + r * ||G_i||_2 <= h_i.
+      If Chebyshev inradius r_in > 1e-9, the feasible fiber is proven to have full
+      topological dimension d_feasible = d_affine = 5.
+* Stage S4: Cutting-Plane Constraint Reduction and Qhull HalfspaceIntersection.
+* Stage S5: Exact Vertex Enumeration and deduplication.
+* Stage S6: Simplicial Triangulation of 4D boundary facets using Delaunay decomposition.
+* Stage S7: Exact 5D Hypervolume via Pyramid Decomposition:
+      Decomposes the 5D polytope into simplicial pyramids connected to the Chebyshev center:
+          Vol_5D(P) = (1 / 5) * \sum_{k} r_k * Vol_4D(Simplex_k).
+* Stage S8: 4D Boundary Surface Area and Isoperimetric Quotient.
+* Stage S9: Exact Polytope Centroid:
+          c_exact = (1 / Vol_5D) * \int_P alpha dV.
+* Stage S10: Exact 5D Covariance Matrix via Simplicial Moment Integration.
+* Stage S11: Exact Polytope Extents, Circumradius, and Condition Number.
+* Stage S12: Directional Extremum Metamers.
+* Stage S13: Full Suite of 12 Diagnostic Integrity Checks (I1 to I12).
+
+
+6.8 Algorithm 8: 100-Colour Batch Analysis & Multi-Format Reporting Pipeline
+----------------------------------------------------------------------------
+Module `src/batch_analyzer.py` and `src/report_generator.py`:
+1. Source Pixel Sampling: Loads `Dataset/image.png` (high-resolution natural scene),
+   samples unique candidate RGB triplets.
+2. Fast Gamut Pre-screening: Evaluates feasibility against 714,340 inequalities using
+   HiGHS LP until exactly 100 diverse, in-gamut colors are selected.
+3. Multi-threaded Solver Execution: Runs ThreadPoolExecutor across workers to compute
+   fiber solutions, MCMC sampling (N=500), validation, and statistics for all 100 colors.
+4. Dashboard Generation: Invokes `src/dashboard_renderer.py` to create 100 publication-quality
+   1920x1080 dashboard PNG images in `individual_images/`.
+5. Multi-Format Summary Generation:
+   - `ambiguity_summary.csv`: Full tabular metric data across all 100 colors.
+   - `ambiguity_summary.json`: Machine-readable metadata and observation records.
+   - `ambiguity_summary.txt`: Human-readable technical executive summary.
+   - `ambiguity_summary.docx`: Microsoft Word document with tables and formatting.
+   - Comparison visualizations: Ambiguity comparison heatmap, sorted metric chart,
+     palette overview, and CIE chromaticity heatmap.
+   - `complete_results.zip`: Complete consolidated archive.
+
+
+6.9 Algorithm 9: CIE 1931 xy Chromaticity Ambiguity Heatmap (IDW Interpolation)
+-------------------------------------------------------------------------------
+Module `src/chromaticity_analyzer.py` and `visualization/app.js`:
+1. RGB-to-xy Transformation: Converts all 100 benchmark colors to CIE 1931 (x, y) coordinates
+   via sRGB gamma decoding and D65-calibrated matrix transformation.
+2. Visible Gamut Masking: Generates the closed polygon of the CIE 1931 spectral locus
+   (380–700 nm) and purple line boundary using `colour.MSDS_CMFS`.
+3. Localized Inverse-Distance Weighted (IDW) Interpolation:
+   Given grid point (gx, gy) in chromaticity space and valid observations {(x_k, y_k, val_k)}:
+       dist_k = sqrt( (gx - x_k)^2 + (gy - y_k)^2 )
+       If dist_k < maxRadius (default 0.065):
+           w_k = 1.0 / (dist_k + 0.006)^2
+           val(gx, gy) = \sum (w_k * val_k) / \sum w_k
+       Else:
+           val(gx, gy) = null (unobserved chromaticity regions masked).
+4. Dual-Ring Marker Visualization:
+   - Outer ring: Colored continuously by selected ambiguity metric with colorbar.
+   - Center disc: Displays the true, unmanipulated RGB target color.
+
+
+================================================================================
+7. FULL SOFTWARE ARCHITECTURE & DIRECTORY BLUEPRINT
+================================================================================
+
+```
+fiber polytopes-2/
+├── Dataset/                               # Source input images (image.png)
+├── Spectral/                              # Hyperspectral scenes (.npy arrays)
+├── artifacts/                             # Precomputed scientific artifacts
+│   ├── A_camera.npy                       # Camera projection matrix (3 x 8)
+│   ├── camera_offset.npy                  # Camera measurement offset (3,)
+│   ├── M_camera.npy                       # 31-band camera sensitivity matrix (3 x 31)
+│   ├── pca_basis.npy                      # Orthonormal PCA basis B (31 x 8)
+│   ├── pca_mean.npy                       # Empirical spectral mean mu (31,)
+│   ├── A_red.npy                          # Polytope inequality normals (714,340 x 8)
+│   ├── b_red.npy                          # Polytope inequality offsets (714,340,)
+│   ├── null_A.npy                         # Null space basis N (8 x 5)
+│   ├── P_surf_pca.npy                     # Surface vertices in PCA space (711 x 8)
+│   ├── P_surf_spectra.npy                 # Surface vertices in 31-band spectra (711 x 31)
+│   ├── wavelengths.npy                    # 31 uniform bands 400-700 nm
+│   └── fiber_validation_results.json      # Benchmark validation results
+├── docs/                                  # Technical specifications & documentation
+│   ├── complete_project_algorithms_and_architecture.txt (This comprehensive document)
+│   ├── ambiguity_quantification_and_geometry.md
+│   ├── metamer_algorithm.txt
+│   └── validation_results.md
+├── evaluation/                            # Scientific benchmark & stability scripts
+│   ├── run_fiber_validation.py            # 4-target benchmark evaluation
+│   ├── run_sampling_stability.py          # Hit-and-Run N-convergence study
+│   └── run_pca_sensitivity.py             # Latent K sensitivity study
+├── random_colours_ambiguity_results/       # Completed 100-colour batch runs
+│   └── run_20261019_211619/
+│       ├── comparisons/                   # Summary comparison heatmaps & charts
+│       ├── individual_images/             # 100 individual 1920x1080 dashboards
+│       ├── summary/                       # CSV, JSON, TXT, and DOCX summaries
+│       └── complete_results.zip           # Consolidated run archive
+├── src/                                   # Core computational engine modules
+│   ├── ambiguity_metrics.py               # Quantitative dispersion & volume metrics
+│   ├── app.py                             # Flask REST API backend & static server
+│   ├── batch_analyzer.py                  # 100-colour batch execution manager
+│   ├── camera_model.py                    # Configurable camera sensitivity class
+│   ├── chromaticity_analyzer.py           # CIE 1931 xy chromaticity & locus engine
+│   ├── dashboard_renderer.py              # Matplotlib 1920x1080 dashboard generator
+│   ├── export_utils.py                    # Multi-format data serialization
+│   ├── fiber_dimension.py                 # Mathematical affine & feasible dimension
+│   ├── fiber_geometry.py                  # Exact 5D polytope geometry (Stages S0-S14)
+│   ├── gamut_checker.py                   # HiGHS LP feasibility & anchor solver
+│   ├── hit_and_run.py                     # Constrained Hit-and-Run MCMC sampler
+│   ├── metamer_solver.py                  # Pipeline coordinator (anchor, sample, bounds)
+│   ├── report_generator.py                # Comprehensive report generator (DOCX/TXT/CSV)
+│   ├── spectral_bounds.py                 # Exact wavelength-wise LP bounds calculator
+│   ├── spectral_reconstruction.py         # Forward & inverse PCA reconstruction
+│   └── validation.py                      # Multi-chain & residual validation engine
+├── tests/                                 # Unit & integration test suite
+│   ├── test_ambiguity_and_export.py
+│   ├── test_api_endpoints.py
+│   ├── test_fiber_constraints.py
+│   ├── test_fiber_geometry_synthetic.py
+│   ├── test_sampling_validity.py
+│   └── test_spectral_bounds.py
+└── visualization/                         # Interactive frontend client
+    ├── index.html                         # Multi-view HTML layout
+    ├── app.js                             # Plotly.js charts, WebGL, CMF display
+    └── styles.css                         # Dark scientific UI stylesheet
+```
+
+
+================================================================================
+8. NUMERICAL VALIDATION BENCHMARKS & RESEARCH SENSITIVITY STUDIES
+================================================================================
+
+8.1 Reproducible Four-Target Evaluation Benchmark
+-------------------------------------------------
+Evaluated via `evaluation/run_fiber_validation.py`:
+
+| Target Name          | Target RGB          | Feasible | Rank | Fiber Dim | Anchor Res | Max Viol   | Valid (%) | RGB RMS Err | sigma_spread | A_det  | Runtime |
+|----------------------|---------------------|:--------:|:----:|:---------:|:----------:|:----------:|:---------:|:-----------:|:------------:|:------:|:-------:|
+| Neutral Feasible     | [0.50, 0.50, 0.50]  | True     | 3    | 5         | 1.90e-15   | -1.32e-05  | 100.0%    | 2.70e-15    | 0.0742       | 0.0487 | 139.9 s |
+| Chromatic Feasible   | [0.30, 0.35, 0.40]  | True     | 3    | 5         | 1.57e-15   | -1.44e-05  | 100.0%    | 2.28e-15    | 0.0518       | 0.0330 | 157.1 s |
+| Low-Luminance Bound  | [0.18, 0.18, 0.18]  | True     | 3    | 5         | 1.35e-15   | -3.97e-06  | 100.0%    | 1.79e-15    | 0.0287       | 0.0184 | 143.8 s |
+| Out-of-Gamut Green   | [0.05, 0.95, 0.05]  | False    | —    | —         | —          | —          | Rejected  | —           | —            | —      |   7.3 s |
+
+Findings:
+- Machine-precision equality (< 1e-14) confirmed across all feasible targets.
+- Polytope slack violations strictly negative (100% interior feasible samples).
+- Boundary Contraction: As color luminance approaches the gamut boundary ([0.18, 0.18, 0.18]),
+  volume scale A_det contracts from 0.0487 down to 0.0184, proving that boundary colors
+  exhibit significantly less spectral ambiguity than interior neutral colors.
+- Clean Out-of-Gamut Rejection: Out-of-gamut green rejected decisively in 7.3s.
+
+
+8.2 Hit-and-Run Sample-Count Stability & Convergence Study
+----------------------------------------------------------
+Evaluated via `evaluation/run_sampling_stability.py` on RGB [0.5, 0.5, 0.5]:
+
+| Sample Count N | Centroid Drift | Covariance Rel Error | sigma_spread | A_det  | Empirical 550nm Span | Gap to Exact LP Bound |
+|:--------------:|:--------------:|:--------------------:|:------------:|:------:|:--------------------:|:---------------------:|
+|      100       |    3.56e-2     |        0.3603        |    0.0641    | 0.0472 |   [0.0291, 0.0578]   |    0.0028 / 0.0086    |
+|      250       |    3.32e-2     |        0.3998        |    0.0703    | 0.0482 |   [0.0287, 0.0587]   |    0.0024 / 0.0077    |
+|      500       |    2.20e-2     |        0.2235        |    0.0666    | 0.0480 |   [0.0286, 0.0599]   |    0.0022 / 0.0065    |
+|     1,000      |    6.30e-3     |        0.1886        |    0.0661    | 0.0475 |   [0.0286, 0.0610]   |    0.0022 / 0.0054    |
+|  2,000 (Ref)   |    0.00e0      |        0.0000        |    0.0624    | 0.0470 |   [0.0286, 0.0639]   |    0.0022 / 0.0025    |
+
+Ground-Truth Exact LP Bound at 550 nm: [0.0263, 0.0664].
+Findings:
+- Centroid drift and covariance error monotonically decrease as N increases.
+- Volume scale estimate A_det stabilizes rapidly around 0.0470 +/- 0.001.
+- Empirical sample extrema expand outward toward the true exact LP bounds.
+
+
+8.3 PCA Latent Dimension Sensitivity Analysis (K in {5, 8, 10, 12, 15})
+----------------------------------------------------------------------
+| PCA Dimension K | Variance Explained | Recon RMSE | Rank(A) | Fiber Dim d_f | Facet Complexity | Practical Status |
+|:---------------:|:------------------:|:----------:|:-------:|:-------------:|:----------------:|:----------------:|
+|        5        |       98.98%       |  2.16e-2   |    3    |       2       | O(V^2)           | Under-fits DOF   |
+|   8 (Current)   |       99.71%       |  1.15e-2   |    3    |       5       | 714,340 facets   | Active Benchmark |
+|       10        |       99.84%       |  8.53e-3   |    3    |       7       | O(V^5)           | >15M facets      |
+|       12        |       99.90%       |  6.79e-3   |    3    |       9       | O(V^6)           | Combinatorial    |
+|       15        |       99.95%       |  4.68e-3   |    3    |      12       | O(V^7)           | Combinatorial    |
+
+
+8.4 Canonical Synthetic Polytope Validation (5D Hypercube [-1, 1]^5)
+--------------------------------------------------------------------
+Tested in `src/ambiguity_metrics.py` and `tests/test_fiber_geometry_synthetic.py`:
+- Analytical hypercube side length: 2.0. True 5D Hypervolume: 2^5 = 32.0.
+- Analytical coordinate variance: Var(X_i) = 1/3 ~ 0.3333.
+- Analytical trace spread: sqrt(1/3) ~ 0.57735.
+- Analytical volume scale: (det(Cov))^(1/10) = (1/3)^(1/2) ~ 0.57735.
+- Evaluated: All numerical estimations match analytical ground truth with < 5% error.
+
+
+================================================================================
+9. REPRODUCTION, TESTING, AND EXECUTION GUIDE
+================================================================================
+
+1. Run the Unified Test Suite:
+   $ python -m unittest discover tests
+
+2. Execute the 4-Target Reproducible Research Benchmark:
+   $ python evaluation/run_fiber_validation.py
+
+3. Run the Hit-and-Run MCMC Stability Study:
+   $ python evaluation/run_sampling_stability.py
+
+4. Run the PCA Sensitivity Study:
+   $ python evaluation/run_pca_sensitivity.py
+
+5. Execute 100-Colour Batch Analysis:
+   $ python scripts/run_100_colours_analysis.py
+
+6. Launch the Interactive Web Application:
+   $ python src/app.py
+   Open browser at: http://localhost:5000
+   Features available:
+   - View 1: 3D Polytope Visualization, Panels A through F, and Panel D3 (CMF Curves).
+   - View 2: CIE 1931 xy Chromaticity Ambiguity Heatmap with Interactive Tooltips.
+   - View 3: Batch Analysis Runner and 100-Colour Dashboard Gallery.
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================

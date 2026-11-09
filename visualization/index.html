@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPECTRAL METAMERIC FIBER ANALYZER</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="header-main">
+            <div>
+                <h1>SPECTRAL METAMERIC FIBER ANALYZER</h1>
+                <h2>36K-SPECTRAL-PRIOR • DYNAMIC AMBIGUITY & FIBER GEOMETRY ENGINE</h2>
+            </div>
+            <div class="header-badges">
+                <span id="badge-gamut" class="badge badge-neutral">Gamut: Awaiting Input</span>
+                <span id="badge-dim" class="badge badge-info">5D Metameric Fiber</span>
+                <span id="badge-validation" class="badge badge-neutral">Validation: Unchecked</span>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-layout">
+        <!-- Sidebar Controls (Panel A & 3D Controls & Export) -->
+        <aside class="sidebar-panel">
+            <!-- PANEL A: RGB Target and Feasibility -->
+            <section class="control-section">
+                <h3>Panel A — Target RGB & Feasibility</h3>
+                
+                <div class="rgb-channel-row">
+                    <div class="rgb-channel">
+                        <div class="channel-header">
+                            <label for="r-val">R (Red):</label>
+                            <input type="number" id="r-val" value="0.5" min="0" max="1" step="0.01">
+                        </div>
+                        <input type="range" id="r-slider" value="0.5" min="0" max="1" step="0.01" class="slider-red">
+                    </div>
+                    <div class="rgb-channel">
+                        <div class="channel-header">
+                            <label for="g-val">G (Green):</label>
+                            <input type="number" id="g-val" value="0.5" min="0" max="1" step="0.01">
+                        </div>
+                        <input type="range" id="g-slider" value="0.5" min="0" max="1" step="0.01" class="slider-green">
+                    </div>
+                    <div class="rgb-channel">
+                        <div class="channel-header">
+                            <label for="b-val">B (Blue):</label>
+                            <input type="number" id="b-val" value="0.5" min="0" max="1" step="0.01">
+                        </div>
+                        <input type="range" id="b-slider" value="0.5" min="0" max="1" step="0.01" class="slider-blue">
+                    </div>
+                </div>
+
+                <div class="color-preview-container">
+                    <div class="preview-swatch-wrapper">
+                        <div id="color-preview-box" class="color-preview-box"></div>
+                        <div class="preview-details">
+                            <div id="color-preview-text" class="color-text-large">RGB(0.50, 0.50, 0.50)</div>
+                            <div id="gamut-status-desc" class="status-desc">Awaiting calculation...</div>
+                        </div>
+                    </div>
+                    <div id="color-error-text" class="error-banner" style="display:none;"></div>
+                </div>
+
+                <!-- Sampling Budget (N) Settings -->
+                <div class="sub-section">
+                    <h4>Sampling Settings (MCMC)</h4>
+                    <div class="input-inline">
+                        <label for="n-samples-val">Number of samples (N):</label>
+                        <input type="number" id="n-samples-val" value="1000" min="100" max="5000" step="100">
+                    </div>
+
+                    <div class="preset-group">
+                        <span class="preset-label">Presets:</span>
+                        <button type="button" class="preset-btn" data-n="100">100</button>
+                        <button type="button" class="preset-btn" data-n="250">250</button>
+                        <button type="button" class="preset-btn" data-n="500">500</button>
+                        <button type="button" class="preset-btn active" data-n="1000">1000</button>
+                        <button type="button" class="preset-btn" data-n="2000">2000</button>
+                    </div>
+
+                    <div class="input-inline" style="margin-top: 10px;">
+                        <label for="bound-mode-select">LP Bounds Mode:</label>
+                        <select id="bound-mode-select">
+                            <option value="550nm" selected>550 nm Green Peak (Fast ~4s)</option>
+                            <option value="7_bands">Key 7 Bands 400-700nm (~20s)</option>
+                            <option value="all">All 31 Wavelength Bands</option>
+                        </select>
+                    </div>
+
+                    <div class="input-inline" style="margin-top: 10px;">
+                        <label for="camera-model-select">Camera Model:</label>
+                        <select id="camera-model-select" style="font-weight: 600; color: #1e293b;">
+                            <option value="baseline" selected>Original Calibrated Camera (Default)</option>
+                            <option value="optimized">Optimized Sensitivity Camera (Reduced Ambiguity)</option>
+                        </select>
+                    </div>
+                    <div id="camera-model-badge-row" style="margin-top: 4px; font-size: 11px; color: #64748b;">
+                        Active: <span id="active-camera-badge" style="color: #38bdf8; font-weight: 600;">Original Calibrated Camera</span>
+                    </div>
+
+                    <div class="advanced-toggle" id="advanced-toggle">▸ Advanced MCMC Settings (Burn-in, Thinning, Seed)</div>
+                    <div class="advanced-panel" id="advanced-panel" style="display:none;">
+                        <div class="input-inline">
+                            <label for="burn-in-val">Burn-in steps:</label>
+                            <input type="number" id="burn-in-val" value="50" min="0" max="1000" step="10">
+                        </div>
+                        <div class="input-inline">
+                            <label for="thinning-val">Thinning interval:</label>
+                            <input type="number" id="thinning-val" value="2" min="1" max="50" step="1">
+                        </div>
+                        <div class="input-inline">
+                            <label for="seed-val">Random seed:</label>
+                            <input type="number" id="seed-val" value="42" min="0" max="999999" step="1" readonly>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="calc-btn" class="primary-btn">[ CALCULATE METAMERIC FIBER ]</button>
+                
+                <div id="progress-container" class="progress-container" style="display:none;">
+                    <div class="progress-bar-bg">
+                        <div id="progress-bar-fill" class="progress-bar-fill"></div>
+                    </div>
+                    <div id="progress-status-text" class="progress-status-text">Starting calculation...</div>
+                </div>
+            </section>
+
+            <!-- 3D Display Controls (Panel G) -->
+            <section class="control-section">
+                <h4>Panel G — 3D Viewport Controls</h4>
+                <div class="checkbox-list">
+                    <label><input type="checkbox" id="show-polytope" checked> Show Translucent Spectral Polytope</label>
+                    <label><input type="checkbox" id="show-fiber" checked> Show Metameric Fiber Point Cloud</label>
+                    <label><input type="checkbox" id="show-centroid" checked> Show Fiber Centroid & Target Point</label>
+                    <label><input type="checkbox" id="show-directions" checked> Show Leading Ambiguity Directions</label>
+                </div>
+                <button type="button" id="reset-cam-btn" class="secondary-btn">Reset 3D Camera</button>
+            </section>
+
+            <!-- Export Section -->
+            <section class="control-section">
+                <h4>Export & Reproducibility</h4>
+                <div class="export-btn-group">
+                    <button type="button" id="export-json-btn" class="export-btn">Download JSON</button>
+                    <button type="button" id="export-csv-btn" class="export-btn">Download CSV</button>
+                    <button type="button" id="export-md-btn" class="export-btn">Download MD Report</button>
+                </div>
+                <p class="export-desc">Exports full inputs, dimensions, metrics with units, validation, and wavelength bounds for research reproducibility.</p>
+            </section>
+
+            <!-- Batch Image Analysis Section (100 Colours) -->
+            <section class="control-section" id="batch-analysis-section">
+                <h4>Batch Image Analysis (100 Colours)</h4>
+                
+                <div class="input-inline">
+                    <label for="batch-image-input">Source Image:</label>
+                    <input type="text" id="batch-image-input" value="Dataset/image.png" style="width: 140px; font-size: 0.75rem;">
+                </div>
+                <div class="input-inline">
+                    <label for="batch-colours-input">Target Colours:</label>
+                    <input type="number" id="batch-colours-input" value="100" min="1" max="500" step="1">
+                </div>
+                <div class="input-inline">
+                    <label for="batch-samples-input">Samples / Colour:</label>
+                    <input type="number" id="batch-samples-input" value="500" min="100" max="2000" step="100">
+                </div>
+
+                <button id="batch-start-btn" class="primary-btn" style="margin-top: 8px;">[ START BATCH ANALYSIS ]</button>
+                
+                <div id="batch-progress-box" class="progress-container" style="display:none; margin-top: 8px;">
+                    <div class="progress-bar-bg">
+                        <div id="batch-progress-bar" class="progress-bar-fill"></div>
+                    </div>
+                    <div id="batch-status-text" class="progress-status-text" style="margin-top: 4px; font-size: 0.72rem;">Starting batch...</div>
+                    <div class="batch-badge-row" style="display: flex; gap: 4px; margin-top: 6px; flex-wrap: wrap;">
+                        <span class="badge badge-neutral" id="batch-badge-sel">Sel: 0</span>
+                        <span class="badge badge-info" id="batch-badge-gamut">In-Gamut: 0</span>
+                        <span class="badge badge-warn" id="batch-badge-done">Done: 0</span>
+                        <span class="badge badge-ok" id="batch-badge-pass">Pass: 0</span>
+                    </div>
+                </div>
+
+                <!-- Run Selector & Navigation -->
+                <div class="sub-section" style="margin-top: 10px;">
+                    <div class="input-inline">
+                        <label for="batch-run-select">Select Run:</label>
+                        <select id="batch-run-select" style="width: 150px; font-size: 0.75rem;">
+                            <option value="">(Loading runs...)</option>
+                        </select>
+                    </div>
+
+                    <div class="input-inline" style="margin-top: 6px;">
+                        <label for="batch-colour-select">Colour ID:</label>
+                        <select id="batch-colour-select" style="width: 150px; font-size: 0.75rem;">
+                            <option value="">(Select Colour)</option>
+                        </select>
+                    </div>
+
+                    <div style="display: flex; gap: 6px; margin-top: 8px;">
+                        <button type="button" id="batch-prev-btn" class="secondary-btn" style="flex: 1;">◀ Prev</button>
+                        <button type="button" id="batch-next-btn" class="secondary-btn" style="flex: 1;">Next ▶</button>
+                    </div>
+
+                    <div class="export-btn-group" style="margin-top: 10px;">
+                        <button type="button" id="batch-dl-zip" class="export-btn" style="background:#1e40af; color:#fff;">Download ZIP Archive</button>
+                    </div>
+                    <div class="export-btn-group" style="margin-top: 4px;">
+                        <button type="button" id="batch-dl-csv" class="export-btn">CSV</button>
+                        <button type="button" id="batch-dl-docx" class="export-btn">DOCX</button>
+                        <button type="button" id="batch-dl-txt" class="export-btn">TXT</button>
+                    </div>
+                    
+                    <button type="button" id="sidebar-btn-cie" class="primary-btn" style="margin-top: 10px; background: linear-gradient(135deg, #0284c7, #1e40af); color: #fff;">[ VIEW CIE CHROMATICITY HEATMAP ]</button>
+                    <button type="button" id="sidebar-btn-cmf-render" class="primary-btn" style="margin-top: 8px; background: linear-gradient(135deg, #059669, #047857); color: #fff;">[ VIEW CMF IMAGE ENGINE ]</button>
+                </div>
+            </section>
+        </aside>
+
+        <!-- Right / Main Content Area -->
+        <main class="content-area">
+            <!-- Top Primary Navigation Bar: Single-Fiber vs CIE Chromaticity vs CMF Image Generation -->
+            <nav class="primary-nav-bar">
+                <button type="button" class="nav-tab-btn active" data-view="view-single-fiber" id="btn-view-single-fiber">
+                    <span class="nav-icon">🔬</span> <strong>Single Metameric Fiber</strong> <span class="nav-sub">(3D Polytope & Panels A–F)</span>
+                </button>
+                <button type="button" class="nav-tab-btn nav-tab-chrom" data-view="view-cie-chromaticity" id="btn-primary-cie">
+                    <span class="nav-icon">🌈</span> <strong>CIE xy — Metameric Ambiguity Heatmap</strong> <span class="nav-badge-pill">100 Colours</span>
+                </button>
+                <button type="button" class="nav-tab-btn nav-tab-cmf-img" data-view="view-cmf-image" id="btn-view-cmf-image">
+                    <span class="nav-icon">🖼️</span> <strong>CMF Image Generation</strong> <span class="nav-badge-pill" style="background:#10b981; color:#fff;">Strict 1-CMF</span>
+                </button>
+            </nav>
+
+            <!-- VIEW 1: Single Metameric Fiber Analysis (3D Polytope Viewport + Panels B, C, F + Spectral Dashboard Panels D1, D2, E) -->
+            <div id="view-single-fiber" class="primary-view-pane active">
+                <!-- Upper Section: 3D Viewport + Fiber Geometry & Ambiguity Metrics -->
+                <div class="upper-grid">
+                    <!-- 3D WebGL Viewport -->
+                    <div class="viewport-card">
+                        <div class="card-header">
+                            <span class="card-title">3D Affine Projection of Spectral Metameric Fiber (PCA Latent Space)</span>
+                            <span class="card-sub">Visualizing 5D Feasible Polytope in 3D</span>
+                        </div>
+                    <div id="plot-div" class="plot-container"></div>
+                    <div class="disclaimer-banner">
+                        <strong>Projection Notice:</strong> The 3D rendering is an affine projection of the 5-dimensional metameric fiber and is provided for visual exploration only. All metrics, volumes, distances, and bounds are computed in full coordinates without projection distortion. The sampled point cloud is an empirical visualization, not the total number of continuous metamers.
+                    </div>
+                </div>
+
+                <!-- Metrics & Validation Column -->
+                <div class="metrics-column">
+                    <!-- PANEL B: Fiber Geometry -->
+                    <div class="info-card">
+                        <div class="card-header">
+                            <span class="card-title">Panel B — Fiber Geometry & Dimensions</span>
+                        </div>
+                        <div class="metrics-table">
+                            <div class="metric-row">
+                                <span class="metric-name" title="Number of principal components retained in latent representation">PCA Components (K):</span>
+                                <span class="metric-value"><strong id="dim-k">8</strong> <span class="unit">components</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name" title="Numerical rank of camera measurement matrix A = M @ B">Camera Constraint Rank:</span>
+                                <span class="metric-value"><strong id="dim-rank">3</strong> <span class="unit">rank</span></span>
+                            </div>
+                            <div class="metric-row highlight-row">
+                                <span class="metric-name" title="Theoretical dimension of affine solution manifold d_affine = K - rank(A)">Affine Fiber Dimension:</span>
+                                <span class="metric-value"><strong id="dim-affine">5</strong> <span class="unit">dimensions</span></span>
+                            </div>
+                            <div class="metric-row highlight-row">
+                                <span class="metric-name" title="Topological dimension of intersection with spectral prior polytope">Feasible Fiber Dimension:</span>
+                                <span class="metric-value"><strong id="dim-feasible">5</strong> <span class="unit">dimensions</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name" title="Dimension of reduced null-space alpha parameterization">Sampling Dimension:</span>
+                                <span class="metric-value"><strong id="dim-sampling">5</strong> <span class="unit">dimensions</span></span>
+                            </div>
+                        </div>
+                        <div class="metric-note" id="dim-explanation">
+                            Affine equality fiber has dimension 5 in 8D PCA space. Feasible intersection with polytope is a compact convex subset.
+                        </div>
+                    </div>
+
+                    <!-- PANEL C: Ambiguity Scores -->
+                    <div class="info-card">
+                        <div class="card-header">
+                            <span class="card-title">Panel C — Spectral Ambiguity Scores</span>
+                        </div>
+                        <div class="metrics-table">
+                            <div class="metric-row">
+                                <span class="metric-name" title="Spectral RMS spread around sample mean S_spread = sqrt(1/N sum ||R_i - R_bar||_2^2)">Spectral Spread Score (S<sub>spread</sub>)*:</span>
+                                <span class="metric-value"><strong id="score-spread">-</strong> <span class="unit">reflectance</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name" title="Alpha-space coordinate spread sigma_spread = sqrt(Tr(Sigma_alpha)/d_f)">Coordinate Spread (&sigma;<sub>spread</sub>)*:</span>
+                                <span class="metric-value"><strong id="score-alpha-spread">-</strong> <span class="unit">reflectance</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name" title="Mean Euclidean distance between distinct sampled metamers ||R_i - R_j||_2">Mean Pairwise Distance*:</span>
+                                <span class="metric-value"><strong id="score-pairwise-mean">-</strong> <span class="unit">reflectance-dist</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name" title="95th percentile of pairwise distance distribution">95th Percentile Pairwise Dist*:</span>
+                                <span class="metric-value"><strong id="score-pairwise-p95">-</strong> <span class="unit">reflectance-dist</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name" title="Maximum observed pairwise distance in sample cloud (lower bound for continuous diameter)">Max Observed Pairwise Dist*:</span>
+                                <span class="metric-value"><strong id="score-pairwise-max">-</strong> <span class="unit">reflectance-dist</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name" title="Ellipsoidal volume scale A_det = (det(Sigma_alpha))^(1/(2*d_f))">Volume Scale (&Ascr;<sub>det</sub>)*:</span>
+                                <span class="metric-value"><strong id="score-vol-scale">-</strong> <span class="unit">reflectance</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name" title="Sample bounding box volume prod(span_j) in alpha space">Bounding Box Volume*:</span>
+                                <span class="metric-value"><strong id="score-box-vol">-</strong> <span class="unit">reflectance<sup>5</sup></span></span>
+                            </div>
+                            <div class="metric-row highlight-row">
+                                <span class="metric-name" title="Constructed composite index benchmarking overall ambiguity relative to nominal prior dispersion">Composite Ambiguity Index*:</span>
+                                <span class="metric-value"><strong id="score-composite">-</strong> <span class="unit">constructed index</span></span>
+                            </div>
+                        </div>
+                        <div class="metric-note">
+                            *Sample estimates computed from N valid Hit-and-Run draws. Euclidean distances in &alpha;-space equal 31-band spectral distances due to basis orthonormality (BN)<sup>T</sup>(BN) = I.
+                        </div>
+                    </div>
+
+                    <!-- PANEL F: Numerical Validation & Diagnostics -->
+                    <div class="info-card">
+                        <div class="card-header">
+                            <span class="card-title">Panel F — Numerical Validation & Diagnostics</span>
+                            <span id="badge-val-summary" class="badge badge-neutral">PENDING</span>
+                        </div>
+                        <div class="metrics-table">
+                            <div class="metric-row">
+                                <span class="metric-name">Mean Measurement Error:</span>
+                                <span class="metric-value"><strong id="val-mean-err">-</strong> <span class="unit">RGB units</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">Max Measurement Error:</span>
+                                <span class="metric-value"><strong id="val-max-err">-</strong> <span class="unit">RGB units</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">RMS Measurement Error:</span>
+                                <span class="metric-value"><strong id="val-rms-err">-</strong> <span class="unit">RGB units</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">Anchor Equality Residual:</span>
+                                <span class="metric-value"><strong id="val-residual">-</strong> <span class="unit">RGB units</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">Valid Samples In Polytope:</span>
+                                <span class="metric-value"><strong id="val-valid-pts">-</strong> <span class="unit">samples (%)</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">Max Polytope Slack Violation:</span>
+                                <span class="metric-value"><strong id="val-max-viol">-</strong> <span class="unit">constraint units</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">Min Effective Sample Size (ESS):</span>
+                                <span class="metric-value"><strong id="val-ess">-</strong> <span class="unit">effective samples</span></span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">Mean Lag-1 Autocorrelation:</span>
+                                <span class="metric-value"><strong id="val-autocorr">-</strong> <span class="unit">dimensionless</span></span>
+                            </div>
+                        </div>
+                        <div id="sample-warning-box" class="warning-banner" style="display:none;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lower Section: Spectral Analysis Tabs (Panels D & E) -->
+            <div class="spectral-dashboard">
+                <div class="tab-header">
+                    <button type="button" class="tab-btn active" data-tab="tab-envelope">Panel D1 — Spectral Envelope & Bounds</button>
+                    <button type="button" class="tab-btn" data-tab="tab-spans">Panel D2 — Wavelength Span & Representative Metamers</button>
+                    <button type="button" class="tab-btn" data-tab="tab-cmf">Panel D3 — Color Matching Functions (CMF) & Camera Sensitivities</button>
+                    <button type="button" class="tab-btn" data-tab="tab-covariance">Panel E — Covariance & Principal Modes</button>
+                    <button type="button" class="tab-btn" data-tab="tab-bounds-table">Wavelength Data Table</button>
+                </div>
+
+                <div class="tab-content-container">
+                    <!-- Tab 1: Spectral Envelope & Uncertainty Ribbon -->
+                    <div id="tab-envelope" class="tab-pane active">
+                        <div class="pane-description">
+                            Shows the mean metameric spectrum across 400–700 nm, surrounded by empirical sample percentiles (5th–95th ribbon) and exact LP geometric bounds where computed.
+                        </div>
+                        <div id="plot-envelope" class="sub-plot-container"></div>
+                    </div>
+
+                    <!-- Tab 2: Spectral Span & Representative Metamers -->
+                    <div id="tab-spans" class="tab-pane">
+                        <div class="split-plots">
+                            <div class="half-plot">
+                                <h5>Spectral Span &Delta;R(&lambda;) across 31 Bands</h5>
+                                <div id="plot-span-bars" class="sub-plot-container"></div>
+                            </div>
+                            <div class="half-plot">
+                                <h5>Selected Representative Metamers (Reflectance Curves)</h5>
+                                <div id="plot-metamers" class="sub-plot-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 3: Covariance & Principal Modes -->
+                    <div id="tab-covariance" class="tab-pane">
+                        <div class="split-plots">
+                            <div class="half-plot">
+                                <h5>Principal Eigenvalues & Variance Explained (%)</h5>
+                                <div id="plot-eigenvalues" class="sub-plot-container"></div>
+                            </div>
+                            <div class="half-plot">
+                                <h5>Leading Spectral Ambiguity Modes (Eigenvectors in R<sup>31</sup>)</h5>
+                                <div id="plot-modes" class="sub-plot-container"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Tab 4: Wavelength Bounds Table -->
+                    <div id="tab-bounds-table" class="tab-pane">
+                        <div class="table-scroll">
+                            <table class="data-table" id="bounds-data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Wavelength (nm)</th>
+                                        <th>Sample Min</th>
+                                        <th>Sample Mean</th>
+                                        <th>Sample Max</th>
+                                        <th>Sample Span</th>
+                                        <th>Exact LP Min</th>
+                                        <th>Exact LP Max</th>
+                                        <th>Exact LP Span</th>
+                                        <th>Undercoverage</th>
+                                        <th>Bound Method</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="bounds-table-body">
+                                    <tr><td colspan="10" style="text-align:center; color:#888;">No calculation performed yet.</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab 5: Color Matching Functions (CMF) & Camera Sensitivities -->
+                    <div id="tab-cmf" class="tab-pane">
+                        <div class="pane-description">
+                            Visualizes the <strong>CIE 1931 2° Standard Observer Color Matching Functions</strong> (&xmacr;, &ymacr;, &zmacr;) alongside the <strong>Calibrated Camera Spectral Sensitivities</strong> (M<sub>Red</sub>, M<sub>Green</sub>, M<sub>Blue</sub>) used for measurement equality integration and CIE 1931 xy chromaticity mapping.
+                        </div>
+                        
+                        <div class="cmf-controls-row" style="display:flex; flex-wrap:wrap; gap:16px; align-items:center; margin-bottom:12px; background:#080d1a; padding:10px 14px; border-radius:6px; border:1px solid #1e293b;">
+                            <span style="color:#e2e8f0; font-size:12px; font-weight:700;">Display Curves:</span>
+                            <label style="color:#38bdf8; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:5px;"><input type="radio" name="cmf-mode" value="both" checked> Overlaid Comparison</label>
+                            <label style="color:#cbd5e1; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:5px;"><input type="radio" name="cmf-mode" value="cie"> CIE 1931 CMFs Only</label>
+                            <label style="color:#cbd5e1; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:5px;"><input type="radio" name="cmf-mode" value="camera"> Camera Sensitivities</label>
+                            <span style="color:#475569; margin:0 4px;">|</span>
+                            <span style="color:#e2e8f0; font-size:12px; font-weight:700;">Camera Model:</span>
+                            <label style="color:#cbd5e1; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:5px;"><input type="radio" name="cmf-cam-select" value="baseline" checked> Original Baseline</label>
+                            <label style="color:#10b981; font-size:12px; cursor:pointer; display:flex; align-items:center; gap:5px;"><input type="radio" name="cmf-cam-select" value="optimized"> Optimized (Reduced Ambiguity)</label>
+                        </div>
+
+                        <div id="plot-cmf-curves" class="sub-plot-container" style="height: 380px; width: 100%;"></div>
+
+                        <div class="sub-section" style="margin-top: 15px;">
+                            <h5 style="color:#38bdf8; margin-bottom:8px;">31-Band Numerical Table: CIE 1931 2° Observer CMFs vs. Camera Response Matrix M</h5>
+                            <div class="table-scroll" style="max-height: 220px;">
+                                <table class="data-table" id="cmf-data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Wavelength &lambda; (nm)</th>
+                                            <th>CIE &xmacr;(&lambda;)</th>
+                                            <th>CIE &ymacr;(&lambda;)</th>
+                                            <th>CIE &zmacr;(&lambda;)</th>
+                                            <th>Camera M<sub>Red</sub>(&lambda;)</th>
+                                            <th>Camera M<sub>Green</sub>(&lambda;)</th>
+                                            <th>Camera M<sub>Blue</sub>(&lambda;)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cmf-table-body">
+                                        <!-- Dynamically populated -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="formula-box" style="margin-top: 15px; background:#080d1a; border:1px solid #1e293b; border-radius:6px; padding:12px; font-size:12px; color:#cbd5e1; line-height:1.6;">
+                            <strong style="color:#38bdf8;">Mathematical Formulations Used in Webpage:</strong><br>
+                            &bull; <strong>Camera Measurement Equation:</strong> <code>c = [R, G, B]<sup>T</sup> = &int; M(&lambda;) R(&lambda;) d&lambda; &approx; M @ R</code> where <code>M &in; &reals;<sup>3&times;31</sup></code>.<br>
+                            &bull; <strong>Tristimulus XYZ Integration:</strong> <code>X = &int; S(&lambda;) &xmacr;(&lambda;) d&lambda;</code>, <code>Y = &int; S(&lambda;) &ymacr;(&lambda;) d&lambda;</code>, <code>Z = &int; S(&lambda;) &zmacr;(&lambda;) d&lambda;</code>.<br>
+                            &bull; <strong>CIE 1931 Chromaticity Coordinates:</strong> <code>x = X / (X + Y + Z)</code>, <code>y = Y / (X + Y + Z)</code>.<br>
+                            &bull; <strong>Planckian Blackbody Locus:</strong> Integrated using Planck's formula <code>L(&lambda;, T) = c<sub>1</sub> / [&lambda;<sup>5</sup>(exp(c<sub>2</sub>/(&lambda;T)) - 1)]</code> against <code>&xmacr;, &ymacr;, &zmacr;</code> across 380–780 nm.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRIMARY VIEW 2: Dedicated CIE xy Chromaticity & Metameric Ambiguity Heatmap Workspace -->
+        <div id="view-cie-chromaticity" class="primary-view-pane">
+            <div class="chrom-header-banner">
+                <div class="chrom-header-title">
+                    <h3>CIE xy CHROMATICITY — METAMERIC AMBIGUITY DISTRIBUTION</h3>
+                    <span class="chrom-sub">100 IN-GAMUT PIXEL COLOURS • ESTIMATED AMBIGUITY HEATMAP (LOCUS-MASKED)</span>
+                </div>
+                <div class="chrom-header-badges">
+                    <span class="badge badge-info" id="chrom-badge-count">100 Colours Mapped</span>
+                    <span class="badge badge-ok" id="chrom-badge-gamut">100% In-Gamut</span>
+                    <span class="badge badge-neutral" id="chrom-badge-metric">Composite Ambiguity Index</span>
+                </div>
+            </div>
+
+            <!-- 3-Column Landscape Main Layout -->
+            <div class="chrom-main-grid">
+                            <!-- LEFT PANEL: Controls & Settings -->
+                            <div class="chrom-controls-panel">
+                                <div class="chrom-control-group">
+                                    <label for="chrom-metric-select" class="chrom-label">Ambiguity Metric:</label>
+                                    <select id="chrom-metric-select" class="chrom-select">
+                                        <option value="composite_ambiguity_index" selected>1. Composite Ambiguity Index (Default)</option>
+                                        <option value="spectral_spread_score">2. Spectral Spread Score (S_spread)</option>
+                                        <option value="coordinate_spread">3. Coordinate Spread (σ_spread)</option>
+                                        <option value="mean_pairwise_distance">4. Mean Pairwise Distance</option>
+                                        <option value="p95_pairwise_distance">5. 95th Percentile Pairwise Dist</option>
+                                        <option value="max_pairwise_distance">6. Max Observed Pairwise Dist</option>
+                                        <option value="volume_scale_a_det">7. Volume Scale (A_det)</option>
+                                    </select>
+                                </div>
+
+                                <div class="chrom-control-group">
+                                    <span class="chrom-group-title">Display Layers</span>
+                                    <div class="chrom-checkboxes">
+                                        <label><input type="checkbox" id="chrom-show-heatmap" checked> Show Ambiguity Heatmap</label>
+                                        <label><input type="checkbox" id="chrom-show-markers" checked> Show Original RGB Markers</label>
+                                        <label><input type="checkbox" id="chrom-show-labels"> Show Colour IDs (001–100)</label>
+                                        <label><input type="checkbox" id="chrom-show-planckian" checked> Show Planckian Locus Tc(K)</label>
+                                        <label><input type="checkbox" id="chrom-show-srgb" checked> Show sRGB Gamut Triangle</label>
+                                        <label><input type="checkbox" id="chrom-show-wavelengths" checked> Show Wavelength Boundary</label>
+                                    </div>
+                                </div>
+
+                                <div class="chrom-control-group">
+                                    <div class="slider-label-row">
+                                        <label for="chrom-opacity-slider">Heatmap Opacity:</label>
+                                        <span id="chrom-opacity-val">0.65</span>
+                                    </div>
+                                    <input type="range" id="chrom-opacity-slider" min="0.1" max="1.0" step="0.05" value="0.65" class="chrom-slider">
+                                </div>
+
+                                <div class="chrom-control-group">
+                                    <span class="chrom-group-title">Visualization Legend</span>
+                                    <div class="chrom-legend-box">
+                                        <div class="legend-item"><span class="legend-swatch swatch-heatmap"></span> <span>Heatmap & Ring: Ambiguity score</span></div>
+                                        <div class="legend-item"><span class="legend-swatch swatch-target"></span> <span>Marker Center: True Target RGB</span></div>
+                                        <div class="legend-item"><span class="legend-line line-planckian"></span> <span>Planckian Blackbody Locus Tc</span></div>
+                                        <div class="legend-item"><span class="legend-line line-srgb"></span> <span>sRGB Display Gamut</span></div>
+                                    </div>
+                                </div>
+
+                                <div class="chrom-control-group" style="margin-top:auto;">
+                                    <span class="chrom-group-title">Export Options</span>
+                                    <div class="export-btn-group">
+                                        <button type="button" id="chrom-export-png" class="export-btn" style="background:#1e40af; color:#fff;">Export High-Res PNG</button>
+                                        <button type="button" id="chrom-export-csv" class="export-btn">Export 100-Colour CSV</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CENTER PANEL: CIE 1931 xy Plotly Chart -->
+                            <div class="chrom-chart-panel">
+                                <div id="plot-chromaticity" class="sub-plot-container" style="height: 520px; width: 100%;"></div>
+                                <div class="chrom-scientific-disclaimer">
+                                    <strong>Scientific Validation Notice:</strong> Chromaticity coordinates (x, y) are converted from target RGB values using standard sRGB gamma decoding (EOTF) and the D65-calibrated transformation matrix. Ambiguity heatmap values between measured points are localized distance-weighted interpolations strictly masked within the visible CIE 1931 spectral locus. Unobserved chromaticity regions are masked. Marker centers retain exact measured target RGB colors.
+                                </div>
+                            </div>
+
+                            <!-- RIGHT PANEL: Selected Colour Detail Card -->
+                            <div class="chrom-detail-panel">
+                                <div class="chrom-card-header">
+                                    <span id="chrom-detail-id" class="chrom-detail-title">COLOUR_001</span>
+                                    <span id="chrom-detail-badge" class="badge badge-ok">PASS</span>
+                                </div>
+                                
+                                <div class="chrom-swatch-box-large">
+                                    <div id="chrom-detail-swatch" class="chrom-detail-swatch"></div>
+                                    <div class="chrom-swatch-labels">
+                                        <div id="chrom-detail-hex" class="chrom-hex-text">#6E7260</div>
+                                        <div id="chrom-detail-rgb-uint8" class="chrom-rgb-text">RGB: [110, 114, 96]</div>
+                                        <div id="chrom-detail-coords" class="chrom-coords-text">CIE xy: (0.3340, 0.3601)</div>
+                                    </div>
+                                </div>
+
+                                <div class="chrom-detail-metrics-list">
+                                    <div class="chrom-metric-item highlight-metric">
+                                        <span class="chrom-m-name">Composite Ambiguity:</span>
+                                        <span class="chrom-m-val" id="chrom-val-comp">0.4287</span>
+                                    </div>
+                                    <div class="chrom-metric-item">
+                                        <span class="chrom-m-name">Spectral Spread (S_spread):</span>
+                                        <span class="chrom-m-val" id="chrom-val-spread">0.1245</span>
+                                    </div>
+                                    <div class="chrom-metric-item">
+                                        <span class="chrom-m-name">Coordinate Spread (σ_spread):</span>
+                                        <span class="chrom-m-val" id="chrom-val-alpha">0.1190</span>
+                                    </div>
+                                    <div class="chrom-metric-item">
+                                        <span class="chrom-m-name">Mean Pairwise Dist:</span>
+                                        <span class="chrom-m-val" id="chrom-val-mean-dist">0.2842</span>
+                                    </div>
+                                    <div class="chrom-metric-item">
+                                        <span class="chrom-m-name">95th Pct Pairwise Dist:</span>
+                                        <span class="chrom-m-val" id="chrom-val-p95-dist">0.4019</span>
+                                    </div>
+                                    <div class="chrom-metric-item">
+                                        <span class="chrom-m-name">Max Observed Pairwise:</span>
+                                        <span class="chrom-m-val" id="chrom-val-max-dist">0.5120</span>
+                                    </div>
+                                    <div class="chrom-metric-item">
+                                        <span class="chrom-m-name">Volume Scale (A_det):</span>
+                                        <span class="chrom-m-val" id="chrom-val-adet">0.0894</span>
+                                    </div>
+                                    <div class="chrom-metric-item">
+                                        <span class="chrom-m-name">Affine Fiber Dim:</span>
+                                        <span class="chrom-m-val" id="chrom-val-affine">5D</span>
+                                    </div>
+                                    <div class="chrom-metric-item">
+                                        <span class="chrom-m-name">Feasible Fiber Dim:</span>
+                                        <span class="chrom-m-val" id="chrom-val-feasible">5D</span>
+                                    </div>
+                                    <div class="chrom-metric-item">
+                                        <span class="chrom-m-name">Valid MCMC Samples:</span>
+                                        <span class="chrom-m-val" id="chrom-val-samples">500 (100%)</span>
+                                    </div>
+                                    <div class="chrom-metric-item">
+                                        <span class="chrom-m-name">Gamut Status:</span>
+                                        <span class="chrom-m-val" id="chrom-val-gamut" style="color:#10b981;">In-Gamut (Feasible)</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="chrom-quick-nav">
+                                    <button type="button" id="chrom-btn-prev" class="secondary-btn" style="flex:1;">◀ Prev</button>
+                                    <button type="button" id="chrom-btn-next" class="secondary-btn" style="flex:1;">Next ▶</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- BOTTOM SECTION: Dynamic Summary Statistics + Searchable/Sortable 100 Colours Table -->
+                        <div class="chrom-bottom-section">
+                            <!-- Summary Stats Cards -->
+                            <div class="chrom-stats-grid">
+                                <div class="chrom-stat-card">
+                                    <span class="stat-label">Total Selected Colours</span>
+                                    <span class="stat-number" id="stat-total-colours">100</span>
+                                    <span class="stat-sub" id="stat-valid-coords">100 Valid xy • 100 In-Gamut</span>
+                                </div>
+                                <div class="chrom-stat-card">
+                                    <span class="stat-label">Active Metric Mean & Median</span>
+                                    <span class="stat-number" id="stat-metric-mean">0.4287</span>
+                                    <span class="stat-sub" id="stat-metric-median">Median: 0.4190 • Std: 0.1652</span>
+                                </div>
+                                <div class="chrom-stat-card">
+                                    <span class="stat-label">Observed Range (Min – Max)</span>
+                                    <span class="stat-number" id="stat-metric-range">0.0251 – 0.8517</span>
+                                    <span class="stat-sub" id="stat-metric-extrema-text">Full dynamic range</span>
+                                </div>
+                                <div class="chrom-stat-card highlight-card">
+                                    <span class="stat-label">Highest Ambiguity Colour</span>
+                                    <div class="extrema-row">
+                                        <div id="stat-highest-swatch" class="extrema-swatch"></div>
+                                        <div>
+                                            <strong id="stat-highest-id">COLOUR_090</strong>
+                                            <div id="stat-highest-val" class="stat-sub">Score: 0.8517</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chrom-stat-card highlight-card">
+                                    <span class="stat-label">Lowest Ambiguity Colour</span>
+                                    <div class="extrema-row">
+                                        <div id="stat-lowest-swatch" class="extrema-swatch"></div>
+                                        <div>
+                                            <strong id="stat-lowest-id">COLOUR_029</strong>
+                                            <div id="stat-lowest-val" class="stat-sub">Score: 0.0251</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="chrom-stat-card">
+                                    <span class="stat-label">Mean S_spread & Pairwise Dist</span>
+                                    <span class="stat-number" id="stat-mean-spread">0.1278</span>
+                                    <span class="stat-sub" id="stat-mean-pairwise">Mean Pairwise: 0.2914</span>
+                                </div>
+                            </div>
+
+                            <!-- Searchable & Sortable Table -->
+                            <div class="chrom-table-wrapper">
+                                <div class="chrom-table-toolbar">
+                                    <div class="table-search-box">
+                                        <label for="chrom-table-search">Search 100 Colours:</label>
+                                        <input type="text" id="chrom-table-search" placeholder="Search by ID, RGB, Hex..." class="chrom-search-input">
+                                    </div>
+                                    <div class="table-sort-box">
+                                        <label for="chrom-table-sort">Sort by:</label>
+                                        <select id="chrom-table-sort" class="chrom-select" style="width: auto;">
+                                            <option value="composite_desc">Composite Ambiguity (High → Low)</option>
+                                            <option value="composite_asc">Composite Ambiguity (Low → High)</option>
+                                            <option value="spread_desc">Spectral Spread S_spread (High → Low)</option>
+                                            <option value="spread_asc">Spectral Spread S_spread (Low → High)</option>
+                                            <option value="mean_dist_desc">Mean Pairwise Dist (High → Low)</option>
+                                            <option value="max_dist_desc">Max Pairwise Dist (High → Low)</option>
+                                            <option value="id_asc">Colour ID (001 → 100)</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="table-scroll" style="max-height: 280px;">
+                                    <table class="data-table" id="chrom-colours-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Colour ID</th>
+                                                <th>Swatch</th>
+                                                <th>Target RGB</th>
+                                                <th>Hex</th>
+                                                <th>CIE x</th>
+                                                <th>CIE y</th>
+                                                <th id="th-active-metric">Composite Ambiguity</th>
+                                                <th>S_spread</th>
+                                                <th>Mean Dist</th>
+                                                <th>Max Dist</th>
+                                                <th>Vol Scale</th>
+                                                <th>Validation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="chrom-table-body">
+                                            <!-- Populated by JS -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW 3: Strict One-CMF-Per-Image Rendering Engine -->
+            <div id="view-cmf-image" class="primary-view-pane cmf-image-pane">
+                <!-- Top Control & Settings Toolbar -->
+                <div class="cmf-toolbar">
+                    <div class="cmf-toolbar-group">
+                        <span class="cmf-toolbar-label">SELECT CMF:</span>
+                        <select id="cmf-renderer-select" class="cmf-select" style="min-width: 280px;">
+                            <!-- Populated dynamically via /api/cmf/list -->
+                            <option value="global_optimized_cmf">Global Optimized CMF (Master Active)</option>
+                            <option value="original_calibrated_camera">Original Calibrated Camera (Baseline)</option>
+                            <option value="cie_1931_2deg">CIE 1931 2° Standard Observer</option>
+                            <option value="cie_1964_10deg">CIE 1964 10° Supplementary Observer</option>
+                        </select>
+                    </div>
+
+                    <div class="cmf-toolbar-group">
+                        <span class="cmf-toolbar-label">SCENE:</span>
+                        <select id="cmf-scene-select" class="cmf-select">
+                            <option value="000002" selected>Scene 000002 (Benchmark Metameric Scene)</option>
+                        </select>
+                    </div>
+
+                    <div class="cmf-toolbar-group">
+                        <label style="display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: #cbd5e1; cursor: pointer; user-select: none;">
+                            <input type="checkbox" id="cmf-dual-view-toggle">
+                            <span>Side-by-Side Reference (Isolated Panels)</span>
+                        </label>
+                    </div>
+
+                    <div class="cmf-toolbar-group">
+                        <button type="button" id="btn-render-cmf-active" class="primary-btn" style="padding: 7px 18px; font-size: 0.82rem; background: linear-gradient(135deg, #10b981, #059669); color: #fff;">
+                            ⚡ Render Single CMF
+                        </button>
+                        <button type="button" id="btn-clear-cmf-buffer" class="export-btn" style="padding: 7px 12px; font-size: 0.78rem;">
+                            Clear Buffer
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Independent Rendering Viewports Grid -->
+                <div id="cmf-render-panels" class="cmf-render-panels">
+                    <!-- Panel 1: Primary Selected CMF Rendering -->
+                    <div class="cmf-card" id="cmf-primary-card">
+                        <div class="cmf-card-header">
+                            <div class="cmf-card-title">
+                                <span>🎯 Active CMF:</span>
+                                <span id="cmf-primary-title" style="color: #38bdf8;">Global Optimized CMF</span>
+                            </div>
+                            <span class="cmf-strict-pill" id="cmf-primary-pill">✓ STRICT 1-CMF VERIFIED</span>
+                        </div>
+                        <div class="cmf-img-viewport" id="cmf-primary-viewport">
+                            <div class="cmf-viewport-loader" id="cmf-primary-loader">Rendering isolated single CMF...</div>
+                            <img id="cmf-primary-img" alt="Active CMF Rendered Output" style="display: none;">
+                            <div class="cmf-viewport-placeholder" id="cmf-primary-placeholder">
+                                <span style="font-size: 2rem;">🖼️</span>
+                                <span>Select a CMF and click "Render Single CMF"</span>
+                                <span style="font-size: 0.75rem; color: #64748b;">Buffer initialized empty — no cross-CMF blending</span>
+                            </div>
+                        </div>
+                        <div class="cmf-provenance-box">
+                            <div class="cmf-meta-item">
+                                <span class="cmf-meta-label">CMF Identifier</span>
+                                <span class="cmf-meta-val" id="cmf-primary-id">-</span>
+                            </div>
+                            <div class="cmf-meta-item">
+                                <span class="cmf-meta-label">Matrix Channels</span>
+                                <span class="cmf-meta-val" id="cmf-primary-shape">3 × 31 bands (400-700nm)</span>
+                            </div>
+                            <div class="cmf-meta-item">
+                                <span class="cmf-meta-label">Buffer Allocation</span>
+                                <span class="cmf-meta-val" style="color: #10b981;" id="cmf-primary-buffer">Isolated Fresh Array</span>
+                            </div>
+                            <div class="cmf-meta-item">
+                                <span class="cmf-meta-label">Image SHA-256</span>
+                                <span class="cmf-meta-val" id="cmf-primary-hash" title="Output Checksum">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 2: Independent Reference Comparison Panel (Displayed when Side-by-Side is toggled) -->
+                    <div class="cmf-card" id="cmf-reference-card" style="display: none;">
+                        <div class="cmf-card-header">
+                            <div class="cmf-card-title">
+                                <span>🔍 Reference:</span>
+                                <select id="cmf-reference-select" class="cmf-select" style="font-size: 0.78rem; padding: 4px 8px;">
+                                    <option value="original_calibrated_camera">Original Calibrated Camera</option>
+                                    <option value="cie_1931_2deg">CIE 1931 2° Standard Observer</option>
+                                    <option value="global_optimized_cmf">Global Optimized CMF</option>
+                                </select>
+                            </div>
+                            <span class="badge badge-info">Independent Reference Output</span>
+                        </div>
+                        <div class="cmf-img-viewport" id="cmf-reference-viewport">
+                            <div class="cmf-viewport-loader" id="cmf-reference-loader">Rendering reference CMF...</div>
+                            <img id="cmf-reference-img" alt="Reference CMF Rendered Output" style="display: none;">
+                            <div class="cmf-viewport-placeholder" id="cmf-reference-placeholder">
+                                <span style="font-size: 2rem;">📐</span>
+                                <span>Reference render buffer</span>
+                            </div>
+                        </div>
+                        <div class="cmf-provenance-box">
+                            <div class="cmf-meta-item">
+                                <span class="cmf-meta-label">Reference ID</span>
+                                <span class="cmf-meta-val" id="cmf-reference-id">-</span>
+                            </div>
+                            <div class="cmf-meta-item">
+                                <span class="cmf-meta-label">Matrix Channels</span>
+                                <span class="cmf-meta-val">3 × 31 bands (400-700nm)</span>
+                            </div>
+                            <div class="cmf-meta-item">
+                                <span class="cmf-meta-label">Buffer Isolation</span>
+                                <span class="cmf-meta-val" style="color: #10b981;">Separate Memory Space</span>
+                            </div>
+                            <div class="cmf-meta-item">
+                                <span class="cmf-meta-label">Image SHA-256</span>
+                                <span class="cmf-meta-val" id="cmf-reference-hash" title="Reference Checksum">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Spectral Sensitivity Curves Plot -->
+                <div class="cmf-spectral-card">
+                    <div class="card-header" style="background: transparent; padding: 0 0 10px 0;">
+                        <span class="card-title">Color Matching Functions / Sensitivity Curves — Active CMF</span>
+                        <span style="font-size: 0.75rem; color: #94a3b8;">Single CMF 3-channel spectral profile applied to $S(x,y,\lambda)$</span>
+                    </div>
+                    <div id="plot-cmf-single-curves" style="height: 260px; width: 100%;"></div>
+                </div>
+
+                <!-- Scientific Integrity Notice -->
+                <div style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 6px; padding: 12px 16px; font-size: 0.78rem; color: #cbd5e1;">
+                    <strong style="color: #10b981;">🔬 Strict One-CMF-Per-Image Guarantee:</strong>
+                    Every rendered image is calculated by integrating the hyperspectral scene against exactly one selected 3-channel CMF matrix ($XYZ = \int S(\lambda)C_i(\lambda)d\lambda$).
+                    No cross-CMF averaging, blending, weighted ensemble, or output buffer accumulation is performed. Side-by-side comparison panels maintain completely isolated render buffers and separate image streams.
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

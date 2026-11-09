@@ -1,0 +1,293 @@
+================================================================================
+SPECTRAL METAMERIC FIBER ANALYZER: TECHNICAL DOCUMENTATION
+================================================================================
+
+# 1. PROJECT OBJECTIVE & RESEARCH FOUNDATION
+
+This research project calculates, validates, and analyzes the complete feasible
+metameric fiber corresponding to a user-defined RGB observation c = [R, G, B]^T,
+constrained by an empirical spectral prior learned from approximately 36,000
+hyperspectral images (400–700 nm sampled at 31 bands in 10 nm increments).
+
+Given an RGB observation c:
+find all physically plausible spectra within the learned spectral polytope that
+produce the identical camera measurement:
+
+    Phi(c) = { R in P_spec : M @ R = c }
+
+where:
+* R in R^31 is the spectral reflectance vector (400-700 nm).
+* M in R^{3 x 31} is the camera spectral sensitivity measurement matrix.
+* c in R^3 is the target RGB observation.
+* P_spec is the learned spectral prior represented as a convex polytope.
+
+Because the metameric fiber is a continuous high-dimensional convex set, it cannot
+be characterized solely as a finite collection of points. The system explicitly separates:
+1. Exact Mathematical Fiber Construction: Analytical convex geometry (equations, rank,
+   exact affine equality, and reduced inequality half-spaces).
+2. Numerical Point Clouds: Constrained Hit-and-Run MCMC samples used strictly for
+   visualization, empirical distribution inspection, and statistical estimation.
+3. Ground-Truth Geometric Extrema: Exact wavelength-by-wavelength linear programs (LP)
+   determining exact physical reflectance envelopes.
+
+
+# 2. SPECTRAL REPRESENTATION & PCA MODEL
+
+Spectra are sampled across 31 uniform bands from 400 nm to 700 nm (delta lambda = 10 nm).
+The latent spectral representation uses PCA with dimensionality K = 8:
+
+    R = mu + B @ z
+
+where:
+* mu in R^31: Empirical spectral mean vector (`artifacts/pca_mean.npy`).
+* B in R^{31 x 8}: Orthonormal PCA basis matrix (`artifacts/pca_basis.npy`).
+* z in R^8: Latent PCA coordinate vector.
+* R in R^31: Reconstructed continuous spectral reflectance.
+
+The spectral prior polytope in PCA space is bounded by 714,340 linear inequalities:
+
+    C @ z <= d
+
+where:
+* C = A_red in R^{714340 x 8} (`artifacts/A_red.npy`).
+* d = b_red in R^714340 (`artifacts/b_red.npy`).
+
+
+# 3. CAMERA MEASUREMENT & AFFINE EQUALITY SYSTEM
+
+The camera measurement equation maps spectra R to color triplet c:
+
+    c = M @ R
+
+Substituting the PCA representation R = mu + B @ z:
+
+    c = M @ (mu + B @ z) = M @ mu + (M @ B) @ z
+
+We define:
+* A = M @ B in R^{3 x 8} (`artifacts/A_camera.npy`)
+* b_offset = M @ mu in R^3 (`artifacts/camera_offset.npy`)
+* Target RHS: b = c - b_offset in R^3
+
+The camera constraint is an exact linear equality system in PCA coordinates:
+
+    A @ z = b
+
+
+# 4. GAMUT FEASIBILITY & FEASIBLE ANCHOR POINT
+
+To evaluate whether target observation c lies within the prior-induced gamut,
+the system solves a linear programming feasibility problem (via SciPy HiGHS):
+
+    Find z0 in R^8 such that:
+        A @ z0 = b
+        C @ z0 <= d
+
+If no feasible z0 exists within numerical tolerance (1e-5), target c is declared
+outside the prior-induced gamut, and the calculation terminates cleanly without
+displaying stale visualization data.
+
+When feasible, z0 serves as the anchor point satisfying both RGB equality and
+all 714,340 polytope inequalities with residuals < 1e-12.
+
+
+# 5. REDUCED-DIMENSIONAL FIBER FORMULATION
+
+The matrix A in R^{3 x 8} has rank 3. By the Rank-Nullity Theorem, the dimension
+of the unconstrained affine metameric equality subspace is:
+
+    d_f = K - rank(A) = 8 - 3 = 5
+
+The algorithm dynamically computes rank(A) and the orthonormal null-space basis N in R^{8 x 5}:
+
+    A @ N = 0,   N^T @ N = I_5
+
+Any point z in the affine equality subspace is parameterized by reduced coordinate alpha in R^5:
+
+    z(alpha) = z0 + N @ alpha
+
+Substituting this parameterization into the spectral polytope inequalities C @ z <= d:
+
+    C @ (z0 + N @ alpha) <= d
+    (C @ N) @ alpha <= d - C @ z0
+
+Defining the reduced constraint matrix and RHS:
+
+    G = C @ N in R^{714340 x 5}
+    h = d - C @ z0 in R^714340
+
+The complete feasible metameric fiber is:
+
+    Phi(c) = { mu + B @ (z0 + N @ alpha) : G @ alpha <= h }
+
+Optimization:
+Because G = C @ N depends solely on the precomputed prior C and camera null-space N,
+G is precomputed and cached. For each new RGB target, only the vector subtraction
+h = d - C @ z0 is required, making fiber instantiation instantaneous.
+
+
+# 6. CONSTRAINED HIT-AND-RUN MCMC SAMPLER
+
+To generate numerical representations of the continuous fiber for visualization
+and statistical estimation, a robust Constrained Hit-and-Run sampler operates
+directly over the reduced polytope G @ alpha <= h:
+
+Algorithm Workflow:
+1. Initialize alpha = 0 (which maps exactly to feasible anchor z0).
+2. At step t:
+   a. Sample uniform random unit direction u in R^5 on the unit sphere:
+      u ~ N(0, I_5),  u <- u / ||u||_2
+   b. Compute directional constraint projection: C_dir = G @ u in R^714340
+   c. Calculate line-segment feasible interval [t_min, t_max]:
+      t_max = min_{i: C_dir,i > 1e-9} (slack_i / C_dir,i)
+      t_min = max_{i: C_dir,i < -1e-9} (slack_i / C_dir,i)
+   d. Numerical Safety: To prevent sticking to boundary hyperplanes due to floating-point
+      rounding, sample step size t with a safety shrinkage margin:
+      delta = t_max - t_min, eps = min(1e-7, 1e-3 * delta)
+      t ~ Uniform(t_min + eps, t_max - eps)
+   e. Update state and slack:
+      alpha <- alpha + t * u
+      slack <- slack - t * C_dir
+   f. Periodic Re-synchronization: Every 50 steps, recompute slack = h - G @ alpha
+      and clamp non-negative floating rounding to prevent numerical drift.
+3. Burn-in & Thinning:
+   Configurable burn-in (default 50-100 steps) discards transient states.
+   Thinning (default 2-5 steps) reduces sample autocorrelation.
+
+
+# 7. SAMPLING VALIDATION FRAMEWORK
+
+The sampler is numerically validated across four core dimensions:
+
+A. Multiple Independent Chains:
+   Runs multiple chains with independent RNG seeds and distinct feasible initial points.
+   Evaluates chain agreement using:
+   - Centroid distance: ||c_1 - c_2||_2
+   - Relative covariance Frobenius difference: ||Sigma_1 - Sigma_2||_F / ||Sigma_1||_F
+   - Subspace projection metric: ||P_1 - P_2||_F / sqrt(2 * d), where P = U U^T is the
+     orthogonal projection onto top principal directions. This metric is strictly invariant
+     to eigenvector sign reflections and near-repeated eigenvalue rotations.
+
+B. RGB Equality Residual:
+   For every sample z_i:
+   - Residual: r_i = ||A @ z_i - b||_2
+   - Reconstructed spectra: R_i = mu + B @ z_i
+   - Measurement verification: c_hat_i = M @ R_i,  e_i = ||c_hat_i - c||_2
+   - Achieves mean and RMS errors on the order of 10^-15 (machine precision).
+
+C. Polytope Feasibility:
+   Evaluates v_i = max_j (C_j @ z_i - d_j) for all samples.
+   Verified: 100.0% of retained samples satisfy all 714,340 constraints (max violation <= 0.0).
+
+D. Sample-Count Stability & Convergence:
+   Convergence evaluated at N in {100, 250, 500, 1000, 2000} samples.
+   Demonstrates monotonic reduction of centroid drift and covariance error, while
+   empirical sample extrema expand toward the exact LP bounds.
+
+
+# 8. EXACT SPECTRAL BOUNDS VIA LINEAR OPTIMIZATION
+
+Sample percentiles and empirical extrema cannot prove the true physical extent of
+spectral ambiguity. The system implements exact wavelength-wise bounding via Linear Programming:
+
+For each wavelength band lambda_j (j in {0, ..., 30}):
+Reconstructed reflectance is an affine function of alpha:
+
+    R_j(alpha) = mu_j + B_j @ z0 + (B_j @ N) @ alpha
+
+The exact bounds are solved using HiGHS over the exact reduced fiber constraints:
+
+    R_min(lambda_j) = min_{alpha} (B_j @ N) @ alpha + mu_j + B_j @ z0
+    subject to G @ alpha <= h
+
+    R_max(lambda_j) = max_{alpha} (B_j @ N) @ alpha + mu_j + B_j @ z0
+    subject to G @ alpha <= h
+
+Comparison with Sampled Envelopes:
+- Exact bounds are mathematically rigorous ground truth.
+- Empirical sample extrema [min(R_samp), max(R_samp)] strictly lie within [R_min, R_max].
+- Percentile ribbons (e.g. 5th-95th percentiles) describe empirical density, NOT physical limits.
+
+
+# 9. QUANTITATIVE AMBIGUITY METRICS
+
+To transform the analyzer from qualitative visualization into a quantitative scientific tool:
+
+1. Fiber Dimension:
+   d_f = K - rank(A) = 5 (exact continuous degrees of freedom).
+
+2. Covariance & Principal Ambiguity Directions:
+   Computed in both reduced alpha-space (5x5) and PCA z-space (8x8):
+   - Eigenvalues lambda_1 >= lambda_2 >= ... >= lambda_{d_f}
+   - Explained variance ratios
+   - Leading principal ambiguity axes (orthonormal directions of maximum metameric variation).
+
+3. Dimensionally Meaningful Ambiguity Scores:
+   - Coordinate Spread Score:
+     sigma_spread = sqrt( (1 / d_f) * Tr(Sigma_alpha) )
+   - Ellipsoidal Volume Scale (Generalized Variance Scale):
+     A_det = ( det(Sigma_alpha) )^(1 / (2 * d_f))
+   - Wavelength-Integrated Uncertainty:
+     Delta R_int = integral_{400}^{700} sigma_R(lambda) d lambda
+   - Exact LP Bounding Envelope Area:
+     Area_LP = integral_{400}^{700} ( R_max(lambda) - R_min(lambda) ) d lambda
+
+4. Synthetic Polytope Validation:
+   Validated on canonical d-dimensional hypercube [-1, 1]^5 where exact variance (1/3),
+   spread (1/sqrt(3) ~ 0.57735), and box volume (2^5 = 32) are known analytically.
+   Verified relative estimation errors < 5%.
+
+
+# 10. PCA DIMENSIONALITY SENSITIVITY RESEARCH (K in {5, 8, 10, 12, 15})
+
+Offline research experiments evaluate the impact of latent PCA dimension K:
+* K=5:  Explains 98.98% variance, reconstruction RMSE = 2.16e-2, fiber dim d_f = 2.
+  Under-represents fine spectral variations.
+* K=8:  Explains 99.71% variance, reconstruction RMSE = 1.15e-2, fiber dim d_f = 5.
+  Optimal operating point balancing spectral accuracy with 8D polytope tractability (714,340 facets).
+* K=10: Explains 99.84% variance, reconstruction RMSE = 8.53e-3, fiber dim d_f = 7.
+* K=12: Explains 99.90% variance, reconstruction RMSE = 6.79e-3, fiber dim d_f = 9.
+* K=15: Explains 99.95% variance, reconstruction RMSE = 4.68e-3, fiber dim d_f = 12.
+
+Facet Complexity Scaling:
+By McMullen's Upper Bound Theorem, convex hull facet complexity scales as O(V^{floor(K/2)}).
+While K=8 produced 714,340 facets for 711 vertices, K >= 10 leads to combinatorial explosion
+into millions of facets, requiring specialized GPU/parallel polytope engines for exact representations.
+
+
+# 11. CONFIGURABLE CAMERA SENSITIVITY MODEL
+
+Module `src/camera_model.py` provides a standardized interface for camera design research:
+- Reusable CameraModel class supporting arbitrary C-channel spectral sensitivity matrices M(theta).
+- Computes camera-specific projection matrices: A(theta) = M(theta) @ B, b_offset(theta) = M(theta) @ mu.
+- Enables camera comparison based on resulting fiber dimension, exact spectral bounds,
+  and ambiguity volume metrics.
+- Preserves default calibrated camera behavior as exact baseline.
+
+
+# 12. 3D VISUALIZATION & PROJECTION LIMITATION
+
+The interactive 3D WebGL viewport projects 8D PCA coordinates onto their leading 3 components:
+[z_1, z_2, z_3]^T.
+- The 3D rendering displays the projected convex hull of the spectral prior,
+  reconstructed fiber points, fiber centroid, and top 3 principal ambiguity directions.
+- Explicit Limitation Note:
+  "The 3D rendering is a projection of the higher-dimensional metameric fiber and is provided for visualization only."
+- Quantitative bounds and volume metrics are computed strictly in high-dimensional space
+  (5D alpha-space, 8D PCA space, and 31D wavelength space), never from 3D projected pixels.
+
+
+# 13. REPRODUCIBILITY & TEST SUITE
+
+Environment: Python 3.14+, NumPy, SciPy (HiGHS), Flask.
+Execution Commands:
+- Unified test suite:
+    python -m unittest discover tests
+- 4-Target Research Benchmark:
+    python evaluation/run_fiber_validation.py
+- Hit-and-Run Stability Study:
+    python evaluation/run_sampling_stability.py
+- PCA Sensitivity Study:
+    python evaluation/run_pca_sensitivity.py
+- Interactive Web App:
+    python src/app.py (visit http://localhost:5000)
+================================================================================
